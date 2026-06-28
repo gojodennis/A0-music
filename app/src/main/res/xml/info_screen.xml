@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<about-screen>
+    <!--
+      ENTRY
+      - title: visible title shown in the About screen.
+      - description: visible supporting copy shown under the title.
+      - logoUrl: optional image link for the first header row.
+        Use @drawable/your_logo for bundled app artwork, or paste a content://,
+        file://, android.resource://, or https:// image link here.
+
+      LINK
+      - label: visible button text.
+      - url: destination opened when the pill is tapped.
+      Icon is chosen automatically from the domain:
+      instagram -> Instagram icon
+      x.com / twitter.com -> X icon
+      github.com -> GitHub icon
+      ko-fi.com / kofi.com -> Ko-fi icon
+      anything else -> globe icon
+    -->
+    <entry
+        title="A;0"
+        description="Your music, refined into an elegant listening experience. Latest release always available on GitHub. Thank you for using this app and I hope you have a great experience!"
+        logoUrl="@drawable/ic_launcher_foreground">
+        <link
+            label="Instagram"
+            url="https://instagram.com/gojodennis" />
+        <link
+            label="Twitter"
+            url="https://x.com/gojodennis" />
+        <link
+            label="Ko-fi"
+            url="https://ko-fi.com/gojodennis" />
+        <link
+            label="GitHub"
+            url="https://github.com/gojodennis/a0-music" />
+    </entry>
+
+    <entry
+        title="Resources"
+        description="A;0 is built with modern open-source Android components that shape experience of the app. Thanks to everyone creating resources such as Media3 playback, Jetpack Compose framework or Lucide icons">
+        <link
+            label="Android Developer"
+            url="https://developer.android.com" />
+        <link
+            label="Lucide icons"
+            url="https://lucide.dev/" />
+    </entry>
+</about-screen>
