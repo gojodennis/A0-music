@@ -102,7 +102,7 @@ private fun getTextContent(url: String, accept: String): String {
     connection.requestMethod = "GET"
     connection.instanceFollowRedirects = true
     connection.setRequestProperty("Accept", accept)
-    connection.setRequestProperty("User-Agent", "Elovaire/1.0 (https://github.com/droidbeauty/elovaire-music)")
+    connection.setRequestProperty("User-Agent", "A0/1.0 (https://github.com/droidbeauty/a0-music)")
     return try {
         connection.inputStream.bufferedReader().use { it.readText() }
     } finally {

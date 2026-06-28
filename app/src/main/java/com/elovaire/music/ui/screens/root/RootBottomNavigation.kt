@@ -29,12 +29,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import dev.chrisbanes.haze.ExperimentalHazeApi
 import elovaire.music.droidbeauty.app.ui.interaction.consumePointersWithoutSemantics
-import elovaire.music.droidbeauty.app.ui.interaction.elovairePressScale
-import elovaire.music.droidbeauty.app.ui.interaction.rememberElovaireInteractionSource
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireMotion
+import elovaire.music.droidbeauty.app.ui.interaction.a0PressScale
+import elovaire.music.droidbeauty.app.ui.interaction.rememberA0InteractionSource
+import elovaire.music.droidbeauty.app.ui.motion.A0Motion
 import elovaire.music.droidbeauty.app.ui.motion.rememberMotionSpecs
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireRadii
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireSpacing
+import elovaire.music.droidbeauty.app.ui.theme.A0Radii
+import elovaire.music.droidbeauty.app.ui.theme.A0Spacing
 import elovaire.music.droidbeauty.app.ui.theme.InkText
 
 @OptIn(ExperimentalHazeApi::class)
@@ -53,7 +53,7 @@ internal fun BottomNavigationBar(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(ElovaireSpacing.bottomNavigationBodyHeight + navigationInset),
+            .height(A0Spacing.bottomNavigationBodyHeight + navigationInset),
     ) {
         Box(
             modifier = Modifier
@@ -69,7 +69,7 @@ internal fun BottomNavigationBar(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(ElovaireSpacing.bottomNavigationBodyHeight)
+                    .height(A0Spacing.bottomNavigationBodyHeight)
                     .padding(horizontal = 10.dp)
                     .align(Alignment.TopCenter),
                 horizontalArrangement = Arrangement.SpaceEvenly,
@@ -116,13 +116,13 @@ private fun BottomNavigationItemButton(
     onClick: () -> Unit,
 ) {
     val motionSpecs = rememberMotionSpecs()
-    val interactionSource = rememberElovaireInteractionSource()
+    val interactionSource = rememberA0InteractionSource()
     val selectionTransition = updateTransition(
         targetState = selected,
         label = "BottomNavItemSelection",
     )
     val iconTint by selectionTransition.animateColor(
-        transitionSpec = { ElovaireMotion.colorFadeSpec() },
+        transitionSpec = { A0Motion.colorFadeSpec() },
         label = "BottomNavItemIconTint",
     ) { isSelected ->
         if (isSelected) {
@@ -136,7 +136,7 @@ private fun BottomNavigationItemButton(
             if (suppressEnterAnimation) {
                 motionSpecs.tween(durationMillis = 0)
             } else {
-                ElovaireMotion.releaseSpringSpec<Float>(
+                A0Motion.releaseSpringSpec<Float>(
                     dampingRatio = 0.8f,
                     stiffness = 540f,
                 )
@@ -148,13 +148,13 @@ private fun BottomNavigationItemButton(
     Box(
         modifier = Modifier
             .size(56.dp)
-            .elovairePressScale(
+            .a0PressScale(
                 pressedScale = 0.88f,
-                animationSpec = ElovaireMotion.chromeReleaseSpec(),
+                animationSpec = A0Motion.chromeReleaseSpec(),
                 interactionSource = interactionSource,
                 label = "${contentDescription}_bottom_nav_scale",
             )
-            .clip(RoundedCornerShape(ElovaireRadii.tile))
+            .clip(RoundedCornerShape(A0Radii.tile))
             .clickable(
                 interactionSource = interactionSource,
                 indication = null,

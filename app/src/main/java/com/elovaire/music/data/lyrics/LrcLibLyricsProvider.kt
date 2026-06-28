@@ -316,7 +316,7 @@ private class DefaultLrcLibApi : LrcLibApi {
             readTimeout = READ_TIMEOUT_MS
             setRequestProperty(
                 "User-Agent",
-                "Elovaire/${BuildConfig.VERSION_NAME} (Android; Offline Music Player)",
+                "A0/${BuildConfig.VERSION_NAME} (Android; Offline Music Player)",
             )
             setRequestProperty("Accept", "application/json")
             val responseCode = responseCode

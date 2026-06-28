@@ -2,11 +2,11 @@ package elovaire.music.droidbeauty.app.ui.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import elovaire.music.droidbeauty.app.core.ElovaireViewModelDependencies
+import elovaire.music.droidbeauty.app.core.A0ViewModelDependencies
 import elovaire.music.droidbeauty.app.ui.screens.tags.AlbumTagEditorViewModel
 
-internal class ElovaireViewModelFactory(
-    private val dependencies: ElovaireViewModelDependencies,
+internal class A0ViewModelFactory(
+    private val dependencies: A0ViewModelDependencies,
 ) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

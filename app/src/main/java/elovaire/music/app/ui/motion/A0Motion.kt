@@ -25,7 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.TransformOrigin
 import kotlin.math.roundToInt
 
-object ElovaireMotion {
+object A0Motion {
     private const val QuickBase = MotionDuration.Quick
     private const val FastBase = MotionDuration.Fast
     private const val StandardBase = MotionDuration.Standard

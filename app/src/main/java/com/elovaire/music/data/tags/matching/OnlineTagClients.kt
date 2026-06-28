@@ -316,4 +316,4 @@ private fun JSONArray?.relatedUrls(): List<String> {
 }
 
 private const val NETWORK_TIMEOUT_MS = 8_000
-private const val USER_AGENT = "Elovaire/1.0 (https://github.com/droidbeauty/elovaire-music)"
+private const val USER_AGENT = "A0/1.0 (https://github.com/droidbeauty/a0-music)"

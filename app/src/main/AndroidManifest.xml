@@ -16,7 +16,7 @@
         android:maxSdkVersion="32" />
 
     <application
-        android:name=".ElovaireApp"
+        android:name=".A0App"
         android:allowBackup="true"
         android:appCategory="audio"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -25,7 +25,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Elovaire">
+        android:theme="@style/Theme.A0">
         <meta-data
             android:name="com.google.android.gms.car.application"
             android:resource="@xml/automotive_app_desc" />
@@ -51,7 +51,7 @@
             android:exported="false"
             android:foregroundServiceType="mediaPlayback" />
         <service
-            android:name=".data.playback.ElovaireMediaLibraryService"
+            android:name=".data.playback.A0MediaLibraryService"
             android:enabled="true"
             android:exported="true"
             android:foregroundServiceType="mediaPlayback">

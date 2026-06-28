@@ -77,7 +77,7 @@ fun MotionRuntimeProvider(
     content: @Composable () -> Unit,
 ) {
     SideEffect {
-        ElovaireMotion.updateSystemDurationScale(runtime.durationScale)
+        A0Motion.updateSystemDurationScale(runtime.durationScale)
     }
     CompositionLocalProvider(LocalMotionRuntime provides runtime, content = content)
 }

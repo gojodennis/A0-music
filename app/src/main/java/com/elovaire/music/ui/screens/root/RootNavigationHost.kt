@@ -20,7 +20,7 @@ internal fun RootNavigationHost(
         modifier = modifier,
         enterTransition = {
             resolveForwardEnterTransition(
-                transition = ElovaireNavigationTransitions.resolveNavHostTransition(
+                transition = A0NavigationTransitions.resolveNavHostTransition(
                     initialRoute = initialState.destination.route,
                     targetRoute = targetState.destination.route,
                     initialFallbackTopLevelRoute = navState.browsingOriginRoute,
@@ -33,7 +33,7 @@ internal fun RootNavigationHost(
         },
         exitTransition = {
             resolveForwardExitTransition(
-                transition = ElovaireNavigationTransitions.resolveNavHostTransition(
+                transition = A0NavigationTransitions.resolveNavHostTransition(
                     initialRoute = initialState.destination.route,
                     targetRoute = targetState.destination.route,
                     initialFallbackTopLevelRoute = navState.browsingOriginRoute,
@@ -45,7 +45,7 @@ internal fun RootNavigationHost(
         },
         popEnterTransition = {
             resolvePopEnterTransition(
-                transition = ElovaireNavigationTransitions.resolveNavHostTransition(
+                transition = A0NavigationTransitions.resolveNavHostTransition(
                     initialRoute = initialState.destination.route,
                     targetRoute = targetState.destination.route,
                     initialFallbackTopLevelRoute = navState.browsingOriginRoute,
@@ -57,7 +57,7 @@ internal fun RootNavigationHost(
         },
         popExitTransition = {
             resolvePopExitTransition(
-                transition = ElovaireNavigationTransitions.resolveNavHostTransition(
+                transition = A0NavigationTransitions.resolveNavHostTransition(
                     initialRoute = initialState.destination.route,
                     targetRoute = targetState.destination.route,
                     initialFallbackTopLevelRoute = navState.browsingOriginRoute,

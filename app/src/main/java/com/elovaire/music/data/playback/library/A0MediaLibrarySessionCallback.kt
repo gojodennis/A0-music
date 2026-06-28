@@ -14,8 +14,8 @@ import com.google.common.util.concurrent.ListenableFuture
 import elovaire.music.droidbeauty.app.data.playback.PlaybackManager
 
 @OptIn(UnstableApi::class)
-internal class ElovaireMediaLibrarySessionCallback(
-    private val mediaTree: ElovaireMediaTree,
+internal class A0MediaLibrarySessionCallback(
+    private val mediaTree: A0MediaTree,
     private val playbackManager: PlaybackManager,
 ) : MediaLibrarySession.Callback {
     override fun onGetLibraryRoot(
@@ -23,7 +23,7 @@ internal class ElovaireMediaLibrarySessionCallback(
         browser: MediaSession.ControllerInfo,
         params: LibraryParams?,
     ): ListenableFuture<LibraryResult<MediaItem>> {
-        return Futures.immediateFuture(LibraryResult.ofItem(ElovaireMediaItems.root(), params))
+        return Futures.immediateFuture(LibraryResult.ofItem(A0MediaItems.root(), params))
     }
 
     override fun onGetChildren(
@@ -34,7 +34,7 @@ internal class ElovaireMediaLibrarySessionCallback(
         pageSize: Int,
         params: LibraryParams?,
     ): ListenableFuture<LibraryResult<ImmutableList<MediaItem>>> {
-        val parsed = ElovaireMediaIds.parse(parentId)
+        val parsed = A0MediaIds.parse(parentId)
             ?: return Futures.immediateFuture(LibraryResult.ofError(SessionError.ERROR_BAD_VALUE))
         return Futures.immediateFuture(
             LibraryResult.ofItemList(pageItems(mediaTree.childrenOf(parsed), page, pageSize), params),
@@ -93,7 +93,7 @@ internal class ElovaireMediaLibrarySessionCallback(
             )
             return Futures.immediateFuture(
                 MediaSession.MediaItemsWithStartPosition(
-                    resolved.queue.map(ElovaireMediaItems::song),
+                    resolved.queue.map(A0MediaItems::song),
                     resolvedStartIndex,
                     startPositionMs.coerceAtLeast(0L),
                 ),

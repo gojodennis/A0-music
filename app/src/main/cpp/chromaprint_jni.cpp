@@ -23,7 +23,7 @@ ChromaprintSession* sessionFromHandle(jlong handle) {
 }  // namespace
 
 extern "C" JNIEXPORT jlong JNICALL
-Java_elovaire_music_droidbeauty_app_data_tags_matching_NativeChromaprintBridge_nativeCreate(
+Java_a0_music_droidbeauty_app_data_tags_matching_NativeChromaprintBridge_nativeCreate(
     JNIEnv*,
     jobject) {
     auto session = std::make_unique<ChromaprintSession>();
@@ -34,7 +34,7 @@ Java_elovaire_music_droidbeauty_app_data_tags_matching_NativeChromaprintBridge_n
 }
 
 extern "C" JNIEXPORT jboolean JNICALL
-Java_elovaire_music_droidbeauty_app_data_tags_matching_NativeChromaprintBridge_nativeStart(
+Java_a0_music_droidbeauty_app_data_tags_matching_NativeChromaprintBridge_nativeStart(
     JNIEnv*,
     jobject,
     jlong handle,
@@ -48,7 +48,7 @@ Java_elovaire_music_droidbeauty_app_data_tags_matching_NativeChromaprintBridge_n
 }
 
 extern "C" JNIEXPORT jboolean JNICALL
-Java_elovaire_music_droidbeauty_app_data_tags_matching_NativeChromaprintBridge_nativeFeed(
+Java_a0_music_droidbeauty_app_data_tags_matching_NativeChromaprintBridge_nativeFeed(
     JNIEnv* env,
     jobject,
     jlong handle,
@@ -73,7 +73,7 @@ Java_elovaire_music_droidbeauty_app_data_tags_matching_NativeChromaprintBridge_n
 }
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_elovaire_music_droidbeauty_app_data_tags_matching_NativeChromaprintBridge_nativeFinish(
+Java_a0_music_droidbeauty_app_data_tags_matching_NativeChromaprintBridge_nativeFinish(
     JNIEnv* env,
     jobject,
     jlong handle) {
@@ -91,7 +91,7 @@ Java_elovaire_music_droidbeauty_app_data_tags_matching_NativeChromaprintBridge_n
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_elovaire_music_droidbeauty_app_data_tags_matching_NativeChromaprintBridge_nativeDestroy(
+Java_a0_music_droidbeauty_app_data_tags_matching_NativeChromaprintBridge_nativeDestroy(
     JNIEnv*,
     jobject,
     jlong handle) {

@@ -48,7 +48,7 @@ fun MotionRevealRegistry.RetainVisibleKeys(keys: Set<Any>) {
     }
 }
 
-fun Modifier.elovaireListReveal(
+fun Modifier.a0ListReveal(
     itemKey: Any,
     index: Int,
     registry: MotionRevealRegistry,
@@ -67,7 +67,7 @@ fun Modifier.elovaireListReveal(
     val delay = specs.listRevealDelay(index)
     val transition = updateTransition(
         targetState = started,
-        label = "elovaireListRevealTransition",
+        label = "a0ListRevealTransition",
     )
     val alpha by transition.animateFloat(
         transitionSpec = {
@@ -77,13 +77,13 @@ fun Modifier.elovaireListReveal(
                 easing = MotionEasing.FadeIn,
             )
         },
-        label = "elovaireListRevealAlpha",
+        label = "a0ListRevealAlpha",
     ) { visible -> if (visible) 1f else 0f }
     val offset by transition.animateDp(
         transitionSpec = {
             specs.listReveal(delayMillis = delay)
         },
-        label = "elovaireListRevealOffsetY",
+        label = "a0ListRevealOffsetY",
     ) { visible -> if (visible) 0.dp else (-8).dp }
     graphicsLayer {
         this.alpha = alpha

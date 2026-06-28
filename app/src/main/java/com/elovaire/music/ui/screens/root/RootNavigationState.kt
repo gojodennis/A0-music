@@ -18,7 +18,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import elovaire.music.droidbeauty.app.BuildConfig
 import elovaire.music.droidbeauty.app.domain.model.Album
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireAlbumMotion
+import elovaire.music.droidbeauty.app.ui.motion.A0AlbumMotion
 import elovaire.music.droidbeauty.app.ui.motion.MotionTransitions
 
 internal class RootNavigationState(
@@ -51,7 +51,7 @@ internal class RootNavigationState(
 
     fun logRouteTransition(previousRoute: String?, currentRoute: String?) {
         if (BuildConfig.DEBUG && previousRoute != currentRoute) {
-            Log.d("ElovaireMotion", "Route ${previousRoute.orEmpty()} -> ${currentRoute.orEmpty()}")
+            Log.d("A0Motion", "Route ${previousRoute.orEmpty()} -> ${currentRoute.orEmpty()}")
         }
     }
 
@@ -66,7 +66,7 @@ internal class RootNavigationState(
         currentBackStackEntry: androidx.navigation.NavBackStackEntry?,
         currentRoute: String?,
     ) {
-        val concreteRoute = currentBackStackEntry?.elovaireConcreteRoute() ?: return
+        val concreteRoute = currentBackStackEntry?.a0ConcreteRoute() ?: return
         val normalizedConcreteRoute = concreteRoute.normalizedNavigationRoute()
         val ownerRoute = when (normalizedConcreteRoute) {
             HOME_ROUTE -> HOME_ROUTE
@@ -177,7 +177,7 @@ internal class RootNavigationState(
 
     fun openAlbum(album: Album, origin: ExpandOrigin, source: AlbumOpenSource) {
         if (BuildConfig.DEBUG) {
-            Log.d("ElovaireMotion", "Album transition ${source.name} -> AlbumDetail(${album.id})")
+            Log.d("A0Motion", "Album transition ${source.name} -> AlbumDetail(${album.id})")
         }
         detailExpandOrigin = origin
         detailRouteTransitionMode = DetailRouteTransitionMode.TileExpand
@@ -250,9 +250,9 @@ internal fun resolveForwardEnterTransition(
     motionTransitions: MotionTransitions,
 ): EnterTransition = when {
     transition.targetRoute == PLAYER_ROUTE -> EnterTransition.None
-    transition.targetUsesTileExpand -> ElovaireAlbumMotion.forwardEnter(expandOrigin.toTransformOrigin())
+    transition.targetUsesTileExpand -> A0AlbumMotion.forwardEnter(expandOrigin.toTransformOrigin())
     transition.topLevelTransition.isTopLevelTransition -> motionTransitions.topLevelEnter()
-    transition.targetRoute.isAlbumDetailRoute() -> ElovaireAlbumMotion.forwardEnter(expandOrigin.toTransformOrigin())
+    transition.targetRoute.isAlbumDetailRoute() -> A0AlbumMotion.forwardEnter(expandOrigin.toTransformOrigin())
     transition.targetUsesDetailTransition -> motionTransitions.detailForwardEnter()
     else -> motionTransitions.fullScreenForwardEnter()
 }
@@ -262,9 +262,9 @@ internal fun resolveForwardExitTransition(
     motionTransitions: MotionTransitions,
 ): ExitTransition = when {
     transition.targetRoute == PLAYER_ROUTE -> ExitTransition.None
-    transition.targetUsesTileExpand -> ElovaireAlbumMotion.forwardExit()
+    transition.targetUsesTileExpand -> A0AlbumMotion.forwardExit()
     transition.topLevelTransition.isTopLevelTransition -> motionTransitions.topLevelExit()
-    transition.targetRoute.isAlbumDetailRoute() -> ElovaireAlbumMotion.forwardExit()
+    transition.targetRoute.isAlbumDetailRoute() -> A0AlbumMotion.forwardExit()
     transition.targetUsesDetailTransition -> motionTransitions.detailForwardExit()
     else -> motionTransitions.fullScreenForwardExit()
 }
@@ -274,9 +274,9 @@ internal fun resolvePopEnterTransition(
     motionTransitions: MotionTransitions,
 ): EnterTransition = when {
     transition.initialRoute == PLAYER_ROUTE -> EnterTransition.None
-    transition.initialUsesTileExpand -> ElovaireAlbumMotion.backEnter()
+    transition.initialUsesTileExpand -> A0AlbumMotion.backEnter()
     transition.topLevelTransition.isTopLevelTransition -> motionTransitions.topLevelEnter()
-    transition.targetRoute.isAlbumDetailRoute() -> ElovaireAlbumMotion.backEnter()
+    transition.targetRoute.isAlbumDetailRoute() -> A0AlbumMotion.backEnter()
     transition.targetUsesDetailTransition -> motionTransitions.detailBackEnter()
     else -> motionTransitions.fullScreenBackEnter()
 }
@@ -287,9 +287,9 @@ internal fun resolvePopExitTransition(
     motionTransitions: MotionTransitions,
 ): ExitTransition = when {
     transition.initialRoute == PLAYER_ROUTE -> ExitTransition.None
-    transition.initialUsesTileExpand -> ElovaireAlbumMotion.backExit(expandOrigin.toTransformOrigin())
+    transition.initialUsesTileExpand -> A0AlbumMotion.backExit(expandOrigin.toTransformOrigin())
     transition.topLevelTransition.isTopLevelTransition -> motionTransitions.topLevelExit()
-    transition.initialRoute.isAlbumDetailRoute() -> ElovaireAlbumMotion.backExit(expandOrigin.toTransformOrigin())
+    transition.initialRoute.isAlbumDetailRoute() -> A0AlbumMotion.backExit(expandOrigin.toTransformOrigin())
     transition.initialUsesDetailTransition -> motionTransitions.detailBackExit()
     else -> motionTransitions.fullScreenBackExit()
 }

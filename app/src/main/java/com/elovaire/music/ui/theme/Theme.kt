@@ -40,7 +40,7 @@ private val DarkColors = darkColorScheme(
 )
 
 @Composable
-fun ElovaireTheme(
+fun A0Theme(
     themeMode: ThemeMode,
     textSizePreset: TextSizePreset,
     content: @Composable () -> Unit,
@@ -49,15 +49,15 @@ fun ElovaireTheme(
     val darkTheme = resolveDarkTheme(themeMode = themeMode, systemDark = isSystemInDarkTheme())
 
     // Picks the full Material color scheme for the resolved mode above.
-    val colorScheme = elovaireResolvedColorScheme(darkTheme)
+    val colorScheme = a0ResolvedColorScheme(darkTheme)
 
     CompositionLocalProvider(LocalTextScale provides textSizePreset.scaleFactor) {
         MaterialTheme(
             colorScheme = colorScheme,
             // Global typography scaling for the text-size setting.
-            typography = elovaireTypography(textSizePreset.scaleFactor),
+            typography = a0Typography(textSizePreset.scaleFactor),
             // Shared shape system for cards, pills, and buttons.
-            shapes = elovaireShapes(),
+            shapes = a0Shapes(),
             content = content,
         )
     }
@@ -80,10 +80,10 @@ fun themeBackgroundForMode(
     systemDark: Boolean,
 ): Color {
     // Convenience helper used when UI needs the resolved screen background color directly.
-    return elovaireResolvedColorScheme(resolveDarkTheme(themeMode, systemDark)).background
+    return a0ResolvedColorScheme(resolveDarkTheme(themeMode, systemDark)).background
 }
 
-fun elovaireResolvedColorScheme(darkTheme: Boolean): ColorScheme {
+fun a0ResolvedColorScheme(darkTheme: Boolean): ColorScheme {
     // Single switch point between the light and dark palettes above.
     return if (darkTheme) DarkColors else LightColors
 }

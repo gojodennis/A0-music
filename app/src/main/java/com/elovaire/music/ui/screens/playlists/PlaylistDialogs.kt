@@ -76,11 +76,11 @@ import elovaire.music.droidbeauty.app.ui.i18n.formatCountLabel
 import elovaire.music.droidbeauty.app.ui.i18n.rootUiCopy
 import elovaire.music.droidbeauty.app.ui.i18n.uiPhrase
 import elovaire.music.droidbeauty.app.ui.interaction.consumePointersWithoutSemantics
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireMotion
-import elovaire.music.droidbeauty.app.ui.motion.elovaireListReveal
+import elovaire.music.droidbeauty.app.ui.motion.A0Motion
+import elovaire.music.droidbeauty.app.ui.motion.a0ListReveal
 import elovaire.music.droidbeauty.app.ui.motion.rememberMotionRevealRegistry
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireRadii
-import elovaire.music.droidbeauty.app.ui.theme.elovaireScaledSp
+import elovaire.music.droidbeauty.app.ui.theme.A0Radii
+import elovaire.music.droidbeauty.app.ui.theme.a0ScaledSp
 import androidx.compose.foundation.gestures.detectTapGestures
 
 @Composable
@@ -101,7 +101,7 @@ internal fun PlaylistArtworkPreview(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(start = 12.dp, top = 18.dp, end = 12.dp, bottom = 8.dp)
-                    .clip(RoundedCornerShape(ElovaireRadii.artwork))
+                    .clip(RoundedCornerShape(A0Radii.artwork))
                     .background(
                         Brush.verticalGradient(
                             colors = listOf(
@@ -116,7 +116,7 @@ internal fun PlaylistArtworkPreview(
         }
         Surface(
             modifier = Modifier.fillMaxSize(),
-            shape = RoundedCornerShape(ElovaireRadii.artwork),
+            shape = RoundedCornerShape(A0Radii.artwork),
             color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.32f),
         ) {
             when {
@@ -162,7 +162,7 @@ internal fun PlaylistArtworkPreview(
                         uri = coverSong?.artUri,
                         title = coverSong?.title ?: title,
                         modifier = Modifier.fillMaxSize(),
-                        cornerRadius = ElovaireRadii.artwork,
+                        cornerRadius = A0Radii.artwork,
                         requestedSizePx = 384,
                     )
                 }
@@ -221,7 +221,7 @@ internal fun PlaylistNameDialog(
                     .fillMaxWidth()
                     .padding(horizontal = 20.dp)
                     .consumePointersWithoutSemantics(),
-                shape = RoundedCornerShape(ElovaireRadii.card),
+                shape = RoundedCornerShape(A0Radii.card),
                 overlayAlpha = 0.6f,
                 borderColor = blurSurfaceBorderColor(),
             ) {
@@ -231,7 +231,7 @@ internal fun PlaylistNameDialog(
                 ) {
                     Text(
                         text = displayTitle,
-                        style = MaterialTheme.typography.displayLarge.copy(fontSize = elovaireScaledSp(24f)),
+                        style = MaterialTheme.typography.displayLarge.copy(fontSize = a0ScaledSp(24f)),
                         color = MaterialTheme.colorScheme.onSurface,
                     )
                     PlaylistNameInputField(
@@ -260,7 +260,7 @@ internal fun PlaylistNameDialog(
                         Surface(
                             onClick = { onConfirm(name.trim()) },
                             enabled = canConfirm,
-                            shape = RoundedCornerShape(ElovaireRadii.pill),
+                            shape = RoundedCornerShape(A0Radii.pill),
                             color = if (canConfirm) {
                                 MaterialTheme.colorScheme.primary.copy(alpha = 0.92f)
                             } else {
@@ -302,7 +302,7 @@ internal fun PlaylistNameInputField(
     val keyboardController = LocalSoftwareKeyboardController.current
     val leadingIconAlpha by animateFloatAsState(
         targetValue = 0.5f,
-        animationSpec = ElovaireMotion.standardTween(durationMillis = 80),
+        animationSpec = A0Motion.standardTween(durationMillis = 80),
         label = "playlist_name_icon_alpha",
     )
     LaunchedEffect(requestFocusOnStart) {
@@ -317,7 +317,7 @@ internal fun PlaylistNameInputField(
         onValueChange = onValueChange,
         modifier = modifier.focusRequester(focusRequester),
         singleLine = true,
-        shape = RoundedCornerShape(ElovaireRadii.input),
+        shape = RoundedCornerShape(A0Radii.input),
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
         keyboardActions = KeyboardActions(onDone = { onImeDone?.invoke() }),
         placeholder = {
@@ -337,14 +337,14 @@ internal fun PlaylistNameInputField(
         trailingIcon = {
             AnimatedVisibility(
                 visible = value.isNotEmpty(),
-                enter = fadeIn(animationSpec = ElovaireMotion.fadeMedium()) +
+                enter = fadeIn(animationSpec = A0Motion.fadeMedium()) +
                     scaleIn(
-                        animationSpec = ElovaireMotion.scaleSoft(),
+                        animationSpec = A0Motion.scaleSoft(),
                         initialScale = 0.92f,
                     ),
-                exit = fadeOut(animationSpec = ElovaireMotion.fadeFast()) +
+                exit = fadeOut(animationSpec = A0Motion.fadeFast()) +
                     scaleOut(
-                        animationSpec = ElovaireMotion.fadeFast(),
+                        animationSpec = A0Motion.fadeFast(),
                         targetScale = 0.92f,
                     ),
             ) {
@@ -412,7 +412,7 @@ internal fun PlaylistSelectionDialog(
 ) {
     val revealRegistry = rememberMotionRevealRegistry()
     val language = LocalAppLanguage.current
-    val listState = rememberElovaireLazyListState(title, subtitle, "playlist_picker")
+    val listState = rememberA0LazyListState(title, subtitle, "playlist_picker")
     var draftPlaylistName by rememberSaveable(title, subtitle) { mutableStateOf("") }
     var showInlineCreator by rememberSaveable(title, subtitle) { mutableStateOf(false) }
     var selectedPlaylistId by rememberSaveable(title, subtitle) { mutableStateOf<Long?>(null) }
@@ -449,14 +449,14 @@ internal fun PlaylistSelectionDialog(
                     .fillMaxWidth()
                     .padding(horizontal = 20.dp)
                     .consumePointersWithoutSemantics(),
-                shape = RoundedCornerShape(ElovaireRadii.card),
+                shape = RoundedCornerShape(A0Radii.card),
                 overlayAlpha = 0.6f,
                 borderColor = blurSurfaceBorderColor(),
             ) {
                 Column(
                     modifier = Modifier
                         .padding(horizontal = 20.dp, vertical = 20.dp)
-                        .animateContentSize(animationSpec = ElovaireMotion.sizeSoft()),
+                        .animateContentSize(animationSpec = A0Motion.sizeSoft()),
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                 ) {
                     Row(
@@ -521,7 +521,7 @@ internal fun PlaylistSelectionDialog(
                                         durationMs = row.durationMs,
                                         selected = row.playlist.id == selectedPlaylistId,
                                         modifier = Modifier
-                                            .elovaireListReveal(
+                                            .a0ListReveal(
                                                 itemKey = row.playlist.id,
                                                 index = row.index,
                                                 registry = revealRegistry,
@@ -537,7 +537,7 @@ internal fun PlaylistSelectionDialog(
                                             name = draftPlaylistName,
                                             onNameChange = { draftPlaylistName = it },
                                             modifier = Modifier
-                                                .elovaireListReveal(
+                                                .a0ListReveal(
                                                     itemKey = "inline_playlist_creator",
                                                     index = displayedRows.size,
                                                     registry = revealRegistry,
@@ -568,7 +568,7 @@ internal fun PlaylistSelectionDialog(
                                 showInlineCreator = true
                                 selectedPlaylistId = null
                             },
-                            shape = RoundedCornerShape(ElovaireRadii.pill),
+                            shape = RoundedCornerShape(A0Radii.pill),
                             color = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
                             contentColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.92f),
                         ) {
@@ -607,7 +607,7 @@ internal fun PlaylistSelectionDialog(
                                 selectedPlaylistId?.let(onPlaylistSelected)
                             },
                             enabled = selectedPlaylistId != null,
-                            shape = RoundedCornerShape(ElovaireRadii.pill),
+                            shape = RoundedCornerShape(A0Radii.pill),
                             color = if (selectedPlaylistId != null) {
                                 MaterialTheme.colorScheme.primary.copy(alpha = 0.92f)
                             } else {
@@ -645,13 +645,13 @@ internal fun PlaylistPickerRow(
     val copy = remember(language) { rootUiCopy(language) }
     val highlightColor by animateColorAsState(
         targetValue = if (selected) MaterialTheme.colorScheme.primary.copy(alpha = 0.12f) else Color.Transparent,
-        animationSpec = ElovaireMotion.colorFadeSpec(),
+        animationSpec = A0Motion.colorFadeSpec(),
         label = "playlist_picker_row_highlight",
     )
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(ElovaireRadii.tile))
+            .clip(RoundedCornerShape(A0Radii.tile))
             .background(highlightColor)
             .clickable(onClick = onClick)
             .padding(horizontal = 4.dp, vertical = 4.dp),
@@ -719,7 +719,7 @@ internal fun InlinePlaylistCreatorRow(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(ElovaireRadii.tile))
+            .clip(RoundedCornerShape(A0Radii.tile))
             .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.08f))
             .padding(10.dp),
     ) {
@@ -753,7 +753,7 @@ internal fun InlinePlaylistCreatorRow(
                 Surface(
                     onClick = onSave,
                     enabled = canSave,
-                    shape = RoundedCornerShape(ElovaireRadii.pill),
+                    shape = RoundedCornerShape(A0Radii.pill),
                     color = if (canSave) {
                         MaterialTheme.colorScheme.primary.copy(alpha = 0.92f)
                     } else {

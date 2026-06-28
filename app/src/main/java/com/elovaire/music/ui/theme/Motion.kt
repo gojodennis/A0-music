@@ -1,7 +1,7 @@
 package elovaire.music.droidbeauty.app.ui.theme
 
 @Deprecated(
-    message = "Use elovaire.music.droidbeauty.app.ui.motion.ElovaireMotion.",
-    replaceWith = ReplaceWith("ElovaireMotion", "elovaire.music.droidbeauty.app.ui.motion.ElovaireMotion"),
+    message = "Use elovaire.music.droidbeauty.app.ui.motion.A0Motion.",
+    replaceWith = ReplaceWith("A0Motion", "elovaire.music.droidbeauty.app.ui.motion.A0Motion"),
 )
-typealias ElovaireMotion = elovaire.music.droidbeauty.app.ui.motion.ElovaireMotion
+typealias A0Motion = elovaire.music.droidbeauty.app.ui.motion.A0Motion

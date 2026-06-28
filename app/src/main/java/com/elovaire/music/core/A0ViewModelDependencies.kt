@@ -7,7 +7,7 @@ import elovaire.music.droidbeauty.app.data.settings.PreferenceStore
 import elovaire.music.droidbeauty.app.data.tags.AlbumTagEditorService
 import elovaire.music.droidbeauty.app.data.update.AppUpdateManager
 
-internal interface ElovaireViewModelDependencies {
+internal interface A0ViewModelDependencies {
     val libraryRepository: LibraryRepository
     val preferenceStore: PreferenceStore
     val playbackManager: PlaybackManager

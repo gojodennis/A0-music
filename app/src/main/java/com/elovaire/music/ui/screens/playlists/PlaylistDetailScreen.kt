@@ -73,17 +73,17 @@ import elovaire.music.droidbeauty.app.ui.i18n.localizedCountLabel
 import elovaire.music.droidbeauty.app.ui.i18n.miscPhrase
 import elovaire.music.droidbeauty.app.ui.i18n.rootUiCopy
 import elovaire.music.droidbeauty.app.ui.i18n.uiPhrase
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireAnimatedVisibility
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireMotion
-import elovaire.music.droidbeauty.app.ui.motion.elovaireListReveal
+import elovaire.music.droidbeauty.app.ui.motion.A0AnimatedVisibility
+import elovaire.music.droidbeauty.app.ui.motion.A0Motion
+import elovaire.music.droidbeauty.app.ui.motion.a0ListReveal
 import elovaire.music.droidbeauty.app.ui.motion.rememberMotionRevealRegistry
 import elovaire.music.droidbeauty.app.ui.motion.rememberMotionSpecs
 import elovaire.music.droidbeauty.app.ui.motion.rememberMotionTransitions
 import elovaire.music.droidbeauty.app.ui.theme.DestructiveRed
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireRadii
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireSpacing
+import elovaire.music.droidbeauty.app.ui.theme.A0Radii
+import elovaire.music.droidbeauty.app.ui.theme.A0Spacing
 import elovaire.music.droidbeauty.app.ui.theme.RoseAccent
-import elovaire.music.droidbeauty.app.ui.theme.elovaireScaledSp
+import elovaire.music.droidbeauty.app.ui.theme.a0ScaledSp
 import kotlinx.coroutines.launch
 
 @Composable
@@ -125,7 +125,7 @@ internal fun PlaylistDetailScreen(
                     .fillMaxSize()
                     .padding(
                         start = 20.dp,
-                        top = detailTopBarOccupiedHeight() + ElovaireSpacing.detailListTopGap,
+                        top = detailTopBarOccupiedHeight() + A0Spacing.detailListTopGap,
                         end = 20.dp,
                         bottom = bottomPadding,
                     ),
@@ -174,7 +174,7 @@ internal fun PlaylistDetailScreen(
     val detailTopPadding = detailTopBarOccupiedHeight()
     val editMenuTopInset by animateDpAsState(
         targetValue = if (editMode && showEditModeMenu) 50.dp else 0.dp,
-        animationSpec = ElovaireMotion.sizeSoft(),
+        animationSpec = A0Motion.sizeSoft(),
         label = "playlist_edit_menu_top_inset",
     )
     val topBarActions = remember(editMode, playlistState.isSystem) {
@@ -233,7 +233,7 @@ internal fun PlaylistDetailScreen(
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background),
         ) {
-            val listState = rememberElovaireLazyListState(playlistState.id, "playlist_detail")
+            val listState = rememberA0LazyListState(playlistState.id, "playlist_detail")
             val scope = rememberCoroutineScope()
             LazyColumn(
                 state = listState,
@@ -245,7 +245,7 @@ internal fun PlaylistDetailScreen(
                     .ensureSingleItemRubberBand(listState),
                 contentPadding = PaddingValues(
                     start = 20.dp,
-                    top = detailTopPadding + ElovaireSpacing.albumHeaderTopGap + editMenuTopInset,
+                    top = detailTopPadding + A0Spacing.albumHeaderTopGap + editMenuTopInset,
                     end = 20.dp,
                     bottom = bottomPadding,
                 ),
@@ -270,7 +270,7 @@ internal fun PlaylistDetailScreen(
                                 Text(
                                     text = playlistState.name,
                                     style = MaterialTheme.typography.displayLarge.copy(
-                                        fontSize = elovaireScaledSp(ALBUM_HEADER_TITLE_TEXT_SIZE_SP),
+                                        fontSize = a0ScaledSp(ALBUM_HEADER_TITLE_TEXT_SIZE_SP),
                                         fontWeight = FontWeight.SemiBold,
                                         lineHeight = MaterialTheme.typography.displayLarge.lineHeight * 0.8f,
                                     ),
@@ -298,7 +298,7 @@ internal fun PlaylistDetailScreen(
                                             append(formatPlaylistDuration(playlistDurationMs))
                                         }
                                     },
-                                    style = MaterialTheme.typography.labelLarge.copy(fontSize = elovaireScaledSp(12f)),
+                                    style = MaterialTheme.typography.labelLarge.copy(fontSize = a0ScaledSp(12f)),
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
                                 )
@@ -364,9 +364,9 @@ internal fun PlaylistDetailScreen(
                             lastIndex = playlistSongs.lastIndex,
                             modifier = Modifier
                                 .animateItem(
-                                    placementSpec = ElovaireMotion.listPlacementSpec(),
+                                    placementSpec = A0Motion.listPlacementSpec(),
                                 )
-                                .elovaireListReveal(
+                                .a0ListReveal(
                                     itemKey = "${song.id}_$index",
                                     index = index,
                                     registry = revealRegistry,
@@ -571,12 +571,12 @@ internal fun PlaylistSongRow(
         } else {
             MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
         },
-        animationSpec = ElovaireMotion.colorFadeSpec(),
+        animationSpec = A0Motion.colorFadeSpec(),
         label = "playlist_reorder_handle_tint",
     )
     val handleScale by animateFloatAsState(
         targetValue = if (handleDragActive) 1.1f else 1f,
-        animationSpec = ElovaireMotion.releaseSpringSpec(),
+        animationSpec = A0Motion.releaseSpringSpec(),
         label = "playlist_reorder_handle_scale",
     )
     val rowScale by animateFloatAsState(
@@ -587,7 +587,7 @@ internal fun PlaylistSongRow(
                 stiffness = 210f,
             )
         } else {
-            ElovaireMotion.releaseSpringSpec()
+            A0Motion.releaseSpringSpec()
         },
         label = "playlist_drag_row_scale",
     )
@@ -605,14 +605,14 @@ internal fun PlaylistSongRow(
         } else {
             Color.Transparent
         },
-        animationSpec = ElovaireMotion.colorFadeSpec(),
+        animationSpec = A0Motion.colorFadeSpec(),
         label = "playlist_reorder_drag_highlight",
     )
     Column {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(ElovaireRadii.tile))
+                .clip(RoundedCornerShape(A0Radii.tile))
                 .background(dragHighlight)
                 .graphicsLayer {
                     scaleX = rowScale
@@ -629,17 +629,17 @@ internal fun PlaylistSongRow(
             horizontalArrangement = Arrangement.spacedBy(14.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            ElovaireAnimatedVisibility(
+            A0AnimatedVisibility(
                 visible = editMode,
-                enter = fadeIn(animationSpec = ElovaireMotion.fadeMedium()) +
+                enter = fadeIn(animationSpec = A0Motion.fadeMedium()) +
                     slideInHorizontally(
                         initialOffsetX = { -it / 2 },
-                        animationSpec = ElovaireMotion.offsetSoft(),
+                        animationSpec = A0Motion.offsetSoft(),
                     ),
-                exit = fadeOut(animationSpec = ElovaireMotion.fadeFast()) +
+                exit = fadeOut(animationSpec = A0Motion.fadeFast()) +
                     slideOutHorizontally(
                         targetOffsetX = { -it / 3 },
-                        animationSpec = ElovaireMotion.offsetSoft(durationMillis = 80),
+                        animationSpec = A0Motion.offsetSoft(durationMillis = 80),
                     ),
                 label = "playlist_song_reorder_handle",
             ) {
@@ -700,7 +700,7 @@ internal fun PlaylistSongRow(
                     uri = song.artUri,
                     title = song.album,
                     modifier = Modifier.matchParentSize(),
-                    cornerRadius = ElovaireRadii.artworkSmall,
+                    cornerRadius = A0Radii.artworkSmall,
                 )
                 androidx.compose.animation.AnimatedVisibility(
                     visible = isCurrentSong && isPlaybackActive,
@@ -746,10 +746,10 @@ internal fun PlaylistSongRow(
                 horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                ElovaireAnimatedVisibility(
+                A0AnimatedVisibility(
                     visible = !editMode,
-                    enter = fadeIn(animationSpec = ElovaireMotion.fadeMedium()),
-                    exit = fadeOut(animationSpec = ElovaireMotion.fadeFast()),
+                    enter = fadeIn(animationSpec = A0Motion.fadeMedium()),
+                    exit = fadeOut(animationSpec = A0Motion.fadeFast()),
                     label = "playlist_song_metadata_visibility",
                 ) {
                     Row(
@@ -777,17 +777,17 @@ internal fun PlaylistSongRow(
                         }
                     }
                 }
-                ElovaireAnimatedVisibility(
+                A0AnimatedVisibility(
                     visible = editMode,
-                    enter = fadeIn(animationSpec = ElovaireMotion.fadeMedium()) +
+                    enter = fadeIn(animationSpec = A0Motion.fadeMedium()) +
                         scaleIn(
                             initialScale = 0.92f,
-                            animationSpec = ElovaireMotion.scaleSoft(),
+                            animationSpec = A0Motion.scaleSoft(),
                         ),
-                    exit = fadeOut(animationSpec = ElovaireMotion.fadeFast()) +
+                    exit = fadeOut(animationSpec = A0Motion.fadeFast()) +
                         scaleOut(
                             targetScale = 0.92f,
-                            animationSpec = ElovaireMotion.fadeFast(),
+                            animationSpec = A0Motion.fadeFast(),
                         ),
                     label = "playlist_song_remove_toggle",
                 ) {

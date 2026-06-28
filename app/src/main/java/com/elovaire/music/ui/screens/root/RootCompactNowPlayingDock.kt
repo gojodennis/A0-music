@@ -64,12 +64,12 @@ import elovaire.music.droidbeauty.app.ui.components.rememberArtworkBitmap
 import elovaire.music.droidbeauty.app.ui.components.rememberArtworkGradient
 import elovaire.music.droidbeauty.app.ui.interaction.CompactBarGestureActions
 import elovaire.music.droidbeauty.app.ui.interaction.compactBarGestures
-import elovaire.music.droidbeauty.app.ui.interaction.elovairePressScale
-import elovaire.music.droidbeauty.app.ui.interaction.rememberElovaireInteractionSource
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireAnimatedVisibility
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireMotion
+import elovaire.music.droidbeauty.app.ui.interaction.a0PressScale
+import elovaire.music.droidbeauty.app.ui.interaction.rememberA0InteractionSource
+import elovaire.music.droidbeauty.app.ui.motion.A0AnimatedVisibility
+import elovaire.music.droidbeauty.app.ui.motion.A0Motion
 import elovaire.music.droidbeauty.app.ui.motion.rememberMotionTransitions
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireRadii
+import elovaire.music.droidbeauty.app.ui.theme.A0Radii
 import elovaire.music.droidbeauty.app.ui.theme.InkText
 import kotlinx.coroutines.delay
 
@@ -90,7 +90,7 @@ internal fun CompactNowPlayingDockHost(
         if (visible) {
             keepProgressActive = true
         } else {
-            delay(ElovaireMotion.Standard.toLong().coerceAtLeast(120L))
+            delay(A0Motion.Standard.toLong().coerceAtLeast(120L))
             keepProgressActive = false
         }
     }
@@ -149,7 +149,7 @@ private fun StandaloneNowPlayingDock(
     val contentColor = if (resolvedSurface.luminance() > 0.42f) InkText else Color.White
     val secondaryContentColor = contentColor.copy(alpha = 0.72f)
     ForceDarkColorScheme {
-        ElovaireAnimatedVisibility(
+        A0AnimatedVisibility(
             visible = visible,
             modifier = modifier,
             enter = motionTransitions.compactBarEnter(suppressEnterAnimation),
@@ -159,12 +159,12 @@ private fun StandaloneNowPlayingDock(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(ElovaireRadii.card))
+                    .clip(RoundedCornerShape(A0Radii.card))
                     .background(baseTint)
                     .border(
                         width = 1.dp,
                         color = Color.White.copy(alpha = if (MaterialTheme.colorScheme.background.luminance() < 0.5f) 0.05f else 0.04f),
-                        shape = RoundedCornerShape(ElovaireRadii.card),
+                        shape = RoundedCornerShape(A0Radii.card),
                     ),
             ) {
                 val artworkBitmap = artwork.value
@@ -221,36 +221,36 @@ private fun NowPlayingBar(
     }
     val controlTint by animateColorAsState(
         targetValue = controlBaseTint,
-        animationSpec = ElovaireMotion.colorFadeSpec(),
+        animationSpec = A0Motion.colorFadeSpec(),
         label = "MiniPlayerButtonTint",
     )
     val controlIconTint by animateColorAsState(
         targetValue = if (controlTint.luminance() > 0.42f) InkText else Color.White,
-        animationSpec = ElovaireMotion.colorFadeSpec(),
+        animationSpec = A0Motion.colorFadeSpec(),
         label = "MiniPlayerButtonIconTint",
     )
     val resolvedPrimaryTextColor by animateColorAsState(
         targetValue = controlIconTint,
-        animationSpec = ElovaireMotion.colorFadeSpec(),
+        animationSpec = A0Motion.colorFadeSpec(),
         label = "MiniPlayerTextPrimary",
     )
     val resolvedSecondaryTextColor by animateColorAsState(
         targetValue = controlIconTint.copy(alpha = 0.72f),
-        animationSpec = ElovaireMotion.colorFadeSpec(),
+        animationSpec = A0Motion.colorFadeSpec(),
         label = "MiniPlayerTextSecondary",
     )
     val compactControlBackground by animateColorAsState(
         targetValue = resolvedPrimaryTextColor.copy(alpha = 0.2f),
-        animationSpec = ElovaireMotion.colorFadeSpec(),
+        animationSpec = A0Motion.colorFadeSpec(),
         label = "MiniPlayerControlBackground",
     )
-    val interactionSource = rememberElovaireInteractionSource()
+    val interactionSource = rememberA0InteractionSource()
     var dragOffsetX by remember(song.id) { mutableFloatStateOf(0f) }
     var barBounds by remember(song.id) { mutableStateOf<androidx.compose.ui.geometry.Rect?>(null) }
     var artworkBounds by remember(song.id) { mutableStateOf<androidx.compose.ui.geometry.Rect?>(null) }
     val animatedDragOffsetX by animateFloatAsState(
         targetValue = dragOffsetX,
-        animationSpec = ElovaireMotion.releaseSpringSpec(
+        animationSpec = A0Motion.releaseSpringSpec(
             dampingRatio = 0.82f,
             stiffness = 380f,
         ),
@@ -259,13 +259,13 @@ private fun NowPlayingBar(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(ElovaireRadii.card))
+            .clip(RoundedCornerShape(A0Radii.card))
             .onGloballyPositioned { barBounds = it.boundsInRoot() }
             .background(Color.Transparent)
             .border(
                 width = 1.dp,
                 color = Color.White.copy(alpha = if (MaterialTheme.colorScheme.background.luminance() < 0.5f) 0.08f else 0.05f),
-                shape = RoundedCornerShape(ElovaireRadii.card),
+                shape = RoundedCornerShape(A0Radii.card),
             ),
     ) {
         Row(
@@ -318,7 +318,7 @@ private fun NowPlayingBar(
                     modifier = Modifier
                         .size(48.dp)
                         .onGloballyPositioned { artworkBounds = it.boundsInRoot() },
-                    cornerRadius = ElovaireRadii.artworkSmall,
+                    cornerRadius = A0Radii.artworkSmall,
                     requestedSizePx = 192,
                 )
                 Column(
@@ -350,10 +350,10 @@ private fun NowPlayingBar(
             Box(
                 modifier = Modifier
                     .size(42.dp)
-                    .elovairePressScale(
+                    .a0PressScale(
                         enabled = visible,
                         pressedScale = 0.9f,
-                        animationSpec = ElovaireMotion.chromeReleaseSpec(),
+                        animationSpec = A0Motion.chromeReleaseSpec(),
                         interactionSource = interactionSource,
                         label = "MiniPlayerPlayButtonScale",
                     )
@@ -397,17 +397,17 @@ private fun NowPlayingBar(
                     targetState = isPlaying,
                     transitionSpec = {
                         (
-                            fadeIn(animationSpec = ElovaireMotion.iconSwapInSpec()) +
+                            fadeIn(animationSpec = A0Motion.iconSwapInSpec()) +
                                 scaleIn(
                                     initialScale = 0.9f,
-                                    animationSpec = ElovaireMotion.releaseSpringSpec(),
+                                    animationSpec = A0Motion.releaseSpringSpec(),
                                 )
                             ) togetherWith
                             (
-                                fadeOut(animationSpec = ElovaireMotion.iconSwapOutSpec()) +
+                                fadeOut(animationSpec = A0Motion.iconSwapOutSpec()) +
                                     scaleOut(
                                         targetScale = 1.04f,
-                                        animationSpec = ElovaireMotion.contentFadeOutSpec(),
+                                        animationSpec = A0Motion.contentFadeOutSpec(),
                                     )
                                 )
                     },

@@ -23,10 +23,12 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.unit.dp
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireAnimatedVisibility
+import elovaire.music.droidbeauty.app.ui.motion.A0AnimatedVisibility
 import elovaire.music.droidbeauty.app.ui.motion.LocalMotionRuntime
 import elovaire.music.droidbeauty.app.ui.motion.MotionEasing
 import elovaire.music.droidbeauty.app.ui.motion.rememberMotionSpecs
+import elovaire.music.droidbeauty.app.ui.i18n.LocalAppLanguage
+import elovaire.music.droidbeauty.app.ui.i18n.rootUiCopy
 import elovaire.music.droidbeauty.app.ui.theme.InkText
 
 @Composable
@@ -61,14 +63,14 @@ internal fun FirstLaunchPermissionLoadingScreen(
             .background(MaterialTheme.colorScheme.background),
     ) {
         UnifiedTopBar(
-            title = "Elovaire",
+            title = rootUiCopy(LocalAppLanguage.current).appName,
             showSettings = false,
             onOpenMenu = onRequestPermission,
             modifier = Modifier
                 .align(Alignment.TopCenter)
                 .fillMaxWidth(),
         )
-        ElovaireAnimatedVisibility(
+        A0AnimatedVisibility(
             visible = showLoading,
             modifier = Modifier.align(Alignment.Center),
             enter = androidx.compose.animation.fadeIn(

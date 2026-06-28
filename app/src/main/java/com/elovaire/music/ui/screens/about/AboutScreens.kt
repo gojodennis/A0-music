@@ -62,11 +62,11 @@ import elovaire.music.droidbeauty.app.ui.i18n.miscPhrase
 import elovaire.music.droidbeauty.app.ui.i18n.settingsCopy
 import elovaire.music.droidbeauty.app.ui.i18n.uiPhrase
 import elovaire.music.droidbeauty.app.ui.theme.AboutCardButtonAccent
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireRadii
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireSpacing
+import elovaire.music.droidbeauty.app.ui.theme.A0Radii
+import elovaire.music.droidbeauty.app.ui.theme.A0Spacing
 import elovaire.music.droidbeauty.app.ui.theme.InkText
 import elovaire.music.droidbeauty.app.ui.theme.RoseAccent
-import elovaire.music.droidbeauty.app.ui.theme.elovaireScaledSp
+import elovaire.music.droidbeauty.app.ui.theme.a0ScaledSp
 import java.net.URL
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -120,7 +120,7 @@ internal fun ChangelogScreen(
                         style = MaterialTheme.typography.headlineMedium,
                     )
                     Surface(
-                        shape = RoundedCornerShape(ElovaireRadii.pill),
+                        shape = RoundedCornerShape(A0Radii.pill),
                         color = if (MaterialTheme.colorScheme.background.luminance() < 0.5f) {
                             Color.White.copy(alpha = 0.16f)
                         } else {
@@ -214,7 +214,7 @@ internal fun ChangelogBottomSheetOverlay(
                             color = MaterialTheme.colorScheme.onSurface,
                         )
                         Surface(
-                            shape = RoundedCornerShape(ElovaireRadii.pill),
+                            shape = RoundedCornerShape(A0Radii.pill),
                             color = MaterialTheme.colorScheme.background,
                             contentColor = MaterialTheme.colorScheme.onSurface,
                         ) {
@@ -256,7 +256,7 @@ internal fun ChangelogBottomSheetOverlay(
                         modifier = Modifier
                             .fillMaxWidth()
                             .fillMaxHeight()
-                            .clip(RoundedCornerShape(ElovaireRadii.card))
+                            .clip(RoundedCornerShape(A0Radii.card))
                             .background(MaterialTheme.colorScheme.background),
                     ) {
                         LazyColumn(
@@ -339,7 +339,7 @@ internal fun AboutScreen(
     val context = LocalContext.current
     val language = LocalAppLanguage.current
     val aboutModel = remember(context) { context.loadAboutScreenModel() }
-    val listState = rememberElovaireLazyListState("about_screen")
+    val listState = rememberA0LazyListState("about_screen")
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -354,7 +354,7 @@ internal fun AboutScreen(
             contentPadding = PaddingValues(
                 start = 18.dp,
                 end = 18.dp,
-                top = detailTopBarOccupiedHeight() + ElovaireSpacing.topBarToFirstContentGap,
+                top = detailTopBarOccupiedHeight() + A0Spacing.topBarToFirstContentGap,
                 bottom = bottomPadding,
             ),
             verticalArrangement = Arrangement.spacedBy(18.dp),
@@ -508,7 +508,7 @@ private fun AboutEntryTextStack(
     ) {
         Text(
             text = localizedAboutTitle(entry.title, language),
-            style = MaterialTheme.typography.displayLarge.copy(fontSize = elovaireScaledSp(22f)),
+            style = MaterialTheme.typography.displayLarge.copy(fontSize = a0ScaledSp(22f)),
             color = MaterialTheme.colorScheme.onSurface,
         )
         entry.description?.takeIf { it.isNotBlank() }?.let { description ->
@@ -642,7 +642,7 @@ private fun AboutLinkPill(
     Surface(
         modifier = Modifier,
         onClick = onClick,
-        shape = RoundedCornerShape(ElovaireRadii.pill),
+        shape = RoundedCornerShape(A0Radii.pill),
         color = containerColor,
         contentColor = contentColor,
     ) {

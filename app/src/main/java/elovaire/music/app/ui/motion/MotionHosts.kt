@@ -65,7 +65,7 @@ fun PlayerOverlayMotionHost(
 }
 
 @Composable
-fun ElovaireAnimatedVisibility(
+fun A0AnimatedVisibility(
     visible: Boolean,
     modifier: Modifier = Modifier,
     enter: EnterTransition,
@@ -84,7 +84,7 @@ fun ElovaireAnimatedVisibility(
 }
 
 @Composable
-fun <S> ElovaireAnimatedContent(
+fun <S> A0AnimatedContent(
     targetState: S,
     modifier: Modifier = Modifier,
     transitionSpec: AnimatedContentTransitionScope<S>.() -> ContentTransform,
@@ -105,7 +105,7 @@ fun <S> ElovaireAnimatedContent(
 }
 
 @Composable
-fun <S> ElovaireAnimatedContent(
+fun <S> A0AnimatedContent(
     targetState: S,
     modifier: Modifier = Modifier,
     contentAlignment: Alignment = Alignment.TopStart,
@@ -114,7 +114,7 @@ fun <S> ElovaireAnimatedContent(
     content: @Composable AnimatedContentScope.(targetState: S) -> Unit,
 ) {
     val transitions = rememberMotionTransitions()
-    ElovaireAnimatedContent(
+    A0AnimatedContent(
         targetState = targetState,
         modifier = modifier,
         transitionSpec = { transitions.softContentTransform() },
@@ -126,7 +126,7 @@ fun <S> ElovaireAnimatedContent(
 }
 
 @Composable
-fun <S> ElovaireCrossfade(
+fun <S> A0Crossfade(
     targetState: S,
     modifier: Modifier = Modifier,
     animationSpec: FiniteAnimationSpec<Float>? = null,

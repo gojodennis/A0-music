@@ -302,7 +302,7 @@ class AppUpdateManager(
             connectTimeout = NETWORK_TIMEOUT_MS
             readTimeout = NETWORK_TIMEOUT_MS
             setRequestProperty("Accept", "application/vnd.github+json")
-            setRequestProperty("User-Agent", "Elovaire/${BuildConfig.VERSION_NAME}")
+            setRequestProperty("User-Agent", "A0/${BuildConfig.VERSION_NAME}")
             setRequestProperty("X-GitHub-Api-Version", "2022-11-28")
             instanceFollowRedirects = true
         }
@@ -340,7 +340,7 @@ class AppUpdateManager(
             downloadUrl = asset.optString("browser_download_url").orEmpty(),
             notes = json.optString("body").orEmpty(),
             publishedAt = json.optString("published_at").orEmpty(),
-            assetFileName = asset.optString("name").orEmpty().ifBlank { "elovaire-update.apk" },
+            assetFileName = asset.optString("name").orEmpty().ifBlank { "a0-update.apk" },
         ).takeIf { it.downloadUrl.isNotBlank() }
     }
 
@@ -356,7 +356,7 @@ class AppUpdateManager(
             requestMethod = "GET"
             connectTimeout = NETWORK_TIMEOUT_MS
             readTimeout = NETWORK_TIMEOUT_MS
-            setRequestProperty("User-Agent", "Elovaire/${BuildConfig.VERSION_NAME}")
+            setRequestProperty("User-Agent", "A0/${BuildConfig.VERSION_NAME}")
             instanceFollowRedirects = true
         }
         try {
@@ -534,8 +534,8 @@ class AppUpdateManager(
     private fun updatesDirectory(): File = File(appContext.cacheDir, "updates")
 
     private companion object {
-        const val LATEST_RELEASE_URL = "https://api.github.com/repos/droidbeauty/elovaire-music/releases/latest"
-        const val RELEASES_URL = "https://api.github.com/repos/droidbeauty/elovaire-music/releases"
+        const val LATEST_RELEASE_URL = "https://api.github.com/repos/droidbeauty/a0-music/releases/latest"
+        const val RELEASES_URL = "https://api.github.com/repos/droidbeauty/a0-music/releases"
         const val AUTOMATIC_CHECK_INTERVAL_MS = 12 * 60 * 60 * 1_000L
         const val STARTUP_UPDATE_CHECK_DELAY_MS = 4_500L
         const val NETWORK_TIMEOUT_MS = 12_000

@@ -8,56 +8,56 @@ import elovaire.music.droidbeauty.app.domain.model.Album
 import elovaire.music.droidbeauty.app.domain.model.Playlist
 import elovaire.music.droidbeauty.app.domain.model.Song
 
-internal object ElovaireMediaItems {
+internal object A0MediaItems {
     fun root(): MediaItem = browsable(
-        mediaId = ElovaireMediaId.Root.value,
-        title = "Elovaire",
+        mediaId = A0MediaId.Root.value,
+        title = "A;0",
         mediaType = MediaMetadata.MEDIA_TYPE_FOLDER_MIXED,
         extras = CarMediaStyleExtras.rootExtras(),
     )
 
     fun permissionRequiredInfo(): MediaItem = informational(
-        mediaId = ElovaireMediaId.PermissionRequired.value,
-        title = "Open Elovaire on phone",
+        mediaId = A0MediaId.PermissionRequired.value,
+        title = "Open A;0 on phone",
         subtitle = "Grant music access to browse in Android Auto",
     )
 
     fun emptyLibraryInfo(): MediaItem = informational(
-        mediaId = ElovaireMediaId.EmptyLibrary.value,
+        mediaId = A0MediaId.EmptyLibrary.value,
         title = "No music found",
         subtitle = "Add music on your phone to browse in Android Auto",
     )
 
     fun songsRoot(): MediaItem = browsable(
-        ElovaireMediaId.Songs.value,
+        A0MediaId.Songs.value,
         "Songs",
         MediaMetadata.MEDIA_TYPE_FOLDER_MIXED,
         extras = CarMediaStyleExtras.songsExtras(),
     )
     fun albumsRoot(): MediaItem = browsable(
-        ElovaireMediaId.Albums.value,
+        A0MediaId.Albums.value,
         "Albums",
         MediaMetadata.MEDIA_TYPE_FOLDER_ALBUMS,
         extras = CarMediaStyleExtras.albumsExtras(),
     )
-    fun artistsRoot(): MediaItem = browsable(ElovaireMediaId.Artists.value, "Artists", MediaMetadata.MEDIA_TYPE_FOLDER_ARTISTS)
-    fun genresRoot(): MediaItem = browsable(ElovaireMediaId.Genres.value, "Genres", MediaMetadata.MEDIA_TYPE_FOLDER_GENRES)
-    fun playlistsRoot(): MediaItem = browsable(ElovaireMediaId.Playlists.value, "Playlists", MediaMetadata.MEDIA_TYPE_FOLDER_PLAYLISTS)
+    fun artistsRoot(): MediaItem = browsable(A0MediaId.Artists.value, "Artists", MediaMetadata.MEDIA_TYPE_FOLDER_ARTISTS)
+    fun genresRoot(): MediaItem = browsable(A0MediaId.Genres.value, "Genres", MediaMetadata.MEDIA_TYPE_FOLDER_GENRES)
+    fun playlistsRoot(): MediaItem = browsable(A0MediaId.Playlists.value, "Playlists", MediaMetadata.MEDIA_TYPE_FOLDER_PLAYLISTS)
     fun favoritesRoot(): MediaItem = browsable(
-        ElovaireMediaId.Favorites.value,
+        A0MediaId.Favorites.value,
         "Favorites",
         MediaMetadata.MEDIA_TYPE_PLAYLIST,
         extras = CarMediaStyleExtras.songsExtras(),
     )
     fun recentlyAddedRoot(): MediaItem = browsable(
-        ElovaireMediaId.RecentlyAdded.value,
+        A0MediaId.RecentlyAdded.value,
         "Recently added",
         MediaMetadata.MEDIA_TYPE_FOLDER_MIXED,
         extras = CarMediaStyleExtras.songsExtras(),
     )
 
     fun album(album: Album): MediaItem = browsable(
-        mediaId = ElovaireMediaIds.album(album.id),
+        mediaId = A0MediaIds.album(album.id),
         title = album.title,
         subtitle = album.artist,
         artworkUri = album.artUri,
@@ -66,28 +66,28 @@ internal object ElovaireMediaItems {
     )
 
     fun playlist(playlist: Playlist): MediaItem = browsable(
-        mediaId = ElovaireMediaIds.playlist(playlist.id),
+        mediaId = A0MediaIds.playlist(playlist.id),
         title = playlist.name,
         mediaType = MediaMetadata.MEDIA_TYPE_PLAYLIST,
         extras = CarMediaStyleExtras.songsExtras(),
     )
 
     fun artist(name: String): MediaItem = browsable(
-        mediaId = ElovaireMediaIds.artist(name),
+        mediaId = A0MediaIds.artist(name),
         title = name.ifBlank { UNKNOWN_ARTIST },
         mediaType = MediaMetadata.MEDIA_TYPE_ARTIST,
         extras = CarMediaStyleExtras.songsExtras(),
     )
 
     fun genre(name: String): MediaItem = browsable(
-        mediaId = ElovaireMediaIds.genre(name),
+        mediaId = A0MediaIds.genre(name),
         title = name.ifBlank { UNKNOWN_GENRE },
         mediaType = MediaMetadata.MEDIA_TYPE_GENRE,
         extras = CarMediaStyleExtras.songsExtras(),
     )
 
     fun song(song: Song): MediaItem = MediaItem.Builder()
-        .setMediaId(ElovaireMediaIds.song(song.id))
+        .setMediaId(A0MediaIds.song(song.id))
         .setUri(song.uri)
         .setMediaMetadata(
             MediaMetadata.Builder()

@@ -211,7 +211,7 @@ internal class UnsupportedFingerprintFormat(fileName: String) :
 
 internal class NativeChromaprintBridge {
     init {
-        System.loadLibrary("elovaire_chromaprint")
+        System.loadLibrary("a0_chromaprint")
     }
 
     fun create(): Long = nativeCreate()

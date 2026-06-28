@@ -36,7 +36,7 @@ import kotlinx.coroutines.launch
 
 class PreferenceStore(context: Context) {
     private val appContext = context.applicationContext
-    private val preferences = appContext.getSharedPreferences("elovaire_preferences", Context.MODE_PRIVATE)
+    private val preferences = appContext.getSharedPreferences("a0_preferences", Context.MODE_PRIVATE)
     private val preferenceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private var playbackHistoryPersistJob: Job? = null
     private var eqPersistJob: Job? = null

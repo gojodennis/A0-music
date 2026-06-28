@@ -2,7 +2,7 @@ package elovaire.music.droidbeauty.app.ui.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import elovaire.music.droidbeauty.app.core.ElovaireViewModelDependencies
+import elovaire.music.droidbeauty.app.core.A0ViewModelDependencies
 import elovaire.music.droidbeauty.app.domain.model.AppLanguage
 import elovaire.music.droidbeauty.app.domain.model.EqSettings
 import elovaire.music.droidbeauty.app.domain.model.Playlist
@@ -29,7 +29,7 @@ internal data class RootPreferenceState(
 )
 
 internal class RootViewModel(
-    dependencies: ElovaireViewModelDependencies,
+    dependencies: A0ViewModelDependencies,
 ) : ViewModel() {
     private val libraryState = combine(
         dependencies.libraryRepository.contentState,

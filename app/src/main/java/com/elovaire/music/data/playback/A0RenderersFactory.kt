@@ -8,7 +8,7 @@ import androidx.media3.exoplayer.audio.AudioSink
 import androidx.media3.exoplayer.audio.DefaultAudioSink
 
 @UnstableApi
-internal class ElovaireRenderersFactory(
+internal class A0RenderersFactory(
     context: Context,
     private val audioProcessors: Array<AudioProcessor>,
 ) : DefaultRenderersFactory(context) {

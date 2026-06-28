@@ -95,7 +95,7 @@ internal class LyricsOvhProvider : LyricsProvider {
             connection.readTimeout = READ_TIMEOUT_MS
             connection.setRequestProperty(
                 "User-Agent",
-                "Elovaire/${BuildConfig.VERSION_NAME} (Android; Offline Music Player)",
+                "A0/${BuildConfig.VERSION_NAME} (Android; Offline Music Player)",
             )
             connection.setRequestProperty("Accept", "application/json")
             val code = connection.responseCode

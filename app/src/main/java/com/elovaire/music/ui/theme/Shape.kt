@@ -7,7 +7,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Immutable
-object ElovaireRadii {
+object A0Radii {
     val topBar: Dp = 0.dp
     val dock: Dp = 20.dp
     val module: Dp = 14.dp
@@ -21,12 +21,12 @@ object ElovaireRadii {
     val pill: Dp = 999.dp
 }
 
-fun elovaireShapes(): Shapes {
+fun a0Shapes(): Shapes {
     return Shapes(
-        extraSmall = RoundedCornerShape(ElovaireRadii.tile),
-        small = RoundedCornerShape(ElovaireRadii.tile),
-        medium = RoundedCornerShape(ElovaireRadii.card),
-        large = RoundedCornerShape(ElovaireRadii.module),
-        extraLarge = RoundedCornerShape(ElovaireRadii.dock),
+        extraSmall = RoundedCornerShape(A0Radii.tile),
+        small = RoundedCornerShape(A0Radii.tile),
+        medium = RoundedCornerShape(A0Radii.card),
+        large = RoundedCornerShape(A0Radii.module),
+        extraLarge = RoundedCornerShape(A0Radii.dock),
     )
 }

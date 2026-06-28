@@ -24,7 +24,7 @@ import elovaire.music.droidbeauty.app.ui.screens.tags.AlbumTagEditorScreen
 internal fun AlbumTagEditorRouteHost(
     albumId: Long,
     backStackEntry: NavBackStackEntry,
-    viewModelFactory: ElovaireViewModelFactory,
+    viewModelFactory: A0ViewModelFactory,
     appLanguage: AppLanguage,
     onBack: () -> Unit,
 ) {

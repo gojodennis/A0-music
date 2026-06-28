@@ -27,8 +27,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import elovaire.music.droidbeauty.app.R
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireMotion
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireRadii
+import elovaire.music.droidbeauty.app.ui.motion.A0Motion
+import elovaire.music.droidbeauty.app.ui.theme.A0Radii
 
 @Composable
 internal fun DividerLine(
@@ -51,18 +51,18 @@ internal fun GroupedListRowContainer(
     content: @Composable () -> Unit,
 ) {
     val shape = when {
-        lastIndex <= 0 -> RoundedCornerShape(ElovaireRadii.card)
+        lastIndex <= 0 -> RoundedCornerShape(A0Radii.card)
         index == 0 -> RoundedCornerShape(
-            topStart = ElovaireRadii.card,
-            topEnd = ElovaireRadii.card,
+            topStart = A0Radii.card,
+            topEnd = A0Radii.card,
             bottomStart = 0.dp,
             bottomEnd = 0.dp,
         )
         index == lastIndex -> RoundedCornerShape(
             topStart = 0.dp,
             topEnd = 0.dp,
-            bottomStart = ElovaireRadii.card,
-            bottomEnd = ElovaireRadii.card,
+            bottomStart = A0Radii.card,
+            bottomEnd = A0Radii.card,
         )
         else -> RoundedCornerShape(0.dp)
     }
@@ -149,7 +149,7 @@ internal fun DetailListTopBar(
                 ) {
                     AnimatedContent(
                         targetState = title,
-                        transitionSpec = { ElovaireMotion.titleSwapTransform() },
+                        transitionSpec = { A0Motion.titleSwapTransform() },
                         label = "detailTopBarTitleOnly",
                     ) { currentTitle ->
                         Text(
@@ -170,7 +170,7 @@ internal fun DetailListTopBar(
                 ) {
                     AnimatedContent(
                         targetState = title,
-                        transitionSpec = { ElovaireMotion.titleSwapTransform() },
+                        transitionSpec = { A0Motion.titleSwapTransform() },
                         label = "detailTopBarTitleWithSubtitle",
                     ) { currentTitle ->
                         Text(

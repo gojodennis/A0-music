@@ -58,7 +58,7 @@ private val BaseTypography = Typography(
 // App-wide multiplier used by the text-size slider in settings.
 val LocalTextScale = staticCompositionLocalOf { 1f }
 
-fun elovaireTypography(scaleFactor: Float): Typography {
+fun a0Typography(scaleFactor: Float): Typography {
     // Central place that scales all core text styles with the current text-size setting.
     return BaseTypography.copy(
         displayLarge = BaseTypography.displayLarge.scaled(scaleFactor),
@@ -70,7 +70,7 @@ fun elovaireTypography(scaleFactor: Float): Typography {
 }
 
 @Composable
-fun elovaireScaledSp(baseSize: Float): TextUnit {
+fun a0ScaledSp(baseSize: Float): TextUnit {
     // Helper for one-off font sizes that should still follow the text-size setting.
     return (baseSize * LocalTextScale.current).sp
 }

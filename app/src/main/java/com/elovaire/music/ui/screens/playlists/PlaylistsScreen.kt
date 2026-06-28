@@ -51,7 +51,7 @@ import elovaire.music.droidbeauty.app.ui.i18n.formatCountLabel
 import elovaire.music.droidbeauty.app.ui.i18n.miscPhrase
 import elovaire.music.droidbeauty.app.ui.i18n.rootUiCopy
 import elovaire.music.droidbeauty.app.ui.i18n.uiPhrase
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireMotion
+import elovaire.music.droidbeauty.app.ui.motion.A0Motion
 import elovaire.music.droidbeauty.app.ui.motion.rememberMotionTransitions
 import elovaire.music.droidbeauty.app.ui.theme.DestructiveRed
 
@@ -76,11 +76,11 @@ internal fun PlaylistsScreen(
             songsById = libraryState.songs.associateBy(Song::id),
         )
     }
-    val gridState = rememberElovaireLazyGridState("playlists_screen")
+    val gridState = rememberA0LazyGridState("playlists_screen")
     val editMode = selectedPlaylistIds.isNotEmpty()
     val selectionTopInset by animateDpAsState(
         targetValue = if (editMode) 50.dp else 0.dp,
-        animationSpec = ElovaireMotion.sizeSoft(),
+        animationSpec = A0Motion.sizeSoft(),
         label = "playlist_selection_top_inset",
     )
     BackHandler(enabled = editMode) {

@@ -6,25 +6,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.TransformOrigin
 
-object ElovaireAlbumMotion {
+object A0AlbumMotion {
     fun forwardEnter(transformOrigin: TransformOrigin): EnterTransition =
-        ElovaireMotion.albumDetailForwardEnter(transformOrigin)
+        A0Motion.albumDetailForwardEnter(transformOrigin)
 
-    fun forwardExit(): ExitTransition = ElovaireMotion.albumDetailForwardExit()
+    fun forwardExit(): ExitTransition = A0Motion.albumDetailForwardExit()
 
-    fun backEnter(): EnterTransition = ElovaireMotion.albumDetailBackEnter()
+    fun backEnter(): EnterTransition = A0Motion.albumDetailBackEnter()
 
     fun backExit(transformOrigin: TransformOrigin): ExitTransition =
-        ElovaireMotion.albumDetailBackExit(transformOrigin)
+        A0Motion.albumDetailBackExit(transformOrigin)
 }
 
 @Composable
 fun rememberSystemAnimationScale(): Float = LocalMotionRuntime.current.durationScale
 
 @Composable
-fun SyncElovaireMotionScale() {
+fun SyncA0MotionScale() {
     val scale = rememberSystemAnimationScale()
     SideEffect {
-        ElovaireMotion.updateSystemDurationScale(scale)
+        A0Motion.updateSystemDurationScale(scale)
     }
 }

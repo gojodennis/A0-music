@@ -292,7 +292,7 @@ class PlaybackNotificationController(
     }
 
     companion object {
-        internal const val NOTIFICATION_CHANNEL_ID = "elovaire_playback"
+        internal const val NOTIFICATION_CHANNEL_ID = "a0_playback"
         internal const val NOTIFICATION_ID = 1001
         private const val ACTION_SHUFFLE = "elovaire.music.droidbeauty.app.action.SHUFFLE"
         private const val PAUSE_NOTIFICATION_TIMEOUT_MS = 180_000L

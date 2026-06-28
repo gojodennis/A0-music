@@ -288,13 +288,13 @@ import elovaire.music.droidbeauty.app.ui.components.rememberArtworkGradient
 import elovaire.music.droidbeauty.app.ui.interaction.CompactBarGestureActions
 import elovaire.music.droidbeauty.app.ui.interaction.compactBarGestures
 import elovaire.music.droidbeauty.app.ui.interaction.consumePointersWithoutSemantics
-import elovaire.music.droidbeauty.app.ui.interaction.elovairePressScale
-import elovaire.music.droidbeauty.app.ui.interaction.rememberElovaireInteractionSource
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireAnimatedContent
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireAnimatedVisibility
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireAlbumMotion
-import elovaire.music.droidbeauty.app.ui.motion.elovaireListReveal
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireMotion
+import elovaire.music.droidbeauty.app.ui.interaction.a0PressScale
+import elovaire.music.droidbeauty.app.ui.interaction.rememberA0InteractionSource
+import elovaire.music.droidbeauty.app.ui.motion.A0AnimatedContent
+import elovaire.music.droidbeauty.app.ui.motion.A0AnimatedVisibility
+import elovaire.music.droidbeauty.app.ui.motion.A0AlbumMotion
+import elovaire.music.droidbeauty.app.ui.motion.a0ListReveal
+import elovaire.music.droidbeauty.app.ui.motion.A0Motion
 import elovaire.music.droidbeauty.app.ui.motion.LocalMotionRuntime
 import elovaire.music.droidbeauty.app.ui.motion.MotionDuration
 import elovaire.music.droidbeauty.app.ui.motion.PlayerOverlayMotionHost
@@ -325,13 +325,13 @@ import elovaire.music.droidbeauty.app.ui.i18n.displayLabel
 import elovaire.music.droidbeauty.app.ui.screens.tags.AlbumTagEditorScreen
 import elovaire.music.droidbeauty.app.ui.screens.tags.AlbumTagEditorEvent
 import elovaire.music.droidbeauty.app.ui.screens.tags.AlbumTagEditorViewModel
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireRadii
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireSpacing
+import elovaire.music.droidbeauty.app.ui.theme.A0Radii
+import elovaire.music.droidbeauty.app.ui.theme.A0Spacing
 import elovaire.music.droidbeauty.app.ui.theme.AboutCardButtonAccent
 import elovaire.music.droidbeauty.app.ui.theme.DestructiveRed
-import elovaire.music.droidbeauty.app.ui.theme.elovaireResolvedColorScheme
-import elovaire.music.droidbeauty.app.ui.theme.elovaireScaledSp
-import elovaire.music.droidbeauty.app.ui.theme.rememberElovaireOverscrollFactory
+import elovaire.music.droidbeauty.app.ui.theme.a0ResolvedColorScheme
+import elovaire.music.droidbeauty.app.ui.theme.a0ScaledSp
+import elovaire.music.droidbeauty.app.ui.theme.rememberA0OverscrollFactory
 import elovaire.music.droidbeauty.app.ui.theme.InkText
 import elovaire.music.droidbeauty.app.ui.theme.RoseAccent
 import elovaire.music.droidbeauty.app.ui.theme.ToggleEnabledGreen
@@ -362,14 +362,14 @@ private fun Set<Long>.toggleSelection(id: Long): Set<Long> {
 
 @OptIn(ExperimentalHazeApi::class)
 @Composable
-fun ElovaireRoot(
+fun A0Root(
     container: AppContainer,
     resetHomeScrollOnColdStart: Boolean = false,
 ) {
     val navController = rememberNavController()
     val rootMotionTransitions = rememberMotionTransitions()
     val context = LocalContext.current
-    val viewModelFactory = remember(container) { ElovaireViewModelFactory(container.viewModelDependencies) }
+    val viewModelFactory = remember(container) { A0ViewModelFactory(container.viewModelDependencies) }
     val rootViewModel: RootViewModel = viewModel(factory = viewModelFactory)
     val appState by rootViewModel.appState.collectAsStateWithLifecycle()
     val derivedState = rememberRootLibraryDerivedState(
@@ -473,7 +473,7 @@ fun ElovaireRoot(
     val showPlayerOverlay = playerLayerState == PlayerLayerState.Expanded && playbackState.currentSong != null
     val showGlobalNowPlaying = canHostCompactNowPlaying && !hideCompactNowPlaying && playerLayerState != PlayerLayerState.Expanded
     val reenteringFromPlayer = playerLayerState == PlayerLayerState.ReturningToCompact
-    val overscrollFactory = rememberElovaireOverscrollFactory()
+    val overscrollFactory = rememberA0OverscrollFactory()
     val navHostBlur = 0.dp
     val navHostScrimAlpha = 0f
     val rootView = LocalView.current
@@ -645,18 +645,18 @@ fun ElovaireRoot(
             val bottomNavHeight = if (showBottomNavigation) bottomNavigationOccupiedHeight() else 0.dp
             val showSharedTopBarBackdrop = currentRoute != null && currentRoute != PLAYER_ROUTE
             val topContentPadding = if (showTopLevelChrome) {
-                topBarHeight + ElovaireSpacing.topBarToFirstContentGap
+                topBarHeight + A0Spacing.topBarToFirstContentGap
             } else {
                 innerPadding.calculateTopPadding()
             }
             val bottomContentPadding =
                 bottomNavHeight +
-                    (if (reserveCompactNowPlayingSpace) ElovaireSpacing.miniPlayerReservedHeight else 0.dp) +
-                    ElovaireSpacing.scrollTailPadding
+                    (if (reserveCompactNowPlayingSpace) A0Spacing.miniPlayerReservedHeight else 0.dp) +
+                    A0Spacing.scrollTailPadding
             val detailBottomPadding =
                 bottomNavHeight +
-                    (if (reserveCompactNowPlayingSpace) ElovaireSpacing.miniPlayerReservedHeight else 0.dp) +
-                    ElovaireSpacing.scrollTailPadding
+                    (if (reserveCompactNowPlayingSpace) A0Spacing.miniPlayerReservedHeight else 0.dp) +
+                    A0Spacing.scrollTailPadding
 
             Box(modifier = Modifier.fillMaxSize()) {
                 CompositionLocalProvider(
@@ -1118,7 +1118,7 @@ fun ElovaireRoot(
                         onOpenChangelog = openChangelogSheetFromMenu,
                         onOpenAbout = openAboutFromMenu,
                     )
-                    ElovaireAnimatedVisibility(
+                    A0AnimatedVisibility(
                         visible = showChangelogSheet,
                         modifier = Modifier
                             .fillMaxSize()
@@ -1143,7 +1143,7 @@ fun ElovaireRoot(
                             },
                         )
                     }
-                    ElovaireAnimatedVisibility(
+                    A0AnimatedVisibility(
                         modifier = Modifier
                             .align(Alignment.TopCenter)
                             .zIndex(7f)
@@ -1175,7 +1175,7 @@ fun ElovaireRoot(
                             }
                         }
                     }
-                    ElovaireAnimatedVisibility(
+                    A0AnimatedVisibility(
                         visible = permissionController.state.showFirstLaunchPermissionOverlay,
                         modifier = Modifier
                             .fillMaxSize()
@@ -1215,7 +1215,7 @@ fun ElovaireRoot(
                         }
                     }
                 }
-                ElovaireAnimatedVisibility(
+                A0AnimatedVisibility(
                     modifier = Modifier
                         .align(Alignment.BottomCenter)
                         .zIndex(8f)
@@ -1299,7 +1299,7 @@ internal fun ForceDarkColorScheme(
     content: @Composable () -> Unit,
 ) {
     MaterialTheme(
-        colorScheme = elovaireResolvedColorScheme(darkTheme = true),
+        colorScheme = a0ResolvedColorScheme(darkTheme = true),
         typography = MaterialTheme.typography,
         shapes = MaterialTheme.shapes,
         content = content,
@@ -1332,7 +1332,7 @@ private fun HomeScreen(
     onSongSelected: (Song) -> Unit,
     onToggleFavorite: (Long) -> Unit,
 ) {
-    val listState = rememberElovaireLazyListState("home_screen")
+    val listState = rememberA0LazyListState("home_screen")
     val language = LocalAppLanguage.current
     val homeCopy = remember(language) { homeCopy(language) }
     val motionRuntime = LocalMotionRuntime.current
@@ -1373,7 +1373,7 @@ private fun HomeScreen(
         lastPlayedPlaylist?.songIds?.mapNotNull(songsById::get).orEmpty()
     }
     Box(modifier = Modifier.fillMaxSize()) {
-        ElovaireAnimatedContent(
+        A0AnimatedContent(
             targetState = when {
                 showInitialLoadingState -> HomeScreenState.Loading
                 showEmptyLibraryState -> HomeScreenState.Empty
@@ -1381,14 +1381,14 @@ private fun HomeScreen(
             },
             transitionSpec = {
                 if (targetState == HomeScreenState.Loading) {
-                    fadeIn(animationSpec = ElovaireMotion.fadeMedium()) togetherWith
-                        fadeOut(animationSpec = ElovaireMotion.contentFadeOutSpec())
+                    fadeIn(animationSpec = A0Motion.fadeMedium()) togetherWith
+                        fadeOut(animationSpec = A0Motion.contentFadeOutSpec())
                 } else {
-                    (fadeIn(animationSpec = ElovaireMotion.fadeSlow(delayMillis = 40)) +
+                    (fadeIn(animationSpec = A0Motion.fadeSlow(delayMillis = 40)) +
                         slideInVertically(
-                            animationSpec = ElovaireMotion.offsetSoft(durationMillis = ElovaireMotion.Screen),
+                            animationSpec = A0Motion.offsetSoft(durationMillis = A0Motion.Screen),
                             initialOffsetY = { -it / 14 },
-                        )) togetherWith fadeOut(animationSpec = ElovaireMotion.contentFadeOutSpec())
+                        )) togetherWith fadeOut(animationSpec = A0Motion.contentFadeOutSpec())
                 }
             },
             label = "HomeLoadingTransition",
@@ -1427,7 +1427,7 @@ private fun HomeScreen(
                         modifier = Modifier
                             .fillMaxWidth(0.58f)
                             .height(6.dp)
-                            .clip(RoundedCornerShape(ElovaireRadii.pill)),
+                            .clip(RoundedCornerShape(A0Radii.pill)),
                         color = MaterialTheme.colorScheme.onSurface,
                         trackColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.16f),
                     )
@@ -1464,14 +1464,14 @@ private fun HomeScreen(
                 }
 
                 HomeScreenState.Content -> {
-                ElovaireAnimatedVisibility(
+                A0AnimatedVisibility(
                     visible = revealModules,
-                    enter = fadeIn(animationSpec = ElovaireMotion.fadeSlow()) +
+                    enter = fadeIn(animationSpec = A0Motion.fadeSlow()) +
                         slideInVertically(
-                            animationSpec = ElovaireMotion.offsetSoft(durationMillis = 320),
+                            animationSpec = A0Motion.offsetSoft(durationMillis = 320),
                             initialOffsetY = { -it / 18 },
                         ),
-                    exit = fadeOut(animationSpec = ElovaireMotion.fadeFast()),
+                    exit = fadeOut(animationSpec = A0Motion.fadeFast()),
                     label = "HomeFirstLaunchModulesReveal",
                 ) {
                     LazyColumn(
@@ -1659,12 +1659,12 @@ private fun LastPlayedAlbumModule(
                     indication = null,
                     onClick = { onOpen(bounds.toExpandOrigin(screenWidthPx, screenHeightPx)) },
                 )
-                .clip(RoundedCornerShape(ElovaireRadii.module))
+                .clip(RoundedCornerShape(A0Radii.module))
                 .background(baseTint)
                 .border(
                     width = 1.dp,
                     color = Color.White.copy(alpha = if (darkTheme) 0.05f else 0.04f),
-                    shape = RoundedCornerShape(ElovaireRadii.module),
+                    shape = RoundedCornerShape(A0Radii.module),
                 ),
         ) {
             artwork.value?.let { artworkBitmap ->
@@ -1694,7 +1694,7 @@ private fun LastPlayedAlbumModule(
                     uri = album.artUri,
                     title = album.title,
                     modifier = Modifier.size(88.dp),
-                    cornerRadius = ElovaireRadii.artwork,
+                    cornerRadius = A0Radii.artwork,
                     showArtworkGlow = true,
                 )
                 Column(
@@ -1785,7 +1785,7 @@ private fun LastPlayedPlaylistModule(
 
         Box(
             modifier = modifier
-                .clip(RoundedCornerShape(ElovaireRadii.module))
+                .clip(RoundedCornerShape(A0Radii.module))
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = null,
@@ -1795,7 +1795,7 @@ private fun LastPlayedPlaylistModule(
                 .border(
                     width = 1.dp,
                     color = Color.White.copy(alpha = if (darkTheme) 0.05f else 0.04f),
-                    shape = RoundedCornerShape(ElovaireRadii.module),
+                    shape = RoundedCornerShape(A0Radii.module),
                 ),
         ) {
             artwork.value?.let { artworkBitmap ->
@@ -1825,7 +1825,7 @@ private fun LastPlayedPlaylistModule(
                     uri = artworkSong?.artUri,
                     title = playlist.name,
                     modifier = Modifier.size(88.dp),
-                    cornerRadius = ElovaireRadii.artwork,
+                    cornerRadius = A0Radii.artwork,
                     showArtworkGlow = true,
                 )
                 Column(
@@ -1935,8 +1935,8 @@ private fun AlbumCollectionContent(
     var showSortOptions by rememberSaveable { mutableStateOf(false) }
     var selectedAlbumIds by rememberSaveable { mutableStateOf(setOf<Long>()) }
     var showPlaylistPicker by rememberSaveable { mutableStateOf(false) }
-    val listState = rememberElovaireLazyListState(title, "album_collection_list")
-    val gridState = rememberElovaireLazyGridState(title, "album_collection_grid")
+    val listState = rememberA0LazyListState(title, "album_collection_list")
+    val gridState = rememberA0LazyGridState(title, "album_collection_grid")
     val selectionModeActive = selectedAlbumIds.isNotEmpty()
     val sortedAlbums = remember(albums, sortMode) {
         when (sortMode) {
@@ -1958,7 +1958,7 @@ private fun AlbumCollectionContent(
     }
     val selectionTopInset by animateDpAsState(
         targetValue = if (selectionModeActive) 50.dp else 0.dp,
-        animationSpec = ElovaireMotion.sizeSoft(),
+        animationSpec = A0Motion.sizeSoft(),
         label = "album_selection_top_inset",
     )
     BackHandler(enabled = selectionModeActive) {
@@ -2012,9 +2012,9 @@ private fun AlbumCollectionContent(
                             album = album,
                             modifier = Modifier
                                 .animateItem(
-                                    placementSpec = ElovaireMotion.listPlacementSpec(),
+                                    placementSpec = A0Motion.listPlacementSpec(),
                                 )
-                                .elovaireListReveal(
+                                .a0ListReveal(
                                     itemKey = album.id,
                                     index = index,
                                     registry = revealRegistry,
@@ -2090,9 +2090,9 @@ private fun AlbumCollectionContent(
                             album = album,
                             modifier = Modifier
                                 .animateItem(
-                                    placementSpec = ElovaireMotion.listPlacementSpec(),
+                                    placementSpec = A0Motion.listPlacementSpec(),
                                 )
-                                .elovaireListReveal(
+                                .a0ListReveal(
                                     itemKey = album.id,
                                     index = index,
                                     registry = revealRegistry,
@@ -2166,9 +2166,9 @@ private fun AlbumCollectionContent(
                         Box(
                             modifier = Modifier
                                 .animateItem(
-                                    placementSpec = ElovaireMotion.listPlacementSpec(),
+                                    placementSpec = A0Motion.listPlacementSpec(),
                                 )
-                                .elovaireListReveal(
+                                .a0ListReveal(
                                     itemKey = album.id,
                                     index = index,
                                     registry = revealRegistry,
@@ -2409,7 +2409,7 @@ private fun AlbumCollectionActionButton(
     Box(
         modifier = modifier
             .fillMaxHeight()
-            .clip(RoundedCornerShape(ElovaireRadii.pill))
+            .clip(RoundedCornerShape(A0Radii.pill))
             .clickable(
                 enabled = enabled,
                 interactionSource = remember { MutableInteractionSource() },
@@ -2449,7 +2449,7 @@ private fun AlbumSortControl(
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
         Surface(
             onClick = onToggleExpanded,
-            shape = RoundedCornerShape(ElovaireRadii.pill),
+            shape = RoundedCornerShape(A0Radii.pill),
             color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f),
             contentColor = MaterialTheme.colorScheme.onSurface,
         ) {
@@ -2491,7 +2491,7 @@ private fun AlbumSortControl(
                 ),
         ) {
             Surface(
-                shape = RoundedCornerShape(ElovaireRadii.card),
+                shape = RoundedCornerShape(A0Radii.card),
                 color = MaterialTheme.colorScheme.surface,
             ) {
                 Column {
@@ -2555,7 +2555,7 @@ private fun LibraryHubScreen(
         libraryState.songs.map { it.genre.ifBlank { "Unknown Genre" } }.distinct().size
     }
 
-    val listState = rememberElovaireLazyListState("library_hub")
+    val listState = rememberA0LazyListState("library_hub")
     LaunchedEffect(scrollToTopRequestVersion) {
         if (scrollToTopRequestVersion > 0L) {
             listState.animateScrollToItem(0)
@@ -2801,7 +2801,7 @@ private fun SongCollectionScreen(
     val language = LocalAppLanguage.current
     val common = remember(language) { commonUiCopy(language) }
     var showSortOptions by rememberSaveable { mutableStateOf(false) }
-    val listState = rememberElovaireLazyListState("song_collection_list")
+    val listState = rememberA0LazyListState("song_collection_list")
     val sortedSongs = remember(songs, sortMode) {
         when (sortMode) {
             SongSortMode.Title -> songs.sortedWith(
@@ -2831,7 +2831,7 @@ private fun SongCollectionScreen(
                 .ensureSingleItemRubberBand(listState),
             contentPadding = PaddingValues(
                 start = 20.dp,
-                top = detailTopBarOccupiedHeight() + ElovaireSpacing.detailListTopGap,
+                top = detailTopBarOccupiedHeight() + A0Spacing.detailListTopGap,
                 end = 20.dp,
                 bottom = bottomPadding,
             ),
@@ -2859,9 +2859,9 @@ private fun SongCollectionScreen(
                 Box(
                     modifier = Modifier
                         .animateItem(
-                            placementSpec = ElovaireMotion.listPlacementSpec(),
+                            placementSpec = A0Motion.listPlacementSpec(),
                         )
-                        .elovaireListReveal(
+                        .a0ListReveal(
                             itemKey = song.id,
                             index = index,
                             registry = revealRegistry,
@@ -2895,7 +2895,7 @@ private fun SongCollectionScreen(
         )
         FastScrollbar(
             state = listState,
-            topInset = detailTopBarOccupiedHeight() + ElovaireSpacing.detailCompactTopGap,
+            topInset = detailTopBarOccupiedHeight() + A0Spacing.detailCompactTopGap,
             bottomInset = bottomPadding + 16.dp,
         )
     }
@@ -2912,7 +2912,7 @@ private fun SongSortControl(
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
         Surface(
             onClick = onToggleExpanded,
-            shape = RoundedCornerShape(ElovaireRadii.pill),
+            shape = RoundedCornerShape(A0Radii.pill),
             color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f),
             contentColor = MaterialTheme.colorScheme.onSurface,
         ) {
@@ -2954,7 +2954,7 @@ private fun SongSortControl(
                 ),
         ) {
             Surface(
-                shape = RoundedCornerShape(ElovaireRadii.card),
+                shape = RoundedCornerShape(A0Radii.card),
                 color = MaterialTheme.colorScheme.surface,
             ) {
                 Column {
@@ -3004,7 +3004,7 @@ private fun ArtistCollectionScreen(
 ) {
     val language = LocalAppLanguage.current
     val common = remember(language) { commonUiCopy(language) }
-    val scrollState = rememberElovaireScrollState("artist_collection")
+    val scrollState = rememberA0ScrollState("artist_collection")
     val artists = remember(songs) {
         songs
             .groupBy { it.artist.ifBlank { "Unknown Artist" } }
@@ -3026,7 +3026,7 @@ private fun ArtistCollectionScreen(
                 .verticalScroll(scrollState)
                 .padding(
                     start = 20.dp,
-                    top = detailTopBarOccupiedHeight() + ElovaireSpacing.detailListTopGap,
+                    top = detailTopBarOccupiedHeight() + A0Spacing.detailListTopGap,
                     end = 20.dp,
                     bottom = bottomPadding,
                 ),
@@ -3048,7 +3048,7 @@ private fun ArtistCollectionScreen(
         }
         FastScrollbar(
             state = scrollState,
-            topInset = detailTopBarOccupiedHeight() + ElovaireSpacing.detailCompactTopGap,
+            topInset = detailTopBarOccupiedHeight() + A0Spacing.detailCompactTopGap,
             bottomInset = bottomPadding + 16.dp,
         )
 
@@ -3070,7 +3070,7 @@ private fun GenreCollectionScreen(
 ) {
     val language = LocalAppLanguage.current
     val common = remember(language) { commonUiCopy(language) }
-    val scrollState = rememberElovaireScrollState("genre_collection")
+    val scrollState = rememberA0ScrollState("genre_collection")
     val genres = remember(songs) {
         songs
             .groupBy { it.genre.ifBlank { "Unknown Genre" } }
@@ -3090,7 +3090,7 @@ private fun GenreCollectionScreen(
                 .verticalScroll(scrollState)
                 .padding(
                     start = 20.dp,
-                    top = detailTopBarOccupiedHeight() + ElovaireSpacing.detailSectionTopGap,
+                    top = detailTopBarOccupiedHeight() + A0Spacing.detailSectionTopGap,
                     end = 20.dp,
                     bottom = bottomPadding,
                 ),
@@ -3112,7 +3112,7 @@ private fun GenreCollectionScreen(
         }
         FastScrollbar(
             state = scrollState,
-            topInset = detailTopBarOccupiedHeight() + ElovaireSpacing.detailCompactTopGap,
+            topInset = detailTopBarOccupiedHeight() + A0Spacing.detailCompactTopGap,
             bottomInset = bottomPadding + 16.dp,
         )
 
@@ -3219,7 +3219,7 @@ private fun ArtistDetailScreen(
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
-        val listState = rememberElovaireLazyListState(normalizedArtist, "artist_detail")
+        val listState = rememberA0LazyListState(normalizedArtist, "artist_detail")
         LazyColumn(
             state = listState,
             overscrollEffect = null,
@@ -3228,7 +3228,7 @@ private fun ArtistDetailScreen(
                 .ensureSingleItemRubberBand(listState),
             contentPadding = PaddingValues(
                 start = 20.dp,
-                top = detailTopBarOccupiedHeight() + ElovaireSpacing.detailSectionTopGap,
+                top = detailTopBarOccupiedHeight() + A0Spacing.detailSectionTopGap,
                 end = 20.dp,
                 bottom = bottomPadding,
             ),
@@ -3411,7 +3411,7 @@ private fun SearchScreen(
     val revealRegistry = rememberMotionRevealRegistry()
     val language = LocalAppLanguage.current
     val copy = searchCopy(language)
-    val listState = rememberElovaireLazyListState("search_screen")
+    val listState = rememberA0LazyListState("search_screen")
     LaunchedEffect(scrollToTopRequestVersion) {
         if (scrollToTopRequestVersion > 0L) {
             listState.animateScrollToItem(0)
@@ -3420,7 +3420,7 @@ private fun SearchScreen(
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
     val trimmedQuery = state.query.trim()
-    val allSongsListState = rememberElovaireLazyListState("search_all_songs", trimmedQuery, state.searchSongSortMode)
+    val allSongsListState = rememberA0LazyListState("search_all_songs", trimmedQuery, state.searchSongSortMode)
     val isSearchUiActive = trimmedQuery.isNotBlank() || isSearchFieldFocused || state.showAllSongResults
     val collapseAllSongResults: () -> Unit = {
         onShowAllSongResultsChange(false)
@@ -3491,7 +3491,7 @@ private fun SearchScreen(
                 .onFocusChanged { focusState ->
                     onSearchFieldFocusedChange(focusState.isFocused)
                 },
-            shape = RoundedCornerShape(ElovaireRadii.input),
+            shape = RoundedCornerShape(A0Radii.input),
             singleLine = true,
             placeholder = { Text(copy.placeholder) },
             leadingIcon = {
@@ -3505,14 +3505,14 @@ private fun SearchScreen(
             trailingIcon = {
                 androidx.compose.animation.AnimatedVisibility(
                     visible = isSearchUiActive,
-                    enter = fadeIn(animationSpec = ElovaireMotion.fadeMedium()) +
+                    enter = fadeIn(animationSpec = A0Motion.fadeMedium()) +
                         scaleIn(
-                            animationSpec = ElovaireMotion.scaleSoft(),
+                            animationSpec = A0Motion.scaleSoft(),
                             initialScale = 0.92f,
                         ),
-                    exit = fadeOut(animationSpec = ElovaireMotion.fadeFast()) +
+                    exit = fadeOut(animationSpec = A0Motion.fadeFast()) +
                         scaleOut(
-                            animationSpec = ElovaireMotion.fadeFast(),
+                            animationSpec = A0Motion.fadeFast(),
                             targetScale = 0.92f,
                         ),
                 ) {
@@ -3577,7 +3577,7 @@ private fun SearchScreen(
                 Box(modifier = Modifier.weight(1f)) {
                     Surface(
                         modifier = Modifier.fillMaxSize(),
-                        shape = RoundedCornerShape(ElovaireRadii.card),
+                        shape = RoundedCornerShape(A0Radii.card),
                         color = MaterialTheme.colorScheme.surface,
                     ) {
                         LazyColumn(
@@ -3595,9 +3595,9 @@ private fun SearchScreen(
                                 Box(
                                     modifier = Modifier
                                         .animateItem(
-                                            placementSpec = ElovaireMotion.listPlacementSpec(),
+                                            placementSpec = A0Motion.listPlacementSpec(),
                                         )
-                                        .elovaireListReveal(
+                                        .a0ListReveal(
                                             itemKey = song.id,
                                             index = index,
                                             registry = revealRegistry,
@@ -3644,48 +3644,48 @@ private fun SearchScreen(
                     searchBar()
                 }
                 item {
-                    ElovaireAnimatedContent(
+                    A0AnimatedContent(
                         targetState = state.contentMode,
                         modifier = Modifier.fillMaxWidth(),
                         transitionSpec = {
                         when {
                             targetState == SearchContentMode.Discover -> {
                                 (fadeIn(
-                                    animationSpec = ElovaireMotion.contentFadeInSpec(delayMillis = 60),
+                                    animationSpec = A0Motion.contentFadeInSpec(delayMillis = 60),
                                 ) + slideInVertically(
-                                    animationSpec = ElovaireMotion.offsetSoft(durationMillis = ElovaireMotion.Medium),
+                                    animationSpec = A0Motion.offsetSoft(durationMillis = A0Motion.Medium),
                                     initialOffsetY = { it / 14 },
                                 )) togetherWith (fadeOut(
-                                    animationSpec = ElovaireMotion.contentFadeOutSpec(),
+                                    animationSpec = A0Motion.contentFadeOutSpec(),
                                 ) + slideOutVertically(
-                                    animationSpec = ElovaireMotion.offsetSoft(durationMillis = ElovaireMotion.Fast),
+                                    animationSpec = A0Motion.offsetSoft(durationMillis = A0Motion.Fast),
                                     targetOffsetY = { -it / 18 },
                                 ))
                             }
 
                             initialState == SearchContentMode.Results && targetState == SearchContentMode.AllSongs -> {
-                                ElovaireMotion.fullScreenForwardEnter(
+                                A0Motion.fullScreenForwardEnter(
                                     initialOffsetX = { it / 10 },
-                                ) togetherWith ElovaireMotion.fullScreenForwardExit()
+                                ) togetherWith A0Motion.fullScreenForwardExit()
                             }
 
                             initialState == SearchContentMode.AllSongs && targetState == SearchContentMode.Results -> {
-                                ElovaireMotion.fullScreenBackEnter() togetherWith ElovaireMotion.fullScreenBackExit(
+                                A0Motion.fullScreenBackEnter() togetherWith A0Motion.fullScreenBackExit(
                                     targetOffsetX = { it / 10 },
                                 )
                             }
 
                             initialState == SearchContentMode.Discover -> {
-                                (fadeIn(animationSpec = ElovaireMotion.contentFadeInSpec()) +
+                                (fadeIn(animationSpec = A0Motion.contentFadeInSpec()) +
                                     slideInVertically(
-                                        animationSpec = ElovaireMotion.offsetSoft(durationMillis = ElovaireMotion.Standard),
+                                        animationSpec = A0Motion.offsetSoft(durationMillis = A0Motion.Standard),
                                         initialOffsetY = { it / 16 },
                                     )) togetherWith fadeOut(
-                                    animationSpec = ElovaireMotion.contentFadeOutSpec(),
+                                    animationSpec = A0Motion.contentFadeOutSpec(),
                                 )
                             }
 
-                            else -> ElovaireMotion.softContentTransform()
+                            else -> A0Motion.softContentTransform()
                         }
                         },
                         label = "SearchScreenContent",
@@ -3802,7 +3802,7 @@ private fun SearchScreen(
                                         Column {
                                             state.matchingSongs.forEachIndexed { index, song ->
                                                 Box(
-                                                    modifier = Modifier.elovaireListReveal(
+                                                    modifier = Modifier.a0ListReveal(
                                                         itemKey = song.id,
                                                         index = index,
                                                         registry = revealRegistry,
@@ -3846,7 +3846,7 @@ private fun SearchQuickPick(
 ) {
     Column(
         modifier = modifier
-            .clip(RoundedCornerShape(ElovaireRadii.module))
+            .clip(RoundedCornerShape(A0Radii.module))
             .clickable(onClick = onClick)
             .padding(vertical = 4.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -3858,7 +3858,7 @@ private fun SearchQuickPick(
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(1f),
-            cornerRadius = ElovaireRadii.pill,
+            cornerRadius = A0Radii.pill,
             showArtworkGlow = true,
         )
         Text(
@@ -3897,7 +3897,7 @@ private fun SearchHistorySectionHeader(
         AnimatedVisibility(visible = showClearAction) {
             Surface(
                 onClick = onClearHistory,
-                shape = RoundedCornerShape(ElovaireRadii.pill),
+                shape = RoundedCornerShape(A0Radii.pill),
                 color = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
                 contentColor = if (MaterialTheme.colorScheme.primary.luminance() > 0.5f) InkText else Color.White,
             ) {
@@ -3987,7 +3987,7 @@ private fun SearchSongsResultsHeader(
             )
             Surface(
                 onClick = onToggleExpanded,
-                shape = RoundedCornerShape(ElovaireRadii.pill),
+                shape = RoundedCornerShape(A0Radii.pill),
                 color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f),
                 contentColor = MaterialTheme.colorScheme.onSurface,
             ) {
@@ -4010,7 +4010,7 @@ private fun SearchSongsResultsHeader(
         }
         AnimatedVisibility(visible = expanded) {
             Surface(
-                shape = RoundedCornerShape(ElovaireRadii.card),
+                shape = RoundedCornerShape(A0Radii.card),
                 color = MaterialTheme.colorScheme.surface,
             ) {
                 Column {
@@ -4054,7 +4054,7 @@ private fun SearchHistoryListCard(
     onArtistSelected: (String) -> Unit,
 ) {
     Surface(
-        shape = RoundedCornerShape(ElovaireRadii.card),
+        shape = RoundedCornerShape(A0Radii.card),
         color = MaterialTheme.colorScheme.surface,
     ) {
         Column {
@@ -4093,7 +4093,7 @@ private fun SearchHistoryListRow(
             uri = entry.artUri,
             title = entry.title,
             modifier = Modifier.size(46.dp),
-            cornerRadius = if (entry.kind == SearchHistoryKind.Artist) ElovaireRadii.pill else ElovaireRadii.artworkSmall,
+            cornerRadius = if (entry.kind == SearchHistoryKind.Artist) A0Radii.pill else A0Radii.artworkSmall,
             showArtworkGlow = entry.kind == SearchHistoryKind.Album,
         )
         Column(
@@ -4130,7 +4130,7 @@ private fun SearchCategoryGrid(
                             .weight(1f)
                             .height(148.dp),
                         color = color,
-                        shape = RoundedCornerShape(ElovaireRadii.card),
+                        shape = RoundedCornerShape(A0Radii.card),
                     ) {
                         Box(
                             modifier = Modifier
@@ -4200,18 +4200,18 @@ private fun ToggleIconChip(
     val scale by animateFloatAsState(
         targetValue = if (pressed) 0.88f else 1f,
         animationSpec = if (pressed) {
-            ElovaireMotion.pressDownSpec()
+            A0Motion.pressDownSpec()
         } else {
-            ElovaireMotion.bounceSpringSpec()
+            A0Motion.bounceSpringSpec()
         },
         label = "toggle_chip_scale",
     )
     val iconScale by animateFloatAsState(
         targetValue = if (pressed) 0.92f else 1f,
         animationSpec = if (pressed) {
-            ElovaireMotion.pressDownSpec()
+            A0Motion.pressDownSpec()
         } else {
-            ElovaireMotion.releaseSpringSpec(
+            A0Motion.releaseSpringSpec(
                 dampingRatio = 0.78f,
                 stiffness = 520f,
             )
@@ -4221,7 +4221,7 @@ private fun ToggleIconChip(
     Surface(
         modifier = Modifier.scale(scale),
         onClick = onClick,
-        shape = RoundedCornerShape(ElovaireRadii.button),
+        shape = RoundedCornerShape(A0Radii.button),
         color = Color.Transparent,
         contentColor = contentColor,
         shadowElevation = 0.dp,
@@ -4254,7 +4254,7 @@ internal fun readableSecondaryTextColor(): Color {
 @Composable
 internal fun secondaryBodyTextStyle(): TextStyle {
     return MaterialTheme.typography.bodyLarge.copy(
-        lineHeight = elovaireScaledSp(19.2f),
+        lineHeight = a0ScaledSp(19.2f),
     )
 }
 
@@ -4288,7 +4288,7 @@ internal fun ModuleCard(
 ) {
     Surface(
         modifier = modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(ElovaireRadii.module),
+        shape = RoundedCornerShape(A0Radii.module),
         color = readableCardSurfaceColor(),
         shadowElevation = 0.dp,
     ) {
@@ -4298,7 +4298,7 @@ internal fun ModuleCard(
                 .border(
                     width = 1.dp,
                     color = readableCardBorderColor(),
-                    shape = RoundedCornerShape(ElovaireRadii.module),
+                    shape = RoundedCornerShape(A0Radii.module),
                 )
                 .padding(18.dp),
         ) {
@@ -4321,7 +4321,7 @@ private fun SectionTitleRow(
         Text(
             text = title,
             style = if (compact) {
-                MaterialTheme.typography.titleLarge.copy(fontSize = elovaireScaledSp(16f))
+                MaterialTheme.typography.titleLarge.copy(fontSize = a0ScaledSp(16f))
             } else {
                 MaterialTheme.typography.headlineMedium
             },
@@ -4385,12 +4385,12 @@ private fun FavoriteAlbumsModule(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(ElovaireRadii.module))
+            .clip(RoundedCornerShape(A0Radii.module))
             .background(backgroundColor)
             .border(
                 width = 1.dp,
                 color = borderColor,
-                shape = RoundedCornerShape(ElovaireRadii.module),
+                shape = RoundedCornerShape(A0Radii.module),
             )
             .padding(start = 14.dp, end = 14.dp, top = 16.dp, bottom = 14.dp),
     ) {
@@ -4499,7 +4499,7 @@ private fun FavoriteAlbumCompactCell(
                 uri = album.artUri,
                 title = album.title,
                 modifier = Modifier.size(48.dp),
-                cornerRadius = ElovaireRadii.artworkSmall,
+                cornerRadius = A0Radii.artworkSmall,
                 showArtworkGlow = true,
             )
             Column(
@@ -4541,7 +4541,7 @@ private fun CompactSongTile(
         } else {
             MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.34f)
         },
-        shape = RoundedCornerShape(ElovaireRadii.tile),
+        shape = RoundedCornerShape(A0Radii.tile),
     ) {
         Row(
             modifier = Modifier
@@ -4554,7 +4554,7 @@ private fun CompactSongTile(
                 uri = song.artUri,
                 title = song.album,
                 modifier = Modifier.size(48.dp),
-                cornerRadius = ElovaireRadii.artworkSmall,
+                cornerRadius = A0Radii.artworkSmall,
             )
             Column(
                 modifier = Modifier.weight(1f),
@@ -4593,7 +4593,7 @@ private fun SongGridCard(
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(1f),
-            cornerRadius = ElovaireRadii.artwork,
+            cornerRadius = A0Radii.artwork,
             showArtworkGlow = true,
         )
         Row(
@@ -4644,7 +4644,7 @@ private fun ArtistGridCard(
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(1f),
-            cornerRadius = ElovaireRadii.pill,
+            cornerRadius = A0Radii.pill,
         )
         Text(
             text = artist.name,
@@ -4680,7 +4680,7 @@ private fun ArtistRow(
             uri = artist.artUri,
             title = artist.name,
             modifier = Modifier.size(50.dp),
-            cornerRadius = ElovaireRadii.pill,
+            cornerRadius = A0Radii.pill,
         )
         Column(
             modifier = Modifier.weight(1f),
@@ -4801,7 +4801,7 @@ private fun RecentSongRow(
     Surface(
         onClick = onClick,
         color = readableCardSurfaceColor(),
-        shape = RoundedCornerShape(ElovaireRadii.card),
+        shape = RoundedCornerShape(A0Radii.card),
         shadowElevation = if (MaterialTheme.colorScheme.background.luminance() > 0.5f) 6.dp else 2.dp,
     ) {
         Row(
@@ -4815,7 +4815,7 @@ private fun RecentSongRow(
                 uri = song.artUri,
                 title = song.album,
                 modifier = Modifier.size(52.dp),
-                cornerRadius = ElovaireRadii.artwork,
+                cornerRadius = A0Radii.artwork,
             )
             Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(
@@ -4968,7 +4968,7 @@ private fun HomeRecentSongRow(
                     uri = song.artUri,
                     title = song.title,
                     modifier = Modifier.matchParentSize(),
-                    cornerRadius = ElovaireRadii.artworkSmall,
+                    cornerRadius = A0Radii.artworkSmall,
                     showArtworkGlow = true,
                 )
                 androidx.compose.animation.AnimatedVisibility(
@@ -5111,7 +5111,7 @@ private fun AlbumGridCard(
     selectionMode: Boolean = false,
     selected: Boolean = false,
     showText: Boolean = true,
-    artworkCornerRadius: Dp = ElovaireRadii.artwork,
+    artworkCornerRadius: Dp = A0Radii.artwork,
     showArtworkGlow: Boolean = true,
     onOpen: (ExpandOrigin) -> Unit,
     onLongPress: (() -> Unit)? = null,
@@ -5226,7 +5226,7 @@ private fun CompactAlbumRow(
                     uri = album.artUri,
                     title = album.title,
                     modifier = Modifier.matchParentSize(),
-                    cornerRadius = ElovaireRadii.artworkSmall,
+                    cornerRadius = A0Radii.artworkSmall,
                 )
             }
             Column(
@@ -5279,8 +5279,8 @@ private fun CompactAlbumRow(
             } else if (showFavoriteButton && onToggleFavorite != null) {
                 AnimatedVisibility(
                     visible = !selectionMode,
-                    enter = fadeIn(animationSpec = ElovaireMotion.fadeMedium()),
-                    exit = fadeOut(animationSpec = ElovaireMotion.fadeFast()),
+                    enter = fadeIn(animationSpec = A0Motion.fadeMedium()),
+                    exit = fadeOut(animationSpec = A0Motion.fadeFast()),
                 ) {
                     Row(
                         modifier = Modifier.padding(end = 10.dp),
@@ -5318,7 +5318,7 @@ private fun EmptyStateCard(
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(ElovaireRadii.card),
+        shape = RoundedCornerShape(A0Radii.card),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface,
         ),
@@ -5347,7 +5347,7 @@ private fun PlaylistLaneCard(
     Surface(
         modifier = modifier,
         onClick = onClick,
-        shape = RoundedCornerShape(ElovaireRadii.module),
+        shape = RoundedCornerShape(A0Radii.module),
         color = readableCardSurfaceColor(),
         shadowElevation = if (MaterialTheme.colorScheme.background.luminance() > 0.5f) 8.dp else 8.dp,
     ) {
@@ -5360,7 +5360,7 @@ private fun PlaylistLaneCard(
             Box(
                 modifier = Modifier
                     .size(40.dp)
-                    .clip(RoundedCornerShape(ElovaireRadii.artworkSmall))
+                    .clip(RoundedCornerShape(A0Radii.artworkSmall))
                     .background(
                         if (MaterialTheme.colorScheme.background.luminance() > 0.5f) {
                             MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.84f)
@@ -5431,7 +5431,7 @@ private fun AlbumScreen(
         withFrameNanos { }
         allowHeavyAlbumEffects = true
         if (BuildConfig.DEBUG) {
-            Log.d("ElovaireMotion", "AlbumDetail(${album.id}) heavy effects enabled after first frame")
+            Log.d("A0Motion", "AlbumDetail(${album.id}) heavy effects enabled after first frame")
         }
     }
     val gradient by rememberArtworkGradient(album.artUri)
@@ -5558,7 +5558,7 @@ private fun AlbumScreen(
                 .ensureSingleItemRubberBand(listState),
             contentPadding = PaddingValues(
                 start = 20.dp,
-                top = detailTopPadding + ElovaireSpacing.albumHeaderTopGap,
+                top = detailTopPadding + A0Spacing.albumHeaderTopGap,
                 end = 20.dp,
                 bottom = bottomPadding,
             ),
@@ -5588,7 +5588,7 @@ private fun AlbumScreen(
                                         ),
                                         radius = 780f,
                                     ),
-                                    shape = RoundedCornerShape(ElovaireRadii.module),
+                                    shape = RoundedCornerShape(A0Radii.module),
                                 )
                                 .blur(
                                     if (allowHeavyAlbumEffects) {
@@ -5600,7 +5600,7 @@ private fun AlbumScreen(
                         )
                         Surface(
                             modifier = Modifier.matchParentSize(),
-                            shape = RoundedCornerShape(ElovaireRadii.module),
+                            shape = RoundedCornerShape(A0Radii.module),
                             color = MaterialTheme.colorScheme.surface.copy(alpha = if (isLightTheme) 0.08f else 0.16f),
                             tonalElevation = 0.dp,
                             shadowElevation = 22.dp,
@@ -5609,7 +5609,7 @@ private fun AlbumScreen(
                                 uri = album.artUri,
                                 title = album.title,
                                 modifier = Modifier.fillMaxSize(),
-                                cornerRadius = ElovaireRadii.artwork,
+                                cornerRadius = A0Radii.artwork,
                             )
                         }
                         FavoriteSongButton(
@@ -5637,7 +5637,7 @@ private fun AlbumScreen(
                         Text(
                             text = album.title,
                             style = MaterialTheme.typography.displayLarge.copy(
-                                fontSize = elovaireScaledSp(ALBUM_HEADER_TITLE_TEXT_SIZE_SP),
+                                fontSize = a0ScaledSp(ALBUM_HEADER_TITLE_TEXT_SIZE_SP),
                                 lineHeight = MaterialTheme.typography.displayLarge.lineHeight * 0.8f,
                             ),
                             textAlign = TextAlign.Center,
@@ -5648,7 +5648,7 @@ private fun AlbumScreen(
                         Text(
                             text = album.artist,
                             style = MaterialTheme.typography.bodyLarge.copy(
-                                fontSize = elovaireScaledSp(ALBUM_HEADER_ARTIST_TEXT_SIZE_SP),
+                                fontSize = a0ScaledSp(ALBUM_HEADER_ARTIST_TEXT_SIZE_SP),
                                 fontWeight = FontWeight.Medium,
                             ),
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.76f),
@@ -5668,13 +5668,13 @@ private fun AlbumScreen(
                         ) {
                             Text(
                                 text = albumMetaText,
-                                style = MaterialTheme.typography.labelLarge.copy(fontSize = elovaireScaledSp(12f)),
+                                style = MaterialTheme.typography.labelLarge.copy(fontSize = a0ScaledSp(12f)),
                                 color = albumOnSurface,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
                             )
                             Surface(
-                                shape = RoundedCornerShape(ElovaireRadii.pill),
+                                shape = RoundedCornerShape(A0Radii.pill),
                                 color = albumInfoPillBackground,
                             ) {
                                 Row(
@@ -5690,13 +5690,13 @@ private fun AlbumScreen(
                                     )
                                     Text(
                                         text = albumTechnicalReferenceSong?.audioFormat ?: "AUDIO",
-                                        style = MaterialTheme.typography.labelLarge.copy(fontSize = elovaireScaledSp(11f)),
+                                        style = MaterialTheme.typography.labelLarge.copy(fontSize = a0ScaledSp(11f)),
                                         color = albumInfoPillTint.copy(alpha = 0.94f),
                                         maxLines = 1,
                                     )
                                     Text(
                                         text = albumTechnicalReferenceSong?.audioQuality ?: "--",
-                                        style = MaterialTheme.typography.labelLarge.copy(fontSize = elovaireScaledSp(11f)),
+                                        style = MaterialTheme.typography.labelLarge.copy(fontSize = a0ScaledSp(11f)),
                                         color = albumInfoPillTint.copy(alpha = 0.74f),
                                         maxLines = 1,
                                     )
@@ -5745,9 +5745,9 @@ private fun AlbumScreen(
                     Box(
                         modifier = Modifier
                             .animateItem(
-                                placementSpec = ElovaireMotion.listPlacementSpec(),
+                                placementSpec = A0Motion.listPlacementSpec(),
                             )
-                            .elovaireListReveal(
+                            .a0ListReveal(
                                 itemKey = song.id,
                                 index = index,
                                 registry = revealRegistry,
@@ -5799,7 +5799,7 @@ private fun AlbumScreen(
                 ) {
                     Text(
                         text = albumFooterText,
-                        style = MaterialTheme.typography.labelLarge.copy(fontSize = elovaireScaledSp(12f)),
+                        style = MaterialTheme.typography.labelLarge.copy(fontSize = a0ScaledSp(12f)),
                         color = albumOnSurface,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
@@ -5943,7 +5943,7 @@ internal fun PlaybackActiveArtworkOverlay(
     title: String,
     modifier: Modifier = Modifier,
 ) {
-    val artworkShape = RoundedCornerShape(ElovaireRadii.artworkSmall)
+    val artworkShape = RoundedCornerShape(A0Radii.artworkSmall)
     val artworkBitmap = rememberArtworkBitmap(uri = uri, size = 256).value
     Box(
         modifier = modifier
@@ -5975,7 +5975,7 @@ internal fun PlaybackActiveArtworkOverlay(
                 modifier = Modifier
                     .matchParentSize()
                     .blur(18.dp),
-                cornerRadius = ElovaireRadii.artworkSmall,
+                cornerRadius = A0Radii.artworkSmall,
             )
         }
         Box(
@@ -6031,7 +6031,7 @@ private fun AlbumSongRow(
                 } else {
                     AnimatedContent(
                         targetState = isCurrentSong && isPlaybackActive,
-                        transitionSpec = { ElovaireMotion.quickContentSwapTransform() },
+                        transitionSpec = { A0Motion.quickContentSwapTransform() },
                         label = "album_row_track_indicator",
                     ) { showSignal ->
                         if (showSignal) {
@@ -6121,7 +6121,7 @@ internal fun AddSongsToPlaylistOverlay(
     var selectedArtistName by rememberSaveable { mutableStateOf<String?>(null) }
     var listResetVersion by remember { mutableLongStateOf(0L) }
     val selectedSongIdSet = remember(selectedSongIds) { selectedSongIds.toSet() }
-    val listState = rememberElovaireLazyListState(
+    val listState = rememberA0LazyListState(
         "playlist_add_songs_overlay",
         selectedTab.name,
         selectedAlbumId ?: -1L,
@@ -6277,7 +6277,7 @@ internal fun AddSongsToPlaylistOverlay(
                         val selected = selectedTab == tab
                         Row(
                             modifier = Modifier
-                                .clip(RoundedCornerShape(ElovaireRadii.pill))
+                                .clip(RoundedCornerShape(A0Radii.pill))
                                 .clickable {
                                     if (selected) {
                                         selectedAlbumId = null
@@ -6336,7 +6336,7 @@ internal fun AddSongsToPlaylistOverlay(
                     value = query,
                     onValueChange = { query = it },
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(ElovaireRadii.input),
+                    shape = RoundedCornerShape(A0Radii.input),
                     singleLine = true,
                     placeholder = { Text(rootUiCopy(LocalAppLanguage.current).searchLibrary) },
                     leadingIcon = {
@@ -6350,14 +6350,14 @@ internal fun AddSongsToPlaylistOverlay(
                     trailingIcon = {
                         androidx.compose.animation.AnimatedVisibility(
                             visible = trimmedQuery.isNotBlank(),
-                            enter = fadeIn(animationSpec = ElovaireMotion.fadeMedium()) +
+                            enter = fadeIn(animationSpec = A0Motion.fadeMedium()) +
                                 scaleIn(
-                                    animationSpec = ElovaireMotion.scaleSoft(),
+                                    animationSpec = A0Motion.scaleSoft(),
                                     initialScale = 0.92f,
                                 ),
-                            exit = fadeOut(animationSpec = ElovaireMotion.fadeFast()) +
+                            exit = fadeOut(animationSpec = A0Motion.fadeFast()) +
                                 scaleOut(
-                                    animationSpec = ElovaireMotion.fadeFast(),
+                                    animationSpec = A0Motion.fadeFast(),
                                     targetScale = 0.92f,
                                 ),
                         ) {
@@ -6404,7 +6404,7 @@ internal fun AddSongsToPlaylistOverlay(
                     selectedTab == PlaylistPickerTab.Artists && selectedArtistName != null -> "artist:${selectedArtistName.orEmpty()}"
                     else -> "tab:${selectedTab.name}"
                 }
-                ElovaireAnimatedContent(
+                A0AnimatedContent(
                     targetState = pickerContentKey,
                     modifier = Modifier.fillMaxSize(),
                     transitionSpec = {
@@ -6604,7 +6604,7 @@ private fun SelectableCollectionRow(
     onClick: () -> Unit,
 ) {
     Surface(
-        shape = RoundedCornerShape(ElovaireRadii.tile),
+        shape = RoundedCornerShape(A0Radii.tile),
         color = readableCardSurfaceColor(),
         modifier = Modifier.fillMaxWidth(),
         onClick = onClick,
@@ -6621,7 +6621,7 @@ private fun SelectableCollectionRow(
                     uri = artUri,
                     title = title,
                     modifier = Modifier.matchParentSize(),
-                    cornerRadius = ElovaireRadii.artworkSmall,
+                    cornerRadius = A0Radii.artworkSmall,
                 )
                 SelectionIndicatorIcon(
                     selected = selected,
@@ -6678,7 +6678,7 @@ private fun SelectableSongRow(
                     uri = song.artUri,
                     title = song.album,
                     modifier = Modifier.matchParentSize(),
-                    cornerRadius = ElovaireRadii.artworkSmall,
+                    cornerRadius = A0Radii.artworkSmall,
                 )
                 if (!selectionIndicatorOnRight) {
                     SelectionIndicatorIcon(
@@ -6763,7 +6763,7 @@ private fun SelectableAlbumPickerRow(
                 uri = album.artUri,
                 title = album.title,
                 modifier = Modifier.size(62.dp),
-                cornerRadius = ElovaireRadii.artworkSmall,
+                cornerRadius = A0Radii.artworkSmall,
             )
             Column(
                 modifier = Modifier.weight(1f),
@@ -7083,7 +7083,7 @@ internal fun NowPlayingScreen(
         val artworkRevealProgress = ((effectiveTransitionProgress - 0.08f) / 0.92f).coerceIn(0f, 1f)
         val contentRevealProgress = ((effectiveTransitionProgress - 0.22f) / 0.78f).coerceIn(0f, 1f)
         val playerContentAlpha = if (showLyricsSheet) 0f else contentRevealProgress
-        val playerSurfaceCorner = lerpFloat(with(density) { ElovaireRadii.card.toPx() }, 0f, effectiveTransitionProgress)
+        val playerSurfaceCorner = lerpFloat(with(density) { A0Radii.card.toPx() }, 0f, effectiveTransitionProgress)
         val sharedArtworkBounds = lerpRect(sourceArtworkBounds, targetArtworkBounds, artworkRevealProgress).coerceWithin(fullSurfaceBounds)
         val volumeSectionProgress = ((effectiveTransitionProgress - 0.22f) / 0.16f).coerceIn(0f, 1f)
         val actionsSectionProgress = ((effectiveTransitionProgress - 0.34f) / 0.16f).coerceIn(0f, 1f)
@@ -7212,8 +7212,8 @@ internal fun NowPlayingScreen(
             }
 
             val centeredInfoWidth = 0.95f
-            val nowPlayingTitleTopGap = ElovaireSpacing.nowPlayingTitleTopGap
-            val nowPlayingTitleBottomGap = ElovaireSpacing.nowPlayingTitleBottomGap
+            val nowPlayingTitleTopGap = A0Spacing.nowPlayingTitleTopGap
+            val nowPlayingTitleBottomGap = A0Spacing.nowPlayingTitleBottomGap
             val transportShowsPause = remember(currentSong.id, playerUiState.transportShowsPause) {
                 playerUiState.transportShowsPause
             }
@@ -7228,7 +7228,7 @@ internal fun NowPlayingScreen(
                 label = "queue_transport_alpha",
             )
             val animatedArtworkCornerRadius by animateDpAsState(
-                targetValue = if (showQueueSheet) 10.dp else ElovaireRadii.module,
+                targetValue = if (showQueueSheet) 10.dp else A0Radii.module,
                 animationSpec = motionSpecs.tween(MotionDuration.Standard, easing = FastOutSlowInEasing),
                 label = "queue_artwork_corner_radius",
             )
@@ -7337,7 +7337,7 @@ internal fun NowPlayingScreen(
                         if (!useSharedArtworkOverlay) {
                             AnimatedContent(
                                 targetState = currentSong.id,
-                                transitionSpec = { ElovaireMotion.quickContentSwapTransform() },
+                                transitionSpec = { A0Motion.quickContentSwapTransform() },
                                 label = "player_artwork_content",
                             ) { songId ->
                                 val animatedSong = playerUiState.queue.firstOrNull { it.id == songId } ?: currentSong
@@ -7357,12 +7357,12 @@ internal fun NowPlayingScreen(
                             modifier = Modifier
                                 .align(Alignment.CenterStart)
                                 .padding(start = compactContentStart, end = 2.dp),
-                            enter = fadeIn(animationSpec = ElovaireMotion.contentFadeInSpec()) +
+                            enter = fadeIn(animationSpec = A0Motion.contentFadeInSpec()) +
                                 slideInVertically(
-                                    animationSpec = ElovaireMotion.offsetSoft(durationMillis = ElovaireMotion.Standard),
+                                    animationSpec = A0Motion.offsetSoft(durationMillis = A0Motion.Standard),
                                     initialOffsetY = { it / 5 },
                                 ),
-                            exit = fadeOut(animationSpec = ElovaireMotion.contentFadeOutSpec()),
+                            exit = fadeOut(animationSpec = A0Motion.contentFadeOutSpec()),
                         ) {
                             Column(
                                 modifier = Modifier.fillMaxWidth(),
@@ -7377,7 +7377,7 @@ internal fun NowPlayingScreen(
                                         ExplicitTitleText(
                                             title = currentSong.title,
                                             isExplicit = currentSong.isExplicit,
-                                            style = MaterialTheme.typography.displayLarge.copy(fontSize = elovaireScaledSp(NOW_PLAYING_TITLE_TEXT_SIZE_SP)),
+                                            style = MaterialTheme.typography.displayLarge.copy(fontSize = a0ScaledSp(NOW_PLAYING_TITLE_TEXT_SIZE_SP)),
                                             color = contentColor,
                                             maxLines = 1,
                                             overflow = TextOverflow.Clip,
@@ -7394,7 +7394,7 @@ internal fun NowPlayingScreen(
                                     }
                                     Text(
                                         text = currentSong.artist,
-                                        style = MaterialTheme.typography.titleLarge.copy(fontSize = elovaireScaledSp(NOW_PLAYING_ARTIST_TEXT_SIZE_SP)),
+                                        style = MaterialTheme.typography.titleLarge.copy(fontSize = a0ScaledSp(NOW_PLAYING_ARTIST_TEXT_SIZE_SP)),
                                         color = secondaryContentColor,
                                         maxLines = 1,
                                         overflow = TextOverflow.Clip,
@@ -7456,7 +7456,7 @@ internal fun NowPlayingScreen(
                     ) {
                         AnimatedContent(
                             targetState = currentSong.id,
-                            transitionSpec = { ElovaireMotion.quickContentSwapTransform() },
+                            transitionSpec = { A0Motion.quickContentSwapTransform() },
                             label = "player_metadata_content",
                             modifier = Modifier.weight(1f),
                         ) { songId ->
@@ -7473,7 +7473,7 @@ internal fun NowPlayingScreen(
                                     ExplicitTitleText(
                                         title = animatedSong.title,
                                         isExplicit = animatedSong.isExplicit,
-                                        style = MaterialTheme.typography.displayLarge.copy(fontSize = elovaireScaledSp(NOW_PLAYING_TITLE_TEXT_SIZE_SP)),
+                                        style = MaterialTheme.typography.displayLarge.copy(fontSize = a0ScaledSp(NOW_PLAYING_TITLE_TEXT_SIZE_SP)),
                                         color = contentColor,
                                         maxLines = 1,
                                         overflow = TextOverflow.Clip,
@@ -7490,7 +7490,7 @@ internal fun NowPlayingScreen(
                                 }
                                 Text(
                                     text = animatedSong.artist,
-                                    style = MaterialTheme.typography.titleLarge.copy(fontSize = elovaireScaledSp(NOW_PLAYING_ARTIST_TEXT_SIZE_SP)),
+                                    style = MaterialTheme.typography.titleLarge.copy(fontSize = a0ScaledSp(NOW_PLAYING_ARTIST_TEXT_SIZE_SP)),
                                     color = secondaryContentColor,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
@@ -7567,21 +7567,21 @@ internal fun NowPlayingScreen(
                                         verticalAlignment = Alignment.CenterVertically,
                                     ) {
                                         PlayerTransportButton(
-                                            iconResId = R.drawable.ic_elovaire_backward_filled,
+                                            iconResId = R.drawable.ic_a0_backward_filled,
                                             contentDescription = "Previous",
                                             tint = contentColor,
                                             iconSize = 42.dp,
                                             onClick = onSkipPrevious,
                                         )
                                         PlayerTransportButton(
-                                            iconResId = if (transportShowsPause) R.drawable.ic_elovaire_pause_filled else R.drawable.ic_lucide_play,
+                                            iconResId = if (transportShowsPause) R.drawable.ic_a0_pause_filled else R.drawable.ic_lucide_play,
                                             contentDescription = if (transportShowsPause) "Pause" else "Play",
                                             tint = contentColor,
                                             iconSize = 46.dp,
                                             onClick = onTogglePlayback,
                                         )
                                         PlayerTransportButton(
-                                            iconResId = R.drawable.ic_elovaire_forward_filled,
+                                            iconResId = R.drawable.ic_a0_forward_filled,
                                             contentDescription = "Next",
                                             tint = contentColor,
                                             iconSize = 42.dp,
@@ -7731,8 +7731,8 @@ internal fun NowPlayingScreen(
         if (useSharedArtworkOverlay && currentSong != null) {
             val sharedArtworkCornerRadius = with(density) {
                 lerpFloat(
-                    ElovaireRadii.artworkSmall.toPx(),
-                    ElovaireRadii.module.toPx(),
+                    A0Radii.artworkSmall.toPx(),
+                    A0Radii.module.toPx(),
                     artworkRevealProgress,
                 ).toDp()
             }
@@ -7767,23 +7767,23 @@ internal fun NowPlayingScreen(
         AnimatedVisibility(
             modifier = Modifier.fillMaxSize(),
             visible = showLyricsSheet,
-            enter = fadeIn(animationSpec = ElovaireMotion.standardTween(durationMillis = ElovaireMotion.Standard, easing = LinearOutSlowInEasing)) +
+            enter = fadeIn(animationSpec = A0Motion.standardTween(durationMillis = A0Motion.Standard, easing = LinearOutSlowInEasing)) +
                 slideInVertically(
-                    animationSpec = ElovaireMotion.standardTween(durationMillis = ElovaireMotion.Standard, easing = FastOutSlowInEasing),
+                    animationSpec = A0Motion.standardTween(durationMillis = A0Motion.Standard, easing = FastOutSlowInEasing),
                     initialOffsetY = { it / 12 },
                 ) +
                 scaleIn(
-                    animationSpec = ElovaireMotion.standardTween(durationMillis = ElovaireMotion.Standard, easing = FastOutSlowInEasing),
+                    animationSpec = A0Motion.standardTween(durationMillis = A0Motion.Standard, easing = FastOutSlowInEasing),
                     initialScale = 0.985f,
                     transformOrigin = TransformOrigin(0.5f, 1f),
                 ),
-            exit = fadeOut(animationSpec = ElovaireMotion.standardTween(durationMillis = ElovaireMotion.Quick, easing = FastOutLinearInEasing)) +
+            exit = fadeOut(animationSpec = A0Motion.standardTween(durationMillis = A0Motion.Quick, easing = FastOutLinearInEasing)) +
                 slideOutVertically(
-                    animationSpec = ElovaireMotion.standardTween(durationMillis = ElovaireMotion.Quick, easing = FastOutSlowInEasing),
+                    animationSpec = A0Motion.standardTween(durationMillis = A0Motion.Quick, easing = FastOutSlowInEasing),
                     targetOffsetY = { it / 18 },
                 ) +
                 scaleOut(
-                    animationSpec = ElovaireMotion.standardTween(durationMillis = ElovaireMotion.Quick, easing = FastOutLinearInEasing),
+                    animationSpec = A0Motion.standardTween(durationMillis = A0Motion.Quick, easing = FastOutLinearInEasing),
                     targetScale = 0.992f,
                     transformOrigin = TransformOrigin(0.5f, 1f),
                 ),
@@ -7963,7 +7963,7 @@ private fun SongFileInfoPill(
 ) {
     Surface(
         modifier = Modifier.playerFrostedSurface(tint = tint),
-        shape = RoundedCornerShape(ElovaireRadii.pill),
+        shape = RoundedCornerShape(A0Radii.pill),
         color = tint.copy(alpha = 0.2f),
     ) {
         Row(
@@ -7979,13 +7979,13 @@ private fun SongFileInfoPill(
             )
             Text(
                 text = format.ifBlank { "AUDIO" },
-                style = MaterialTheme.typography.labelLarge.copy(fontSize = elovaireScaledSp(11f)),
+                style = MaterialTheme.typography.labelLarge.copy(fontSize = a0ScaledSp(11f)),
                 color = tint.copy(alpha = 0.92f),
                 maxLines = 1,
             )
             Text(
                 text = quality ?: "--",
-                style = MaterialTheme.typography.labelLarge.copy(fontSize = elovaireScaledSp(11f)),
+                style = MaterialTheme.typography.labelLarge.copy(fontSize = a0ScaledSp(11f)),
                 color = tint.copy(alpha = 0.72f),
                 maxLines = 1,
             )
@@ -8009,7 +8009,7 @@ private fun CompactPlaybackProgressBar(
                 .align(Alignment.CenterStart)
                 .fillMaxWidth()
                 .height(4.dp)
-                .clip(RoundedCornerShape(ElovaireRadii.pill))
+                .clip(RoundedCornerShape(A0Radii.pill))
                 .background(contentColor.copy(alpha = 0.18f)),
         )
         Box(
@@ -8017,7 +8017,7 @@ private fun CompactPlaybackProgressBar(
                 .align(Alignment.CenterStart)
                 .fillMaxWidth(clampedProgress)
                 .height(4.dp)
-                .clip(RoundedCornerShape(ElovaireRadii.pill))
+                .clip(RoundedCornerShape(A0Radii.pill))
                 .background(contentColor),
         )
     }
@@ -8083,12 +8083,12 @@ private fun QueueSheet(
 ) {
     val revealRegistry = rememberMotionRevealRegistry()
     val language = LocalAppLanguage.current
-    val listState = rememberElovaireLazyListState("equalizer_screen")
+    val listState = rememberA0LazyListState("equalizer_screen")
     var playlistTargetSong by remember(currentSong?.id, queue) { mutableStateOf<Song?>(null) }
     val footerExpanded = statusText != null
     val footerHeight by animateDpAsState(
         targetValue = if (footerExpanded) 90.dp else 60.dp,
-        animationSpec = ElovaireMotion.queueMenuEnterSpec(),
+        animationSpec = A0Motion.queueMenuEnterSpec(),
         label = "queue_footer_height",
     )
     LaunchedEffect(currentIndex, queue.size) {
@@ -8130,7 +8130,7 @@ private fun QueueSheet(
                         Text(
                             text = queueTitle(language),
                             style = MaterialTheme.typography.titleLarge.copy(
-                                fontSize = elovaireScaledSp(18f),
+                                fontSize = a0ScaledSp(18f),
                                 fontWeight = FontWeight.Medium,
                             ),
                             color = tint,
@@ -8191,9 +8191,9 @@ private fun QueueSheet(
                         Box(
                             modifier = Modifier
                                 .animateItem(
-                                    placementSpec = ElovaireMotion.listPlacementSpec(),
+                                    placementSpec = A0Motion.listPlacementSpec(),
                                 )
-                                .elovaireListReveal(
+                                .a0ListReveal(
                                     itemKey = "${song.id}_$index",
                                     index = index,
                                     registry = revealRegistry,
@@ -8223,12 +8223,12 @@ private fun QueueSheet(
                 AnimatedContent(
                     targetState = statusText,
                     transitionSpec = {
-                        fadeIn(animationSpec = ElovaireMotion.contentFadeInSpec()) +
+                        fadeIn(animationSpec = A0Motion.contentFadeInSpec()) +
                             slideInVertically(
-                                animationSpec = ElovaireMotion.offsetSoft(durationMillis = ElovaireMotion.Standard),
+                                animationSpec = A0Motion.offsetSoft(durationMillis = A0Motion.Standard),
                                 initialOffsetY = { it / 5 },
                             ) togetherWith
-                            fadeOut(animationSpec = ElovaireMotion.contentFadeOutSpec())
+                            fadeOut(animationSpec = A0Motion.contentFadeOutSpec())
                     },
                     label = "queue_status_text",
                     modifier = Modifier
@@ -8370,7 +8370,7 @@ private fun QueueSongRow(
                     uri = song.artUri,
                     title = song.album,
                     modifier = Modifier.matchParentSize(),
-                    cornerRadius = ElovaireRadii.artworkSmall,
+                    cornerRadius = A0Radii.artworkSmall,
                 )
                 androidx.compose.animation.AnimatedVisibility(
                     visible = active && isPlaying,
@@ -8445,7 +8445,7 @@ private fun QueueSongOverflowMenuButton(
     val language = LocalAppLanguage.current
     var expanded by remember { mutableStateOf(false) }
     var shouldRenderMenu by remember { mutableStateOf(false) }
-    val interactionSource = rememberElovaireInteractionSource()
+    val interactionSource = rememberA0InteractionSource()
     val motionRuntime = LocalMotionRuntime.current
     LaunchedEffect(expanded) {
         if (expanded) {
@@ -8460,9 +8460,9 @@ private fun QueueSongOverflowMenuButton(
         Box(
             modifier = Modifier
                 .size(24.dp)
-                .elovairePressScale(
+                .a0PressScale(
                     pressedScale = 0.88f,
-                    animationSpec = ElovaireMotion.softPressReturnSpec(),
+                    animationSpec = A0Motion.softPressReturnSpec(),
                     interactionSource = interactionSource,
                     label = "queue_song_overflow_scale",
                 )
@@ -8521,7 +8521,7 @@ private fun QueueContextMenuSurface(
 ) {
     DynamicBackdropSurface(
         modifier = modifier,
-        shape = RoundedCornerShape(ElovaireRadii.card),
+        shape = RoundedCornerShape(A0Radii.card),
         overlayAlpha = 0.1f,
         borderColor = blurSurfaceBorderColor(),
     ) {
@@ -8539,13 +8539,13 @@ private fun PlayerTransportButton(
     iconSize: Dp,
     onClick: () -> Unit,
 ) {
-    val interactionSource = rememberElovaireInteractionSource()
+    val interactionSource = rememberA0InteractionSource()
     Box(
         modifier = Modifier
             .size(72.dp)
-            .elovairePressScale(
+            .a0PressScale(
                 pressedScale = 0.9f,
-                animationSpec = ElovaireMotion.softPressReturnSpec(),
+                animationSpec = A0Motion.softPressReturnSpec(),
                 interactionSource = interactionSource,
                 label = "${contentDescription}_transport_scale",
             )
@@ -8561,20 +8561,20 @@ private fun PlayerTransportButton(
             targetState = iconResId,
             transitionSpec = {
                 (
-                    fadeIn(animationSpec = ElovaireMotion.iconSwapInSpec()) +
+                    fadeIn(animationSpec = A0Motion.iconSwapInSpec()) +
                         scaleIn(
                             initialScale = 0.9f,
-                            animationSpec = ElovaireMotion.releaseSpringSpec(
+                            animationSpec = A0Motion.releaseSpringSpec(
                                 dampingRatio = 0.8f,
                                 stiffness = 520f,
                             ),
                         )
                     ) togetherWith
                     (
-                        fadeOut(animationSpec = ElovaireMotion.iconSwapOutSpec()) +
+                        fadeOut(animationSpec = A0Motion.iconSwapOutSpec()) +
                             scaleOut(
                                 targetScale = 1.04f,
-                                animationSpec = ElovaireMotion.contentFadeOutSpec(),
+                                animationSpec = A0Motion.contentFadeOutSpec(),
                             )
                         )
             },
@@ -8597,18 +8597,18 @@ private fun QueueMenuButton(
     active: Boolean,
     onClick: () -> Unit,
 ) {
-    val interactionSource = rememberElovaireInteractionSource()
+    val interactionSource = rememberA0InteractionSource()
     val backgroundAlpha by animateFloatAsState(
         targetValue = if (active) 0.2f else 0f,
-        animationSpec = ElovaireMotion.contentFadeInSpec(),
+        animationSpec = A0Motion.contentFadeInSpec(),
         label = "queue_button_alpha",
     )
     Box(
         modifier = Modifier
             .size(40.dp)
-            .elovairePressScale(
+            .a0PressScale(
                 pressedScale = 0.9f,
-                animationSpec = ElovaireMotion.chromeReleaseSpec(),
+                animationSpec = A0Motion.chromeReleaseSpec(),
                 interactionSource = interactionSource,
                 label = "queue_button_scale",
             )
@@ -8661,9 +8661,9 @@ private fun FavoriteSongButton(
             else -> 1f
         },
         animationSpec = if (shouldBounce) {
-            ElovaireMotion.bounceSpringSpec()
+            A0Motion.bounceSpringSpec()
         } else {
-            ElovaireMotion.releaseSpringSpec()
+            A0Motion.releaseSpringSpec()
         },
         label = "favorite_button_scale",
     )
@@ -8675,9 +8675,9 @@ private fun FavoriteSongButton(
             else -> 0.96f
         },
         animationSpec = if (shouldBounce) {
-            ElovaireMotion.bounceSpringSpec()
+            A0Motion.bounceSpringSpec()
         } else {
-            ElovaireMotion.releaseSpringSpec(
+            A0Motion.releaseSpringSpec(
                 dampingRatio = 0.8f,
                 stiffness = 520f,
             )
@@ -8727,17 +8727,17 @@ private fun FavoriteSongButton(
             targetState = isFavorite,
             transitionSpec = {
                 (
-                    fadeIn(animationSpec = ElovaireMotion.iconSwapInSpec()) +
+                    fadeIn(animationSpec = A0Motion.iconSwapInSpec()) +
                         scaleIn(
                             initialScale = 0.88f,
-                            animationSpec = ElovaireMotion.releaseSpringSpec(),
+                            animationSpec = A0Motion.releaseSpringSpec(),
                         )
                     ) togetherWith
                     (
-                        fadeOut(animationSpec = ElovaireMotion.iconSwapOutSpec()) +
+                        fadeOut(animationSpec = A0Motion.iconSwapOutSpec()) +
                             scaleOut(
                                 targetScale = 1.04f,
-                                animationSpec = ElovaireMotion.contentFadeOutSpec(),
+                                animationSpec = A0Motion.contentFadeOutSpec(),
                             )
                         )
             },
@@ -8770,7 +8770,7 @@ internal fun AlbumHeaderActionButton(
     val pressed by interactionSource.collectIsPressedAsState()
     val scale by animateFloatAsState(
         targetValue = if (pressed) 0.88f else 1f,
-        animationSpec = ElovaireMotion.releaseSpringSpec(),
+        animationSpec = A0Motion.releaseSpringSpec(),
         label = "${contentDescription}_album_header_scale",
     )
 
@@ -8807,14 +8807,14 @@ internal fun AlbumHeaderPlayButton(
     val pressed by interactionSource.collectIsPressedAsState()
     val scale by animateFloatAsState(
         targetValue = if (pressed) 0.88f else 1f,
-        animationSpec = ElovaireMotion.releaseSpringSpec(),
+        animationSpec = A0Motion.releaseSpringSpec(),
         label = "album_play_button_scale",
     )
 
     Surface(
         modifier = Modifier.scale(scale),
         onClick = onClick,
-        shape = RoundedCornerShape(ElovaireRadii.pill),
+        shape = RoundedCornerShape(A0Radii.pill),
         color = backgroundColor,
         interactionSource = interactionSource,
     ) {
@@ -8832,7 +8832,7 @@ internal fun AlbumHeaderPlayButton(
             Text(
                 text = playLabel(language),
                 style = MaterialTheme.typography.titleLarge.copy(
-                    fontSize = elovaireScaledSp(16f),
+                    fontSize = a0ScaledSp(16f),
                     fontWeight = FontWeight.SemiBold,
                 ),
                 color = tint,
@@ -8867,9 +8867,9 @@ internal fun InlineFavoriteSongButton(
             else -> 1f
         },
         animationSpec = if (shouldBounce) {
-            ElovaireMotion.bounceSpringSpec()
+            A0Motion.bounceSpringSpec()
         } else {
-            ElovaireMotion.releaseSpringSpec(
+            A0Motion.releaseSpringSpec(
                 dampingRatio = 0.8f,
                 stiffness = 520f,
             )
@@ -8884,9 +8884,9 @@ internal fun InlineFavoriteSongButton(
             else -> 0.96f
         },
         animationSpec = if (shouldBounce) {
-            ElovaireMotion.bounceSpringSpec()
+            A0Motion.bounceSpringSpec()
         } else {
-            ElovaireMotion.releaseSpringSpec(
+            A0Motion.releaseSpringSpec(
                 dampingRatio = 0.8f,
                 stiffness = 520f,
             )
@@ -8909,17 +8909,17 @@ internal fun InlineFavoriteSongButton(
             targetState = isFavorite,
             transitionSpec = {
                 (
-                    fadeIn(animationSpec = ElovaireMotion.iconSwapInSpec()) +
+                    fadeIn(animationSpec = A0Motion.iconSwapInSpec()) +
                         scaleIn(
                             initialScale = 0.88f,
-                            animationSpec = ElovaireMotion.releaseSpringSpec(),
+                            animationSpec = A0Motion.releaseSpringSpec(),
                         )
                     ) togetherWith
                     (
-                        fadeOut(animationSpec = ElovaireMotion.iconSwapOutSpec()) +
+                        fadeOut(animationSpec = A0Motion.iconSwapOutSpec()) +
                             scaleOut(
                                 targetScale = 1.04f,
-                                animationSpec = ElovaireMotion.contentFadeOutSpec(),
+                                animationSpec = A0Motion.contentFadeOutSpec(),
                             )
                         )
             },
@@ -9069,7 +9069,7 @@ private fun AlbumOverflowMenuButton(
                         text = uiPhrase(language, UiPhrase.DeleteAlbum),
                         tint = DestructiveRed,
                         containerColor = DestructiveRed.copy(alpha = 0.2f),
-                        cornerRadius = (ElovaireRadii.card * 0.72f) - 2.dp,
+                        cornerRadius = (A0Radii.card * 0.72f) - 2.dp,
                         bottomPadding = 10.dp,
                         onClick = {
                             expanded = false
@@ -9192,7 +9192,7 @@ internal fun SongOverflowMenuButton(
                         text = uiPhrase(language, actions.deletePhrase),
                         tint = DestructiveRed,
                         containerColor = DestructiveRed.copy(alpha = 0.2f),
-                        cornerRadius = (ElovaireRadii.card * 0.72f) - 2.dp,
+                        cornerRadius = (A0Radii.card * 0.72f) - 2.dp,
                         bottomPadding = 10.dp,
                         onClick = {
                             expanded = false
@@ -9223,7 +9223,7 @@ private fun FrostedContextMenuSurface(
     modifier: Modifier = Modifier,
     content: @Composable ColumnScope.() -> Unit,
 ) {
-    val shape = RoundedCornerShape(ElovaireRadii.card)
+    val shape = RoundedCornerShape(A0Radii.card)
     DynamicBackdropSurface(
         modifier = modifier,
         shape = shape,
@@ -9253,7 +9253,7 @@ private fun TopBarContextMenuOverlay(
     Box(
         modifier = modifier,
     ) {
-        ElovaireAnimatedVisibility(
+        A0AnimatedVisibility(
             visible = expanded,
             modifier = Modifier.fillMaxSize(),
             enter = motionTransitions.overlayFadeEnter(initialAlpha = 0.86f),
@@ -9270,7 +9270,7 @@ private fun TopBarContextMenuOverlay(
                     ),
             )
         }
-        ElovaireAnimatedVisibility(
+        A0AnimatedVisibility(
             visible = expanded,
             modifier = Modifier
                 .align(Alignment.TopEnd)
@@ -9331,7 +9331,7 @@ private fun SongContextMenuItem(
     text: String,
     tint: Color,
     containerColor: Color = Color.Transparent,
-    cornerRadius: Dp = ElovaireRadii.card * 0.72f,
+    cornerRadius: Dp = A0Radii.card * 0.72f,
     topPadding: Dp = 6.dp,
     bottomPadding: Dp = 6.dp,
     onClick: () -> Unit,
@@ -9551,7 +9551,7 @@ private fun LyricsOverlay(
                                 Text(
                                     text = it.title,
                                     style = MaterialTheme.typography.labelLarge.copy(
-                                        fontSize = elovaireScaledSp(17f),
+                                        fontSize = a0ScaledSp(17f),
                                         fontWeight = FontWeight.Medium,
                                     ),
                                     color = contentColor,
@@ -9561,7 +9561,7 @@ private fun LyricsOverlay(
                                 Text(
                                     text = it.artist,
                                     style = MaterialTheme.typography.labelLarge.copy(
-                                        fontSize = elovaireScaledSp(15f),
+                                        fontSize = a0ScaledSp(15f),
                                     ),
                                     color = secondaryContentColor,
                                     maxLines = 1,
@@ -9570,7 +9570,7 @@ private fun LyricsOverlay(
                             }
                         }
                     }
-                    ElovaireAnimatedVisibility(
+                    A0AnimatedVisibility(
                         visible = isEditingLyrics || lyricsUiState is LyricsUiState.Ready,
                         enter = motionTransitions.contextMenuEnter(),
                         exit = motionTransitions.contextMenuExit(),
@@ -9764,7 +9764,7 @@ private fun LyricsOverlay(
                         },
                 )
             }
-            ElovaireAnimatedVisibility(
+            A0AnimatedVisibility(
                 visible = !isEditingLyrics,
                 enter = motionTransitions.standardEnter(),
                 exit = motionTransitions.standardExit(),
@@ -9798,7 +9798,7 @@ private fun LyricsOverlay(
                     ) {
                         Surface(
                             onClick = onHideLyrics,
-                            shape = RoundedCornerShape(ElovaireRadii.pill),
+                            shape = RoundedCornerShape(A0Radii.pill),
                             color = contentColor.copy(alpha = 0.18f),
                             contentColor = contentColor,
                         ) {
@@ -9838,7 +9838,7 @@ private fun LyricsEditorActionButton(
     val pressed by interactionSource.collectIsPressedAsState()
     val scale by animateFloatAsState(
         targetValue = if (pressed) 0.88f else 1f,
-        animationSpec = ElovaireMotion.releaseSpringSpec(),
+        animationSpec = A0Motion.releaseSpringSpec(),
         label = "lyrics_editor_action_scale",
     )
     Box(
@@ -9895,7 +9895,7 @@ private fun LyricsTextEditor(
             textStyle = MaterialTheme.typography.titleLarge.copy(
                 color = contentColor,
                 fontWeight = FontWeight.Medium,
-                lineHeight = elovaireScaledSp(30f),
+                lineHeight = a0ScaledSp(30f),
             ),
             cursorBrush = SolidColor(contentColor),
             modifier = Modifier
@@ -10079,7 +10079,7 @@ private fun PlayerSecondaryActionButton(
     Box(
         modifier = Modifier
             .scale(buttonScale)
-            .clip(RoundedCornerShape(ElovaireRadii.pill))
+            .clip(RoundedCornerShape(A0Radii.pill))
             .playerFrostedSurface(tint = tint)
             .background(tint.copy(alpha = backgroundAlpha))
             .clickable(
@@ -10178,7 +10178,7 @@ private fun PlaybackProgressBar(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(6.dp)
-                    .clip(RoundedCornerShape(ElovaireRadii.pill))
+                    .clip(RoundedCornerShape(A0Radii.pill))
                     .background(contentColor.copy(alpha = 0.1f))
                     .align(Alignment.CenterStart),
             )
@@ -10187,7 +10187,7 @@ private fun PlaybackProgressBar(
                 modifier = Modifier
                     .fillMaxWidth(clampedProgress)
                     .height(6.dp)
-                    .clip(RoundedCornerShape(ElovaireRadii.pill))
+                    .clip(RoundedCornerShape(A0Radii.pill))
                     .background(contentColor)
                     .align(Alignment.CenterStart),
             )
@@ -10257,7 +10257,7 @@ private fun VolumeControlBar(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(6.dp)
-                        .clip(RoundedCornerShape(ElovaireRadii.pill))
+                        .clip(RoundedCornerShape(A0Radii.pill))
                         .background(contentColor.copy(alpha = 0.1f))
                         .align(Alignment.CenterStart),
                 )
@@ -10266,7 +10266,7 @@ private fun VolumeControlBar(
                     modifier = Modifier
                         .fillMaxWidth(animatedVolume.coerceIn(0f, 1f))
                         .height(6.dp)
-                        .clip(RoundedCornerShape(ElovaireRadii.pill))
+                        .clip(RoundedCornerShape(A0Radii.pill))
                         .background(contentColor)
                         .align(Alignment.CenterStart),
                 )
@@ -10546,7 +10546,7 @@ private fun BoxScope.FastScrollbarTrack(
                     .align(Alignment.Center)
                     .fillMaxHeight()
                     .width(2.dp)
-                    .clip(RoundedCornerShape(ElovaireRadii.pill))
+                    .clip(RoundedCornerShape(A0Radii.pill))
                     .background(trackColor),
             )
             Box(
@@ -10555,7 +10555,7 @@ private fun BoxScope.FastScrollbarTrack(
                     .offset(y = with(density) { thumbOffsetPx.toDp() })
                     .width(5.dp)
                     .height(with(density) { thumbHeightPx.toDp() })
-                    .clip(RoundedCornerShape(ElovaireRadii.pill))
+                    .clip(RoundedCornerShape(A0Radii.pill))
                     .background(thumbColor),
             )
         }
@@ -10597,7 +10597,7 @@ private fun Modifier.kuperRubberBand(
     var translationTarget by remember { mutableFloatStateOf(0f) }
     val translation by animateFloatAsState(
         targetValue = translationTarget,
-        animationSpec = ElovaireMotion.overscrollSpringSpec(),
+        animationSpec = A0Motion.overscrollSpringSpec(),
         label = "list_rubber_band_translation",
     )
     val maxTranslationPx = with(LocalDensity.current) { 11.dp.toPx() }
@@ -10660,7 +10660,7 @@ private fun EqualizerScreen(
     onApplyPreset: (String, EqSettings) -> Unit,
     onReset: () -> Unit,
 ) {
-    val listState = rememberElovaireLazyListState("equalizer_screen")
+    val listState = rememberA0LazyListState("equalizer_screen")
     val graphScrollState = rememberScrollState()
     val language = LocalAppLanguage.current
     val copy = remember(language) { settingsCopy(language) }
@@ -10815,12 +10815,12 @@ private fun EqualizerScreen(
                                     Text(
                                         text = uiPhrase(language, UiPhrase.Reverb),
                                         style = MaterialTheme.typography.titleLarge.copy(
-                                            fontSize = elovaireScaledSp(16f),
+                                            fontSize = a0ScaledSp(16f),
                                         ),
                                     )
                                     Text(
                                         text = if (settings.reverbDurationMs <= 0) uiPhrase(language, UiPhrase.Off) else "${settings.reverbDurationMs} ms",
-                                        style = MaterialTheme.typography.titleLarge.copy(fontSize = elovaireScaledSp(18f)),
+                                        style = MaterialTheme.typography.titleLarge.copy(fontSize = a0ScaledSp(18f)),
                                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.84f),
                                     )
                                 }
@@ -10895,7 +10895,7 @@ private fun SettingsScreen(
     onScanLibrary: () -> Unit,
     onCheckForUpdates: () -> Unit,
 ) {
-    val listState = rememberElovaireLazyListState("settings_screen")
+    val listState = rememberA0LazyListState("settings_screen")
     val copy = remember(appLanguage) { settingsCopy(appLanguage) }
     Box(
         modifier = Modifier
@@ -11024,19 +11024,19 @@ private fun SettingsScreen(
                         ) {
                             val interactionSource = remember { MutableInteractionSource() }
                             Surface(
-                                modifier = Modifier.elovairePressScale(
+                                modifier = Modifier.a0PressScale(
                                     interactionSource = interactionSource,
                                     pressedScale = 0.9f,
-                                    animationSpec = ElovaireMotion.chromeReleaseSpec(),
+                                    animationSpec = A0Motion.chromeReleaseSpec(),
                                     label = "settings_equalizer_button_scale",
                                 ),
-                                shape = RoundedCornerShape(ElovaireRadii.pill),
+                                shape = RoundedCornerShape(A0Radii.pill),
                                 color = MaterialTheme.colorScheme.primary,
                                 contentColor = MaterialTheme.colorScheme.onPrimary,
                             ) {
                                 Row(
                                     modifier = Modifier
-                                        .clip(RoundedCornerShape(ElovaireRadii.pill))
+                                        .clip(RoundedCornerShape(A0Radii.pill))
                                         .clickable(
                                             interactionSource = interactionSource,
                                             indication = null,
@@ -11132,9 +11132,9 @@ private fun SettingsScreen(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(10.dp),
                         ) {
-                            Text("Elovaire", style = MaterialTheme.typography.titleLarge)
+                            Text(rootUiCopy(LocalAppLanguage.current).appName, style = MaterialTheme.typography.titleLarge)
                             Surface(
-                                shape = RoundedCornerShape(ElovaireRadii.pill),
+                                shape = RoundedCornerShape(A0Radii.pill),
                                 color = if (MaterialTheme.colorScheme.background.luminance() < 0.5f) {
                                     Color.White.copy(alpha = 0.1f)
                                 } else {
@@ -11199,7 +11199,7 @@ private fun LanguagePickerRow(
             Text(
                 text = copy.language,
                 style = MaterialTheme.typography.titleMedium.copy(
-                    fontSize = elovaireScaledSp(16f),
+                    fontSize = a0ScaledSp(16f),
                     fontWeight = FontWeight.SemiBold,
                 ),
                 color = MaterialTheme.colorScheme.onSurface,
@@ -11213,19 +11213,19 @@ private fun LanguagePickerRow(
         Box {
             val interactionSource = remember { MutableInteractionSource() }
             Surface(
-                modifier = Modifier.elovairePressScale(
+                modifier = Modifier.a0PressScale(
                     interactionSource = interactionSource,
                     pressedScale = 0.9f,
-                    animationSpec = ElovaireMotion.chromeReleaseSpec(),
+                    animationSpec = A0Motion.chromeReleaseSpec(),
                     label = "settings_language_button_scale",
                 ),
-                shape = RoundedCornerShape(ElovaireRadii.pill),
+                shape = RoundedCornerShape(A0Radii.pill),
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.05f),
                 contentColor = MaterialTheme.colorScheme.onSurface,
             ) {
                 Row(
                     modifier = Modifier
-                        .clip(RoundedCornerShape(ElovaireRadii.pill))
+                        .clip(RoundedCornerShape(A0Radii.pill))
                         .clickable(
                             interactionSource = interactionSource,
                             indication = null,
@@ -11269,7 +11269,7 @@ private fun LanguageSelectionDialog(
     onConfirm: (AppLanguage) -> Unit,
 ) {
     val revealRegistry = rememberMotionRevealRegistry()
-    val listState = rememberElovaireLazyListState("language_picker")
+    val listState = rememberA0LazyListState("language_picker")
     val copy = remember(selectedLanguage) { rootUiCopy(selectedLanguage) }
     val languages = remember {
         AppLanguage.entries.sortedBy { it.englishName }
@@ -11300,14 +11300,14 @@ private fun LanguageSelectionDialog(
                         indication = null,
                         onClick = {},
                     ),
-                shape = RoundedCornerShape(ElovaireRadii.card),
+                shape = RoundedCornerShape(A0Radii.card),
                 overlayAlpha = 0.6f,
                 borderColor = blurSurfaceBorderColor(),
             ) {
                 Column(
                     modifier = Modifier
                         .padding(horizontal = 20.dp, vertical = 20.dp)
-                        .animateContentSize(animationSpec = ElovaireMotion.sizeSoft()),
+                        .animateContentSize(animationSpec = A0Motion.sizeSoft()),
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                 ) {
                     Row(
@@ -11345,9 +11345,9 @@ private fun LanguageSelectionDialog(
                                     selected = language == pendingLanguage,
                                     modifier = Modifier
                                         .animateItem(
-                                            placementSpec = ElovaireMotion.listPlacementSpec(),
+                                            placementSpec = A0Motion.listPlacementSpec(),
                                         )
-                                        .elovaireListReveal(
+                                        .a0ListReveal(
                                             itemKey = language.name,
                                             index = languages.indexOf(language),
                                             registry = revealRegistry,
@@ -11377,7 +11377,7 @@ private fun LanguageSelectionDialog(
                         Spacer(modifier = Modifier.width(10.dp))
                         Surface(
                             onClick = { onConfirm(pendingLanguage) },
-                            shape = RoundedCornerShape(ElovaireRadii.pill),
+                            shape = RoundedCornerShape(A0Radii.pill),
                             color = MaterialTheme.colorScheme.primary.copy(alpha = 0.92f),
                             contentColor = MaterialTheme.colorScheme.onPrimary,
                         ) {
@@ -11408,7 +11408,7 @@ private fun LanguagePickerOptionRow(
         } else {
             Color.Transparent
         },
-        animationSpec = ElovaireMotion.colorFadeSpec(),
+        animationSpec = A0Motion.colorFadeSpec(),
         label = "language_picker_row_highlight",
     )
     Box(
@@ -11416,7 +11416,7 @@ private fun LanguagePickerOptionRow(
             .fillMaxWidth()
             .height(56.dp)
             .padding(end = 16.dp)
-            .clip(RoundedCornerShape(ElovaireRadii.tile))
+            .clip(RoundedCornerShape(A0Radii.tile))
             .background(highlightColor)
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
@@ -11448,7 +11448,7 @@ private fun LanguagePickerOptionRow(
                     visible = selected,
                     enter = fadeIn(animationSpec = motionSpecs.tween(40)) + scaleIn(
                         initialScale = 0.8f,
-                        animationSpec = ElovaireMotion.releaseSpringSpec(),
+                        animationSpec = A0Motion.releaseSpringSpec(),
                     ),
                     exit = fadeOut(animationSpec = motionSpecs.tween(20)) + scaleOut(
                         targetScale = 0.8f,
@@ -11621,7 +11621,7 @@ private fun TextSizeStepper(
                         .fillMaxWidth()
                         .align(Alignment.Center)
                         .height(2.dp)
-                        .clip(RoundedCornerShape(ElovaireRadii.pill))
+                        .clip(RoundedCornerShape(A0Radii.pill))
                         .background(lineColor),
                 )
 
@@ -11793,7 +11793,7 @@ private fun ReverbStepSlider(
                     .offset(x = with(density) { trackStartPx.toDp() })
                     .width(with(density) { trackWidthPx.toDp() })
                     .height(2.dp)
-                    .clip(RoundedCornerShape(ElovaireRadii.pill))
+                    .clip(RoundedCornerShape(A0Radii.pill))
                     .background(lineColor),
             )
 
@@ -11890,20 +11890,20 @@ private fun SettingActionRow(
         }
         Spacer(modifier = Modifier.width(18.dp))
         Surface(
-            modifier = Modifier.elovairePressScale(
+            modifier = Modifier.a0PressScale(
                 interactionSource = interactionSource,
                 pressedScale = 0.9f,
-                animationSpec = ElovaireMotion.chromeReleaseSpec(),
+                animationSpec = A0Motion.chromeReleaseSpec(),
                 label = "${actionLabel}_setting_action_scale",
             ),
-            shape = RoundedCornerShape(ElovaireRadii.pill),
+            shape = RoundedCornerShape(A0Radii.pill),
             color = MaterialTheme.colorScheme.primary,
             contentColor = MaterialTheme.colorScheme.onPrimary,
         ) {
             Text(
                 text = actionLabel,
                 modifier = Modifier
-                    .clip(RoundedCornerShape(ElovaireRadii.pill))
+                    .clip(RoundedCornerShape(A0Radii.pill))
                     .clickable(
                         interactionSource = interactionSource,
                         indication = null,
@@ -12213,7 +12213,7 @@ private fun DigitalSoundKnob(
             ) {
                 Text(
                     text = "${(animatedValue * 100f).roundToInt()}",
-                    style = MaterialTheme.typography.displayLarge.copy(fontSize = elovaireScaledSp(20f)),
+                    style = MaterialTheme.typography.displayLarge.copy(fontSize = a0ScaledSp(20f)),
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.92f),
                 )
                 Box(
@@ -12269,7 +12269,7 @@ private fun DetailScreenHeader(
         ) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.displayLarge.copy(fontSize = elovaireScaledSp(26f)),
+                style = MaterialTheme.typography.displayLarge.copy(fontSize = a0ScaledSp(26f)),
             )
             if (!subtitle.isNullOrBlank()) {
                 Text(
@@ -12486,7 +12486,7 @@ private fun EqToneKnob(
             Text(
                 text = valueText,
                 style = MaterialTheme.typography.titleLarge.copy(
-                    fontSize = elovaireScaledSp(16f),
+                    fontSize = a0ScaledSp(16f),
                     fontWeight = FontWeight.SemiBold,
                 ),
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.96f),
@@ -12495,7 +12495,7 @@ private fun EqToneKnob(
         Text(
             text = title.uppercase(),
             style = MaterialTheme.typography.labelMedium.copy(
-                fontSize = elovaireScaledSp(10f),
+                fontSize = a0ScaledSp(10f),
                 fontWeight = FontWeight.Medium,
                 letterSpacing = 1.sp,
             ),
@@ -12520,7 +12520,7 @@ private fun EqBandSlider(
             modifier = Modifier
                 .width(46.dp)
                 .height(190.dp)
-                .clip(RoundedCornerShape(ElovaireRadii.module))
+                .clip(RoundedCornerShape(A0Radii.module))
                 .background(readableCardSurfaceColor())
                 .pointerInput(Unit) {
                     detectVerticalDragGestures(
@@ -12608,12 +12608,12 @@ private fun EqMacroSliderRow(
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleLarge.copy(
-                    fontSize = elovaireScaledSp(16f),
+                    fontSize = a0ScaledSp(16f),
                 ),
             )
             Text(
                 text = valueText,
-                style = MaterialTheme.typography.titleLarge.copy(fontSize = elovaireScaledSp(18f)),
+                style = MaterialTheme.typography.titleLarge.copy(fontSize = a0ScaledSp(18f)),
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.84f),
             )
         }
@@ -12766,19 +12766,19 @@ private fun EqPresetPill(
     }
     val interactionSource = remember { MutableInteractionSource() }
     Surface(
-        modifier = Modifier.elovairePressScale(
+        modifier = Modifier.a0PressScale(
             interactionSource = interactionSource,
             pressedScale = 0.96f,
-            animationSpec = ElovaireMotion.bounceSpringSpec(),
+            animationSpec = A0Motion.bounceSpringSpec(),
             label = "${label}_eq_preset_scale",
         ),
-        shape = RoundedCornerShape(ElovaireRadii.pill),
+        shape = RoundedCornerShape(A0Radii.pill),
         color = backgroundColor,
     ) {
         Text(
             text = label,
             modifier = Modifier
-                .clip(RoundedCornerShape(ElovaireRadii.pill))
+                .clip(RoundedCornerShape(A0Radii.pill))
                 .clickable(
                     interactionSource = interactionSource,
                     indication = null,
@@ -12818,7 +12818,7 @@ private fun EqResponseGraph(
     val density = LocalDensity.current
     Box(
         modifier = modifier
-            .clip(RoundedCornerShape(ElovaireRadii.module))
+            .clip(RoundedCornerShape(A0Radii.module))
             .pointerInput(bandFractions) {
                 detectTapGestures { offset ->
                     if (size.width == 0 || size.height == 0) return@detectTapGestures
@@ -12986,7 +12986,7 @@ private fun EqMiniResponseGraph(
     val accentColor = Color(0xFF39E38E)
     Box(
         modifier = modifier
-            .clip(RoundedCornerShape(ElovaireRadii.module))
+            .clip(RoundedCornerShape(A0Radii.module))
             .background(MaterialTheme.colorScheme.onSurface.copy(alpha = 0.03f)),
     ) {
         Canvas(modifier = Modifier.matchParentSize()) {
@@ -13059,7 +13059,7 @@ private fun EqDbScale(
             ) {
                 Text(
                     text = formatEqDbLabel(levelDb),
-                    style = MaterialTheme.typography.labelSmall.copy(fontSize = elovaireScaledSp(9f)),
+                    style = MaterialTheme.typography.labelSmall.copy(fontSize = a0ScaledSp(9f)),
                     color = markerColor,
                 )
                 Row(
@@ -13071,7 +13071,7 @@ private fun EqDbScale(
                             modifier = Modifier
                                 .width((5 - markerIndex).dp)
                                 .height(1.5.dp)
-                                .clip(RoundedCornerShape(ElovaireRadii.pill))
+                                .clip(RoundedCornerShape(A0Radii.pill))
                                 .background(markerColor.copy(alpha = 0.65f - (markerIndex * 0.14f))),
                         )
                     }
@@ -13108,7 +13108,7 @@ private fun EqBandFrequencyLabels(
             ) {
                 Text(
                     text = label,
-                    style = MaterialTheme.typography.labelSmall.copy(fontSize = elovaireScaledSp(9.2f)),
+                    style = MaterialTheme.typography.labelSmall.copy(fontSize = a0ScaledSp(9.2f)),
                     color = readableSecondaryTextColor().copy(alpha = 0.88f),
                     textAlign = TextAlign.Center,
                     maxLines = 1,
@@ -13183,7 +13183,7 @@ private fun EqHorizontalScrollbar(
                     .align(Alignment.Center)
                     .fillMaxWidth()
                     .height(2.dp)
-                    .clip(RoundedCornerShape(ElovaireRadii.pill))
+                    .clip(RoundedCornerShape(A0Radii.pill))
                     .background(trackColor),
             )
             Box(
@@ -13192,7 +13192,7 @@ private fun EqHorizontalScrollbar(
                     .offset { IntOffset(x = thumbOffsetPx.roundToInt(), y = 0) }
                     .width(with(density) { thumbWidthPx.toDp() })
                     .height(4.dp)
-                    .clip(RoundedCornerShape(ElovaireRadii.pill))
+                    .clip(RoundedCornerShape(A0Radii.pill))
                     .background(thumbColor),
             )
         }
@@ -13305,7 +13305,7 @@ private fun ThinContinuousSlider(
                     .offset(x = trackStart)
                     .width(trackWidth)
                     .height(lineThickness)
-                    .clip(RoundedCornerShape(ElovaireRadii.pill))
+                    .clip(RoundedCornerShape(A0Radii.pill))
                     .background(inactiveLineColor),
             )
             Box(
@@ -13314,7 +13314,7 @@ private fun ThinContinuousSlider(
                     .offset(x = trackStart)
                     .width(activeWidth)
                     .height(lineThickness)
-                    .clip(RoundedCornerShape(ElovaireRadii.pill))
+                    .clip(RoundedCornerShape(A0Radii.pill))
                     .background(knobColor),
             )
             Box(
@@ -13501,9 +13501,9 @@ private fun SelectablePill(
             MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.55f)
         },
         contentColor = MaterialTheme.colorScheme.onSurface,
-        shape = RoundedCornerShape(ElovaireRadii.pill),
+        shape = RoundedCornerShape(A0Radii.pill),
         modifier = Modifier
-            .clip(RoundedCornerShape(ElovaireRadii.pill))
+            .clip(RoundedCornerShape(A0Radii.pill))
             .clickable(onClick = onClick),
     ) {
         Text(

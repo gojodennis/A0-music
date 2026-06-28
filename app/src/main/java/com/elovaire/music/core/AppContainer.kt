@@ -30,7 +30,7 @@ class AppContainer(
     internal val albumTagEditorService get() = services.albumTagEditorService
     val playbackManager get() = services.playbackManager
     val libraryRepository get() = services.libraryRepository
-    internal val viewModelDependencies: ElovaireViewModelDependencies = object : ElovaireViewModelDependencies {
+    internal val viewModelDependencies: A0ViewModelDependencies = object : A0ViewModelDependencies {
         override val libraryRepository get() = services.libraryRepository
         override val preferenceStore get() = services.preferenceStore
         override val playbackManager get() = services.playbackManager

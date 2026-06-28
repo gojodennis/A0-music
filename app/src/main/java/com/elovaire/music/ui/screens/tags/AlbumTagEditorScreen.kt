@@ -74,15 +74,15 @@ import androidx.compose.ui.zIndex
 import elovaire.music.droidbeauty.app.R
 import elovaire.music.droidbeauty.app.domain.model.AppLanguage
 import elovaire.music.droidbeauty.app.ui.components.ArtworkImage
-import elovaire.music.droidbeauty.app.ui.interaction.elovairePressScale
-import elovaire.music.droidbeauty.app.ui.interaction.rememberElovaireInteractionSource
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireMotion
+import elovaire.music.droidbeauty.app.ui.interaction.a0PressScale
+import elovaire.music.droidbeauty.app.ui.interaction.rememberA0InteractionSource
+import elovaire.music.droidbeauty.app.ui.motion.A0Motion
 import elovaire.music.droidbeauty.app.ui.motion.rememberMotionSpecs
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireRadii
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireSpacing
+import elovaire.music.droidbeauty.app.ui.theme.A0Radii
+import elovaire.music.droidbeauty.app.ui.theme.A0Spacing
 import elovaire.music.droidbeauty.app.ui.theme.InkText
 import elovaire.music.droidbeauty.app.ui.theme.RoseAccent
-import elovaire.music.droidbeauty.app.ui.theme.elovaireScaledSp
+import elovaire.music.droidbeauty.app.ui.theme.a0ScaledSp
 import kotlinx.coroutines.launch
 import kotlin.math.abs
 import kotlin.math.max
@@ -160,7 +160,7 @@ internal fun AlbumTagEditorScreen(
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
                     Surface(
-                        shape = RoundedCornerShape(ElovaireRadii.module),
+                        shape = RoundedCornerShape(A0Radii.module),
                         color = MaterialTheme.colorScheme.surface.copy(alpha = 0.42f),
                     ) {
                         Column(
@@ -229,7 +229,7 @@ internal fun AlbumTagEditorScreen(
                     }
 
                     Surface(
-                        shape = RoundedCornerShape(ElovaireRadii.module),
+                        shape = RoundedCornerShape(A0Radii.module),
                         color = MaterialTheme.colorScheme.surface.copy(alpha = 0.36f),
                     ) {
                         Column(
@@ -282,7 +282,7 @@ internal fun AlbumTagEditorScreen(
 
             itemsIndexed(state.tracks, key = { _, track -> track.songId }) { index, track ->
                 Surface(
-                    shape = RoundedCornerShape(ElovaireRadii.card),
+                    shape = RoundedCornerShape(A0Radii.card),
                     color = MaterialTheme.colorScheme.surface.copy(alpha = 0.28f),
                 ) {
                     Column(
@@ -358,8 +358,8 @@ internal fun AlbumTagEditorScreen(
             item {
                 AnimatedVisibility(
                     visible = !state.statusMessage.isNullOrBlank(),
-                    enter = fadeIn(animationSpec = ElovaireMotion.standardTween(durationMillis = 120)),
-                    exit = fadeOut(animationSpec = ElovaireMotion.standardTween(durationMillis = 120)),
+                    enter = fadeIn(animationSpec = A0Motion.standardTween(durationMillis = 120)),
+                    exit = fadeOut(animationSpec = A0Motion.standardTween(durationMillis = 120)),
                 ) {
                     Text(
                         text = state.statusMessage.orEmpty(),
@@ -407,7 +407,7 @@ private fun EditableArtworkCard(
                 indication = null,
                 onClick = onClick,
             ),
-        shape = RoundedCornerShape(ElovaireRadii.module),
+        shape = RoundedCornerShape(A0Radii.module),
         color = MaterialTheme.colorScheme.surface.copy(alpha = 0.24f),
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
@@ -425,7 +425,7 @@ private fun EditableArtworkCard(
                         uri = fallbackArtworkUri,
                         title = title,
                         modifier = Modifier.fillMaxSize(),
-                        cornerRadius = ElovaireRadii.module,
+                        cornerRadius = A0Radii.module,
                     )
                 }
             }
@@ -536,14 +536,14 @@ private fun EditorTopBarIconButton(
     enabled: Boolean = true,
     loading: Boolean = false,
 ) {
-    val interactionSource = rememberElovaireInteractionSource()
+    val interactionSource = rememberA0InteractionSource()
     Box(
         modifier = Modifier
             .size(40.dp)
-            .elovairePressScale(
+            .a0PressScale(
                 enabled = enabled && !loading,
                 pressedScale = 0.88f,
-                animationSpec = ElovaireMotion.chromeReleaseSpec(),
+                animationSpec = A0Motion.chromeReleaseSpec(),
                 interactionSource = interactionSource,
                 label = "editorTopBarActionScale",
             )
@@ -580,16 +580,16 @@ private fun AccentPillButton(
     enabled: Boolean = true,
     loading: Boolean = false,
 ) {
-    val interactionSource = rememberElovaireInteractionSource()
+    val interactionSource = rememberA0InteractionSource()
     Surface(
-        modifier = Modifier.elovairePressScale(
+        modifier = Modifier.a0PressScale(
             enabled = enabled && !loading,
             pressedScale = 0.94f,
-            animationSpec = ElovaireMotion.releaseSpringSpec(),
+            animationSpec = A0Motion.releaseSpringSpec(),
             interactionSource = interactionSource,
             label = "tagEditorPillScale",
         ),
-        shape = RoundedCornerShape(ElovaireRadii.pill),
+        shape = RoundedCornerShape(A0Radii.pill),
         color = RoseAccent.copy(alpha = if (enabled) 1f else 0.55f),
         onClick = onClick,
         enabled = enabled && !loading,
@@ -617,7 +617,7 @@ private fun AccentPillButton(
             Text(
                 text = label,
                 style = MaterialTheme.typography.labelLarge.copy(
-                    fontSize = elovaireScaledSp(15f),
+                    fontSize = a0ScaledSp(15f),
                     fontWeight = FontWeight.SemiBold,
                 ),
                 color = MaterialTheme.colorScheme.onPrimary,
@@ -627,7 +627,7 @@ private fun AccentPillButton(
 }
 
 @Composable
-private fun editorTopBarHeight() = ElovaireSpacing.topBarContentHeight + 28.dp
+private fun editorTopBarHeight() = A0Spacing.topBarContentHeight + 28.dp
 
 private data class TagEditorScrollbarMetrics(
     val scrollFraction: Float,
@@ -772,7 +772,7 @@ private fun BoxScope.TagEditorFastScrollbarTrack(
                     .align(Alignment.Center)
                     .fillMaxHeight()
                     .width(2.dp)
-                    .clip(RoundedCornerShape(ElovaireRadii.pill))
+                    .clip(RoundedCornerShape(A0Radii.pill))
                     .background(trackColor),
             )
             Box(
@@ -781,7 +781,7 @@ private fun BoxScope.TagEditorFastScrollbarTrack(
                     .offset(y = with(density) { thumbOffsetPx.toDp() })
                     .width(5.dp)
                     .height(with(density) { thumbHeightPx.toDp() })
-                    .clip(RoundedCornerShape(ElovaireRadii.pill))
+                    .clip(RoundedCornerShape(A0Radii.pill))
                     .background(thumbColor),
             )
         }

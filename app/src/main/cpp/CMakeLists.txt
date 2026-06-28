@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.22.1)
 
-project(elovaire_chromaprint LANGUAGES C CXX)
+project(a0_chromaprint LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CHROMAPRINT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/chromaprint/src)
 
 add_library(
-    elovaire_chromaprint
+    a0_chromaprint
     SHARED
     chromaprint_jni.cpp
     ${CHROMAPRINT_DIR}/audio_processor.cpp
@@ -35,7 +35,7 @@ add_library(
 )
 
 target_include_directories(
-    elovaire_chromaprint
+    a0_chromaprint
     PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CHROMAPRINT_DIR}
@@ -43,7 +43,7 @@ target_include_directories(
 )
 
 target_compile_definitions(
-    elovaire_chromaprint
+    a0_chromaprint
     PRIVATE
     HAVE_CONFIG_H
     USE_INTERNAL_AVRESAMPLE
@@ -52,11 +52,11 @@ target_compile_definitions(
     CHROMAPRINT_NODLL
 )
 
-target_compile_options(elovaire_chromaprint PRIVATE -Wall -Wextra -Wno-unused-parameter)
+target_compile_options(a0_chromaprint PRIVATE -Wall -Wextra -Wno-unused-parameter)
 target_link_options(
-    elovaire_chromaprint
+    a0_chromaprint
     PRIVATE
     "-Wl,-z,max-page-size=16384"
     "-Wl,-z,common-page-size=16384"
 )
-target_link_libraries(elovaire_chromaprint android log m)
+target_link_libraries(a0_chromaprint android log m)

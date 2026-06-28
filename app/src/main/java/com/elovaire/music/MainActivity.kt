@@ -34,12 +34,12 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import elovaire.music.droidbeauty.app.data.playback.EXTRA_OPEN_PLAYER_FROM_NOTIFICATION
 import elovaire.music.droidbeauty.app.data.playback.ExternalAudioIntentHandler
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireAnimatedVisibility
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireMotion
+import elovaire.music.droidbeauty.app.ui.motion.A0AnimatedVisibility
+import elovaire.music.droidbeauty.app.ui.motion.A0Motion
 import elovaire.music.droidbeauty.app.ui.motion.MotionRuntimeProvider
 import elovaire.music.droidbeauty.app.ui.motion.rememberMotionRuntime
-import elovaire.music.droidbeauty.app.ui.screens.ElovaireRoot
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireTheme
+import elovaire.music.droidbeauty.app.ui.screens.A0Root
+import elovaire.music.droidbeauty.app.ui.theme.A0Theme
 import elovaire.music.droidbeauty.app.ui.theme.themeBackgroundForMode
 import kotlinx.coroutines.delay
 
@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        val app = application as ElovaireApp
+        val app = application as A0App
         val container = app.container
         val shouldShowColdStartSplash = savedInstanceState == null
         val isFirstActivityInProcess = container.consumeColdStartHomeReset()
@@ -76,14 +76,14 @@ class MainActivity : ComponentActivity() {
                     themeOverlayAlpha.snapTo(1f)
                     themeOverlayAlpha.animateTo(
                         targetValue = 0f,
-                        animationSpec = ElovaireMotion.emphasizedEnterSpec(),
+                        animationSpec = A0Motion.emphasizedEnterSpec(),
                     )
                 }
             }
 
             LaunchedEffect(showSplash) {
                 if (showSplash) {
-                    delay(ElovaireMotion.scaleDurationMillis(1_500L, motionDurationScale))
+                    delay(A0Motion.scaleDurationMillis(1_500L, motionDurationScale))
                     showSplash = false
                 }
             }
@@ -92,12 +92,12 @@ class MainActivity : ComponentActivity() {
                 container.scheduleDeferredStartupWork()
             }
 
-            ElovaireTheme(
+            A0Theme(
                 themeMode = themeMode.value,
                 textSizePreset = textSizePreset.value,
             ) {
                 Box(modifier = Modifier.fillMaxSize()) {
-                    ElovaireRoot(
+                    A0Root(
                         container = container,
                         resetHomeScrollOnColdStart = resetHomeScrollOnColdStart,
                     )
@@ -108,16 +108,16 @@ class MainActivity : ComponentActivity() {
                                 .background(overlayColor.copy(alpha = themeOverlayAlpha.value)),
                         )
                     }
-                    ElovaireAnimatedVisibility(
+                    A0AnimatedVisibility(
                         visible = showSplash,
                         enter = androidx.compose.animation.fadeIn(
-                            animationSpec = ElovaireMotion.fadeMedium(),
+                            animationSpec = A0Motion.fadeMedium(),
                         ),
                         exit = fadeOut(
-                            animationSpec = ElovaireMotion.offsetSoft(durationMillis = 320),
+                            animationSpec = A0Motion.offsetSoft(durationMillis = 320),
                         ) + scaleOut(
                             targetScale = 1.02f,
-                            animationSpec = ElovaireMotion.offsetSoft(durationMillis = 320),
+                            animationSpec = A0Motion.offsetSoft(durationMillis = 320),
                         ),
                         label = "ColdStartSplashVisibility",
                     ) {
@@ -169,13 +169,13 @@ class MainActivity : ComponentActivity() {
 
     private fun handleNotificationIntent(intent: Intent?) {
         if (intent?.getBooleanExtra(EXTRA_OPEN_PLAYER_FROM_NOTIFICATION, false) == true) {
-            (application as ElovaireApp).container.requestOpenNowPlaying()
+            (application as A0App).container.requestOpenNowPlaying()
             intent.removeExtra(EXTRA_OPEN_PLAYER_FROM_NOTIFICATION)
         }
     }
 
     private fun handleExternalAudioIntent(intent: Intent?) {
-        val app = application as ElovaireApp
+        val app = application as A0App
         val song = ExternalAudioIntentHandler.buildSong(this, intent) ?: return
         app.container.playbackManager.playSong(
             song = song,

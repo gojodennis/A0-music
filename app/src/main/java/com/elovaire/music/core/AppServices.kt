@@ -7,8 +7,8 @@ import elovaire.music.droidbeauty.app.data.library.MediaStoreScanner
 import elovaire.music.droidbeauty.app.data.lyrics.LyricsService
 import elovaire.music.droidbeauty.app.data.playback.PlaybackEffectsController
 import elovaire.music.droidbeauty.app.data.playback.PlaybackManager
-import elovaire.music.droidbeauty.app.data.playback.library.ElovaireMediaLibrarySessionCallback
-import elovaire.music.droidbeauty.app.data.playback.library.ElovaireMediaTree
+import elovaire.music.droidbeauty.app.data.playback.library.A0MediaLibrarySessionCallback
+import elovaire.music.droidbeauty.app.data.playback.library.A0MediaTree
 import elovaire.music.droidbeauty.app.data.settings.PreferenceStore
 import elovaire.music.droidbeauty.app.data.tags.AlbumTagEditorService
 import elovaire.music.droidbeauty.app.data.update.AppUpdateManager
@@ -50,8 +50,8 @@ internal class AppServices(
     ).also { repository ->
         repository.setPreferredLibraryFolderPath(preferenceStore.libraryFolderPath.value)
     }
-    private val mediaTree = ElovaireMediaTree(libraryRepository, preferenceStore)
-    private val mediaLibraryCallback = ElovaireMediaLibrarySessionCallback(
+    private val mediaTree = A0MediaTree(libraryRepository, preferenceStore)
+    private val mediaLibraryCallback = A0MediaLibrarySessionCallback(
         mediaTree = mediaTree,
         playbackManager = playbackManager,
     )

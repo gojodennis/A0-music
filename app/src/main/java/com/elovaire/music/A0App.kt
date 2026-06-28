@@ -3,7 +3,7 @@ package elovaire.music.droidbeauty.app
 import android.app.Application
 import elovaire.music.droidbeauty.app.core.AppContainer
 
-class ElovaireApp : Application() {
+class A0App : Application() {
     lateinit var container: AppContainer
         private set
 

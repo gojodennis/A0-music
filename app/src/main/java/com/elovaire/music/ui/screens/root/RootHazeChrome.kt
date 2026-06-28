@@ -38,7 +38,7 @@ import dev.chrisbanes.haze.HazeProgressive
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.HazeTint
 import dev.chrisbanes.haze.hazeEffect
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireSpacing
+import elovaire.music.droidbeauty.app.ui.theme.A0Spacing
 import elovaire.music.droidbeauty.app.ui.theme.InkText
 import kotlinx.coroutines.flow.distinctUntilChanged
 
@@ -72,18 +72,18 @@ internal fun buttonNavigationScrollBoost(): Dp {
 internal fun screenContainerSizePx(): IntSize = LocalWindowInfo.current.containerSize
 
 @Composable
-internal fun topBarOccupiedHeight(): Dp = statusBarInsetDp() + ElovaireSpacing.topBarContentHeight
+internal fun topBarOccupiedHeight(): Dp = statusBarInsetDp() + A0Spacing.topBarContentHeight
 
 @Composable
-internal fun detailTopBarOccupiedHeight(): Dp = statusBarInsetDp() + ElovaireSpacing.detailTopBarContentHeight
+internal fun detailTopBarOccupiedHeight(): Dp = statusBarInsetDp() + A0Spacing.detailTopBarContentHeight
 
 @Composable
 internal fun sharedTopBarOccupiedHeight(): Dp =
-    statusBarInsetDp() + maxOf(ElovaireSpacing.topBarContentHeight, ElovaireSpacing.detailTopBarContentHeight)
+    statusBarInsetDp() + maxOf(A0Spacing.topBarContentHeight, A0Spacing.detailTopBarContentHeight)
 
 @Composable
 internal fun bottomNavigationOccupiedHeight(): Dp =
-    navigationBarInsetDp() + ElovaireSpacing.bottomNavigationBodyHeight
+    navigationBarInsetDp() + A0Spacing.bottomNavigationBodyHeight
 
 @Composable
 private fun blurSurfaceOverlayColor(): Color = androidx.compose.material3.MaterialTheme.colorScheme.surface
@@ -101,7 +101,7 @@ internal fun blurSurfaceBorderColor(): Color {
 internal fun Modifier.horizontalGestureSafe(): Modifier = this.systemGestureExclusion()
 
 @Composable
-internal fun rememberElovaireLazyListState(vararg inputs: Any?): LazyListState {
+internal fun rememberA0LazyListState(vararg inputs: Any?): LazyListState {
     val cacheKey = remember(*inputs) {
         inputs.joinToString(separator = "|") { it?.toString().orEmpty() }
     }
@@ -125,7 +125,7 @@ internal fun rememberElovaireLazyListState(vararg inputs: Any?): LazyListState {
 }
 
 @Composable
-internal fun rememberElovaireLazyGridState(vararg inputs: Any?): LazyGridState {
+internal fun rememberA0LazyGridState(vararg inputs: Any?): LazyGridState {
     val cacheKey = remember(*inputs) {
         inputs.joinToString(separator = "|") { it?.toString().orEmpty() }
     }
@@ -149,7 +149,7 @@ internal fun rememberElovaireLazyGridState(vararg inputs: Any?): LazyGridState {
 }
 
 @Composable
-internal fun rememberElovaireScrollState(vararg inputs: Any?): androidx.compose.foundation.ScrollState {
+internal fun rememberA0ScrollState(vararg inputs: Any?): androidx.compose.foundation.ScrollState {
     val cacheKey = remember(*inputs) {
         inputs.joinToString(separator = "|") { it?.toString().orEmpty() }
     }

@@ -13,36 +13,36 @@ import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import elovaire.music.droidbeauty.app.ui.motion.MotionScale
-import elovaire.music.droidbeauty.app.ui.motion.elovairePressScaleMotion
+import elovaire.music.droidbeauty.app.ui.motion.a0PressScaleMotion
 import elovaire.music.droidbeauty.app.ui.motion.rememberMotionSpecs
 
 @Immutable
-data class ElovaireInteractionSpecs(
+data class A0InteractionSpecs(
     val chromePressScale: Float = MotionScale.ChromePressed,
     val mediaPressScale: Float = MotionScale.MediaPressed,
 )
 
-object ElovaireInteraction {
-    val specs = ElovaireInteractionSpecs()
+object A0Interaction {
+    val specs = A0InteractionSpecs()
 }
 
 @Composable
-fun rememberElovaireInteractionSource(): MutableInteractionSource {
+fun rememberA0InteractionSource(): MutableInteractionSource {
     return remember { MutableInteractionSource() }
 }
 
-fun Modifier.elovairePressScale(
+fun Modifier.a0PressScale(
     enabled: Boolean = true,
-    pressedScale: Float = ElovaireInteraction.specs.chromePressScale,
+    pressedScale: Float = A0Interaction.specs.chromePressScale,
     animationSpec: FiniteAnimationSpec<Float>? = null,
     interactionSource: MutableInteractionSource? = null,
-    label: String = "elovairePressScale",
+    label: String = "a0PressScale",
 ): Modifier = composed {
     if (!enabled) return@composed this
     val motionSpecs = rememberMotionSpecs()
-    val resolvedInteractionSource = interactionSource ?: rememberElovaireInteractionSource()
+    val resolvedInteractionSource = interactionSource ?: rememberA0InteractionSource()
     val pressed by resolvedInteractionSource.collectIsPressedAsState()
-    elovairePressScaleMotion(
+    a0PressScaleMotion(
         pressed = pressed,
         pressedScale = pressedScale,
         pressSpec = motionSpecs.pressDown(),

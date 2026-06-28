@@ -40,13 +40,13 @@ import elovaire.music.droidbeauty.app.R
 import elovaire.music.droidbeauty.app.ui.i18n.LocalAppLanguage
 import elovaire.music.droidbeauty.app.ui.i18n.rootUiCopy
 import elovaire.music.droidbeauty.app.ui.interaction.consumePointersWithoutSemantics
-import elovaire.music.droidbeauty.app.ui.interaction.elovairePressScale
-import elovaire.music.droidbeauty.app.ui.interaction.rememberElovaireInteractionSource
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireAnimatedContent
-import elovaire.music.droidbeauty.app.ui.motion.ElovaireMotion
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireRadii
+import elovaire.music.droidbeauty.app.ui.interaction.a0PressScale
+import elovaire.music.droidbeauty.app.ui.interaction.rememberA0InteractionSource
+import elovaire.music.droidbeauty.app.ui.motion.A0AnimatedContent
+import elovaire.music.droidbeauty.app.ui.motion.A0Motion
+import elovaire.music.droidbeauty.app.ui.theme.A0Radii
 import elovaire.music.droidbeauty.app.ui.theme.InkText
-import elovaire.music.droidbeauty.app.ui.theme.elovaireScaledSp
+import elovaire.music.droidbeauty.app.ui.theme.a0ScaledSp
 
 internal val LocalSharedTopBarController = compositionLocalOf<SharedTopBarController?> { null }
 internal val LocalRenderSharedTopBarContent = compositionLocalOf { false }
@@ -178,7 +178,7 @@ internal fun UnifiedTopBar(
             ) {
                 Text(
                     text = title,
-                    style = MaterialTheme.typography.displayLarge.copy(fontSize = elovaireScaledSp(26f)),
+                    style = MaterialTheme.typography.displayLarge.copy(fontSize = a0ScaledSp(26f)),
                     color = MaterialTheme.colorScheme.onSurface,
                     maxLines = 1,
                 )
@@ -267,7 +267,7 @@ internal fun PinnedBackTopBar(
                 )
                 Text(
                     text = title,
-                    style = MaterialTheme.typography.displayLarge.copy(fontSize = elovaireScaledSp(26f)),
+                    style = MaterialTheme.typography.displayLarge.copy(fontSize = a0ScaledSp(26f)),
                     color = MaterialTheme.colorScheme.onSurface,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -303,7 +303,7 @@ internal fun PinnedBackTopBar(
                 ) {
                     Text(
                         text = title,
-                        style = MaterialTheme.typography.displayLarge.copy(fontSize = elovaireScaledSp(26f)),
+                        style = MaterialTheme.typography.displayLarge.copy(fontSize = a0ScaledSp(26f)),
                         color = MaterialTheme.colorScheme.onSurface,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
@@ -331,19 +331,19 @@ internal fun SharedTopBarOverlay(
                 .matchParentSize()
                 .consumePointersWithoutSemantics(),
         )
-        ElovaireAnimatedContent(
+        A0AnimatedContent(
             targetState = spec,
             transitionSpec = {
                 when {
                     initialState is SharedTopBarSpec.Unified && targetState !is SharedTopBarSpec.Unified -> {
-                        ElovaireMotion.sharedTopBarForwardTransform()
+                        A0Motion.sharedTopBarForwardTransform()
                     }
 
                     initialState !is SharedTopBarSpec.Unified && targetState is SharedTopBarSpec.Unified -> {
-                        ElovaireMotion.sharedTopBarBackTransform()
+                        A0Motion.sharedTopBarBackTransform()
                     }
 
-                    else -> ElovaireMotion.sharedTopBarTransform()
+                    else -> A0Motion.sharedTopBarTransform()
                 }
             },
             contentKey = { it.visualSignature() },
@@ -365,16 +365,16 @@ internal fun SharedTopBarOverlay(
                                 .height(40.dp),
                             contentAlignment = Alignment.CenterStart,
                         ) {
-                            ElovaireAnimatedContent(
+                            A0AnimatedContent(
                                 targetState = currentSpec.title,
                                 transitionSpec = {
-                                    ElovaireMotion.sharedTopBarTransform()
+                                    A0Motion.sharedTopBarTransform()
                                 },
                                 label = "SharedTopBarUnifiedTitle",
                             ) { currentTitle ->
                                 Text(
                                     text = currentTitle,
-                                    style = MaterialTheme.typography.displayLarge.copy(fontSize = elovaireScaledSp(26f)),
+                                    style = MaterialTheme.typography.displayLarge.copy(fontSize = a0ScaledSp(26f)),
                                     color = MaterialTheme.colorScheme.onSurface,
                                     maxLines = 1,
                                 )
@@ -428,16 +428,16 @@ internal fun SharedTopBarOverlay(
                                     .padding(horizontal = 64.dp),
                                 contentAlignment = Alignment.Center,
                             ) {
-                                ElovaireAnimatedContent(
+                                A0AnimatedContent(
                                     targetState = currentSpec.title,
                                     transitionSpec = {
-                                        ElovaireMotion.sharedTopBarTransform()
+                                        A0Motion.sharedTopBarTransform()
                                     },
                                     label = "SharedTopBarBackCenteredTitle",
                                 ) { currentTitle ->
                                     Text(
                                         text = currentTitle,
-                                        style = MaterialTheme.typography.displayLarge.copy(fontSize = elovaireScaledSp(26f)),
+                                        style = MaterialTheme.typography.displayLarge.copy(fontSize = a0ScaledSp(26f)),
                                         color = MaterialTheme.colorScheme.onSurface,
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis,
@@ -467,16 +467,16 @@ internal fun SharedTopBarOverlay(
                                     .height(40.dp),
                                 contentAlignment = Alignment.CenterStart,
                             ) {
-                                ElovaireAnimatedContent(
+                                A0AnimatedContent(
                                     targetState = currentSpec.title,
                                     transitionSpec = {
-                                        ElovaireMotion.sharedTopBarTransform()
+                                        A0Motion.sharedTopBarTransform()
                                     },
                                     label = "SharedTopBarBackTitle",
                                 ) { currentTitle ->
                                     Text(
                                         text = currentTitle,
-                                        style = MaterialTheme.typography.displayLarge.copy(fontSize = elovaireScaledSp(26f)),
+                                        style = MaterialTheme.typography.displayLarge.copy(fontSize = a0ScaledSp(26f)),
                                         color = MaterialTheme.colorScheme.onSurface,
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis,
@@ -507,9 +507,9 @@ internal fun SharedTopBarOverlay(
                                 modifier = Modifier.weight(1f),
                                 contentAlignment = Alignment.CenterStart,
                             ) {
-                                ElovaireAnimatedContent(
+                                A0AnimatedContent(
                                     targetState = currentSpec.title,
-                                    transitionSpec = { ElovaireMotion.titleSwapTransform() },
+                                    transitionSpec = { A0Motion.titleSwapTransform() },
                                     label = "SharedTopBarDetailTitleOnly",
                                 ) { currentTitle ->
                                     Text(
@@ -526,9 +526,9 @@ internal fun SharedTopBarOverlay(
                                 modifier = Modifier.weight(1f),
                                 verticalArrangement = Arrangement.spacedBy(2.dp),
                             ) {
-                                ElovaireAnimatedContent(
+                                A0AnimatedContent(
                                     targetState = currentSpec.title,
-                                    transitionSpec = { ElovaireMotion.titleSwapTransform() },
+                                    transitionSpec = { A0Motion.titleSwapTransform() },
                                     label = "SharedTopBarDetailTitleWithSubtitle",
                                 ) { currentTitle ->
                                     Text(
@@ -580,7 +580,7 @@ internal fun HeaderIconButton(
     tint: Color = MaterialTheme.colorScheme.onSurface,
     onClick: () -> Unit,
 ) {
-    val interactionSource = rememberElovaireInteractionSource()
+    val interactionSource = rememberA0InteractionSource()
     val sharedBackPainter = LocalSharedBackIconPainter.current
     val sharedTopMenuPainter = LocalSharedTopMenuIconPainter.current
     val iconPainter = when {
@@ -591,10 +591,10 @@ internal fun HeaderIconButton(
     Box(
         modifier = modifier
             .size(40.dp)
-            .elovairePressScale(
+            .a0PressScale(
                 enabled = enabled,
                 pressedScale = 0.88f,
-                animationSpec = ElovaireMotion.chromeReleaseSpec(),
+                animationSpec = A0Motion.chromeReleaseSpec(),
                 interactionSource = interactionSource,
                 label = "${contentDescription}_header_scale",
             )

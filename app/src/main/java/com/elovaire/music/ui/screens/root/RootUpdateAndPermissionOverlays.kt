@@ -29,7 +29,7 @@ import elovaire.music.droidbeauty.app.data.update.AppReleaseInfo
 import elovaire.music.droidbeauty.app.data.update.AppUpdateUiState
 import elovaire.music.droidbeauty.app.ui.i18n.LocalAppLanguage
 import elovaire.music.droidbeauty.app.ui.i18n.rootUiCopy
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireRadii
+import elovaire.music.droidbeauty.app.ui.theme.A0Radii
 import elovaire.music.droidbeauty.app.ui.theme.InkText
 import kotlin.math.roundToInt
 
@@ -51,7 +51,7 @@ internal fun UpdateAvailableBanner(
     }
     DynamicBackdropSurface(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(ElovaireRadii.pill),
+        shape = RoundedCornerShape(A0Radii.pill),
         overlayAlpha = 0.7f,
         borderColor = blurSurfaceBorderColor(),
     ) {
@@ -93,7 +93,7 @@ internal fun UpdateAvailableBanner(
             }
             Surface(
                 onClick = onUpdate,
-                shape = RoundedCornerShape(ElovaireRadii.pill),
+                shape = RoundedCornerShape(A0Radii.pill),
                 color = MaterialTheme.colorScheme.primary,
                 contentColor = MaterialTheme.colorScheme.onPrimary,
                 enabled = !uiState.isInstalling,
@@ -134,7 +134,7 @@ internal fun UpdateStatusBanner(
     val primaryTextColor = if (darkTheme) Color.White else InkText
     DynamicBackdropSurface(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(ElovaireRadii.pill),
+        shape = RoundedCornerShape(A0Radii.pill),
         overlayAlpha = 0.7f,
         borderColor = blurSurfaceBorderColor(),
     ) {

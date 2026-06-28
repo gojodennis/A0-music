@@ -42,8 +42,8 @@ import elovaire.music.droidbeauty.app.data.artwork.ArtworkPurpose
 import elovaire.music.droidbeauty.app.data.artwork.artworkRequestKey
 import elovaire.music.droidbeauty.app.data.artwork.loadArtworkBitmap
 import elovaire.music.droidbeauty.app.data.artwork.normalizeArtworkRequestSize
-import elovaire.music.droidbeauty.app.ui.theme.ElovaireRadii
-import elovaire.music.droidbeauty.app.ui.theme.elovaireScaledSp
+import elovaire.music.droidbeauty.app.ui.theme.A0Radii
+import elovaire.music.droidbeauty.app.ui.theme.a0ScaledSp
 import androidx.compose.ui.res.painterResource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -54,7 +54,7 @@ fun ArtworkImage(
     uri: Uri?,
     modifier: Modifier = Modifier,
     title: String = "",
-    cornerRadius: Dp = ElovaireRadii.artwork,
+    cornerRadius: Dp = A0Radii.artwork,
     requestedSizePx: Int = 384,
     showArtworkGlow: Boolean = false,
     overlay: (@Composable BoxScope.() -> Unit)? = null,

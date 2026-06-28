@@ -5,7 +5,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Immutable
-object ElovaireSpacing {
+object A0Spacing {
     // Main top bar height on home/library/playlists/search.
     val topBarContentHeight: Dp = 56.dp
 

@@ -145,7 +145,7 @@ internal enum class DetailRouteTransitionMode {
     Standard,
 }
 
-internal object ElovaireNavigationTransitions {
+internal object A0NavigationTransitions {
     fun depthOf(route: String?): Int {
         return when (route.normalizedNavigationRoute()) {
             HOME_ROUTE,
@@ -549,7 +549,7 @@ internal fun String?.normalizedNavigationRoute(): String? {
     }
 }
 
-internal fun androidx.navigation.NavBackStackEntry.elovaireConcreteRoute(): String? {
+internal fun androidx.navigation.NavBackStackEntry.a0ConcreteRoute(): String? {
     return when (destination.route) {
         "$ALBUM_ROUTE/{albumId}" -> Routes.album(arguments?.getLong("albumId") ?: return null)
         "$ALBUM_TAG_EDITOR_ROUTE/{albumId}" -> Routes.tagEditor(arguments?.getLong("albumId") ?: return null)

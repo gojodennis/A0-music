@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.scale
 
-fun Modifier.elovairePressScaleMotion(
+fun Modifier.a0PressScaleMotion(
     pressed: Boolean,
     pressedScale: Float,
     pressSpec: FiniteAnimationSpec<Float>,
@@ -25,31 +25,31 @@ fun Modifier.elovairePressScaleMotion(
 }
 
 @Composable
-fun Modifier.elovaireAnimateContentSize(): Modifier {
+fun Modifier.a0AnimateContentSize(): Modifier {
     val specs = rememberMotionSpecs()
     return animateContentSize(animationSpec = specs.contentSize())
 }
 
 @Composable
-fun Modifier.elovaireChromePressScale(pressed: Boolean): Modifier {
+fun Modifier.a0ChromePressScale(pressed: Boolean): Modifier {
     val specs = rememberMotionSpecs()
-    return elovairePressScaleMotion(
+    return a0PressScaleMotion(
         pressed = pressed,
         pressedScale = MotionScale.ChromePressed,
         pressSpec = specs.pressDown(),
         releaseSpec = specs.chromeRelease(),
-        label = "elovaireChromePressScale",
+        label = "a0ChromePressScale",
     )
 }
 
 @Composable
-fun Modifier.elovaireMediaPressScale(pressed: Boolean): Modifier {
+fun Modifier.a0MediaPressScale(pressed: Boolean): Modifier {
     val specs = rememberMotionSpecs()
-    return elovairePressScaleMotion(
+    return a0PressScaleMotion(
         pressed = pressed,
         pressedScale = MotionScale.MediaPressed,
         pressSpec = specs.pressDown(),
         releaseSpec = specs.mediaRelease(),
-        label = "elovaireMediaPressScale",
+        label = "a0MediaPressScale",
     )
 }

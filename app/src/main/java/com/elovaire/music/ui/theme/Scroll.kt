@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 
 @Composable
-fun rememberElovaireOverscrollFactory(): OverscrollFactory {
+fun rememberA0OverscrollFactory(): OverscrollFactory {
     return rememberPlatformOverscrollFactory(
         glowColor = Color.Transparent,
         glowDrawPadding = PaddingValues(),

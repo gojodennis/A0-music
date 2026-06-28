@@ -616,7 +616,7 @@ class PlaybackManager(
     private fun createPlayer(enableSignalProcessing: Boolean): ExoPlayer {
         val configuredPlayer = ExoPlayer.Builder(appContext)
             .setRenderersFactory(
-                ElovaireRenderersFactory(
+                A0RenderersFactory(
                     appContext,
                     if (enableSignalProcessing) audioProcessorsProvider() else emptyArray(),
                 )
