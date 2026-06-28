@@ -1,12 +1,6 @@
 # A;0
 
-<p align="center">
-  <img
-    src="https://raw.githubusercontent.com/gojodennis/a0-music/refs/heads/main/renders/1.png"
-    alt="A;0 - elegant music listening experience"
-    width="100%"
-  />
-</p>
+
 
 ---
 
