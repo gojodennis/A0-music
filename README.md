@@ -2,23 +2,6 @@
 
 
 
----
-
-<p align="center">
-  <a href="https://github.com/gojodennis/a0-music/releases/latest">
-    <img
-      alt="Download the latest release"
-      src="https://img.shields.io/github/v/release/gojodennis/a0-music?style=for-the-badge&label=Download%20latest&logo=github&logoColor=white&color=3CB371"
-    />
-  </a>
-  &nbsp;
-  <a href="https://ko-fi.com/gojodennis">
-    <img
-      alt="Support A;0 on Ko-fi"
-      src="https://img.shields.io/badge/Support%20on%20Ko--fi-ff5f5f?style=for-the-badge&logo=kofi&logoColor=white"
-    />
-  </a>
-</p>
 
 <p align="center">
   <b>Your local music library, presented like art that it is</b>
@@ -50,19 +33,6 @@ Browse by songs, albums, artists, genres and playlists. Instantly search even th
 - Smooth Compose UI with frosted blur, animated transitions and adaptive visual details
 - Fast library scanning through Android MediaStore and local folder observation
 - Built-in update flow based on looking for the latest GitHub release
-
----
-
-<p align="center">
-  <img
-    src="https://raw.githubusercontent.com/gojodennis/a0-music/refs/heads/main/renders/2.png"
-    width="49%"
-  />
-  <img
-    src="https://raw.githubusercontent.com/gojodennis/a0-music/refs/heads/main/renders/3.png"
-    width="49%"
-  />
-</p>
 
 ## Features
 
@@ -113,24 +83,6 @@ Supported audio format handling is based on Android Media3/ExoPlayer, Android pl
 - Frosted glass effects and backdrop blur surfaces
 - Smooth route transitions, animated player surfaces and artwork-driven visual accents
 
----
-
-<p align="center">
-  <img
-    src="https://raw.githubusercontent.com/gojodennis/a0-music/refs/heads/main/renders/4.png"
-    width="100%"
-  />
-</p>
-
-<p align="center">
-  <img
-    src="https://raw.githubusercontent.com/gojodennis/a0-music/refs/heads/main/renders/5.png"
-    width="100%"
-  />
-</p>
-
----
-
 ## Built With
 
 A;0 is built for Android based on optimized architecture
@@ -143,17 +95,6 @@ A;0 is built for Android based on optimized architecture
 - Android Storage Access Framework
 - Haze for frosted glass and backdrop blur surfaces
 - Gradle Kotlin DSL
-
----
-
-<p align="center">
-  <img
-    src="https://raw.githubusercontent.com/gojodennis/a0-music/refs/heads/main/renders/6.png"
-    width="100%"
-  />
-</p>
-
----
 
 ## Building
 
@@ -175,16 +116,3 @@ The generated APK will be available under:
 ```text
 app/build/outputs/apk/debug/
 ```
-
-## Support
-
-A;0 is a personal project made in pursuit of a beautiful, focused alternative to streaming-first music apps. Support is optional, but always appreciated.
-
-<p align="center">
-  <a href="https://ko-fi.com/gojodennis">
-    <img
-      alt="Support A;0 on Ko-fi"
-      src="https://img.shields.io/badge/Leave%20a%20tip-Ko--fi-ff5f5f?style=for-the-badge&logo=kofi&logoColor=white"
-    />
-  </a>
-</p>
